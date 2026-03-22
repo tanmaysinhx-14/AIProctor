@@ -1,0 +1,6668 @@
+{
+  "schemaVersion": "1.0",
+  "session": {
+    "id": "1714abe9-d17c-4367-a237-e73fece71ef8",
+    "startedAt": "2026-03-22T17:03:55.333731+00:00",
+    "endedAt": "2026-03-22T17:11:42.615757+00:00",
+    "durationSec": 467.281,
+    "samples": 831
+  },
+  "device": {
+    "deviceTag": "LENOVO-LOQ",
+    "hostName": "LENOVO-LOQ",
+    "os": "Windows",
+    "osVersion": "10.0.26200",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "machine": "AMD64",
+    "pythonVersion": "3.11.9",
+    "pythonExecutable": "C:\\Users\\tanma\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+    "torchVersion": "2.5.1+cu121",
+    "cudaVersion": "12.1",
+    "cpuModel": "AMD64 Family 25 Model 68 Stepping 1, AuthenticAMD",
+    "cpuPhysicalCores": 4,
+    "cpuLogicalCores": 8,
+    "memoryTotalGb": 23.692,
+    "gpuAvailable": true,
+    "gpuCount": 1,
+    "gpuDevices": [
+      {
+        "index": 0,
+        "name": "NVIDIA GeForce RTX 3050 6GB Laptop GPU",
+        "memoryTotalGb": 6.0,
+        "multiProcessorCount": 20
+      }
+    ],
+    "deviceFingerprint": "6690d6e9ebd71dde"
+  },
+  "comparisonVector": {
+    "fpsAvg": 2.6099,
+    "fpsP95": 4.75,
+    "frameTimeAvgMs": 236.096,
+    "frameTimeP95Ms": 422.915,
+    "cpuProcessAvgPercent": 58.2775,
+    "cpuProcessPeakPercent": 121.9,
+    "memorySystemPeakPercent": 48.2,
+    "processRssPeakMb": 1596.29,
+    "gpuUtilAvgPercent": 27.3694,
+    "gpuTempPeakC": 46.0,
+    "gpuMemoryUtilPeakPercent": 78.0,
+    "fpsPerCpuProcessAvg": 0.0484
+  },
+  "summary": {
+    "throughput": {
+      "fps": {
+        "count": 831.0,
+        "avg": 2.6099,
+        "min": 0.0,
+        "p50": 2.86,
+        "p95": 4.75,
+        "max": 4.9,
+        "first": 0.0,
+        "last": 1.01,
+        "delta": 1.01,
+        "deltaPercent": 0.0
+      },
+      "frameTimeMs": {
+        "count": 831.0,
+        "avg": 236.096,
+        "min": 82.14,
+        "p50": 228.59,
+        "p95": 422.915,
+        "max": 956.48,
+        "first": 807.38,
+        "last": 82.17,
+        "delta": -725.21,
+        "deltaPercent": -89.82
+      },
+      "droppedFrames": {
+        "count": 831.0,
+        "avg": 0.0,
+        "min": 0.0,
+        "p50": 0.0,
+        "p95": 0.0,
+        "max": 0.0,
+        "first": 0.0,
+        "last": 0.0,
+        "delta": 0.0,
+        "deltaPercent": 0.0
+      }
+    },
+    "cpu": {
+      "systemPercent": {
+        "count": 831.0,
+        "avg": 43.1764,
+        "min": 0.0,
+        "p50": 41.9,
+        "p95": 66.05,
+        "max": 83.0,
+        "first": 0.0,
+        "last": 43.8,
+        "delta": 43.8,
+        "deltaPercent": 0.0
+      },
+      "processPercent": {
+        "count": 831.0,
+        "avg": 58.2775,
+        "min": 8.0,
+        "p50": 61.9,
+        "p95": 100.2,
+        "max": 121.9,
+        "first": 118.9,
+        "last": 18.2,
+        "delta": -100.7,
+        "deltaPercent": -84.69
+      }
+    },
+    "memory": {
+      "systemPercent": {
+        "count": 831.0,
+        "avg": 46.932,
+        "min": 46.0,
+        "p50": 46.9,
+        "p95": 47.5,
+        "max": 48.2,
+        "first": 46.8,
+        "last": 46.4,
+        "delta": -0.4,
+        "deltaPercent": -0.85
+      },
+      "processRssMb": {
+        "count": 831.0,
+        "avg": 1567.5478,
+        "min": 1482.71,
+        "p50": 1555.56,
+        "p95": 1592.01,
+        "max": 1596.29,
+        "first": 1482.71,
+        "last": 1591.99,
+        "delta": 109.28,
+        "deltaPercent": 7.37
+      }
+    },
+    "gpu": {
+      "utilPercent": {
+        "count": 831.0,
+        "avg": 27.3694,
+        "min": 2.0,
+        "p50": 26.0,
+        "p95": 75.5,
+        "max": 98.0,
+        "first": 27.0,
+        "last": 9.0,
+        "delta": -18.0,
+        "deltaPercent": -66.67
+      },
+      "memoryUtilPercent": {
+        "count": 831.0,
+        "avg": 10.574,
+        "min": 1.0,
+        "p50": 8.0,
+        "p95": 58.0,
+        "max": 78.0,
+        "first": 7.0,
+        "last": 2.0,
+        "delta": -5.0,
+        "deltaPercent": -71.43
+      },
+      "temperatureC": {
+        "count": 831.0,
+        "avg": 42.8748,
+        "min": 41.0,
+        "p50": 43.0,
+        "p95": 44.0,
+        "max": 46.0,
+        "first": 41.0,
+        "last": 45.0,
+        "delta": 4.0,
+        "deltaPercent": 9.76
+      },
+      "powerW": {
+        "count": 831.0,
+        "avg": 9.2107,
+        "min": 5.12,
+        "p50": 9.44,
+        "p95": 11.77,
+        "max": 14.13,
+        "first": 12.79,
+        "last": 7.18,
+        "delta": -5.61,
+        "deltaPercent": -43.86
+      },
+      "memoryUsedMb": {
+        "count": 831.0,
+        "avg": 1187.4374,
+        "min": 1183.5,
+        "p50": 1187.5,
+        "p95": 1187.5,
+        "max": 1187.5,
+        "first": 1183.5,
+        "last": 1187.5,
+        "delta": 4.0,
+        "deltaPercent": 0.34
+      }
+    },
+    "efficiency": {
+      "fpsPerCpuProcess": {
+        "count": 831.0,
+        "avg": 0.0484,
+        "min": 0.0,
+        "p50": 0.0453,
+        "p95": 0.0784,
+        "max": 0.3106,
+        "first": 0.0,
+        "last": 0.0555,
+        "delta": 0.0555,
+        "deltaPercent": 0.0
+      },
+      "fpsPerCpuSystem": {
+        "count": 829.0,
+        "avg": 0.0607,
+        "min": 0.013,
+        "p50": 0.0518,
+        "p95": 0.1178,
+        "max": 0.1666,
+        "first": 0.0217,
+        "last": 0.0231,
+        "delta": 0.0014,
+        "deltaPercent": 6.31
+      },
+      "frameMsPerCpuProcess": {
+        "count": 831.0,
+        "avg": 5.6829,
+        "min": 0.863,
+        "p50": 4.1855,
+        "p95": 13.7149,
+        "max": 17.046,
+        "first": 6.7904,
+        "last": 4.5148,
+        "delta": -2.2756,
+        "deltaPercent": -33.51
+      }
+    }
+  },
+  "observations": [
+    {
+      "severity": "HIGH",
+      "category": "throughput",
+      "title": "Low average FPS",
+      "details": "Average FPS is 2.61."
+    },
+    {
+      "severity": "HIGH",
+      "category": "latency",
+      "title": "High frame latency p95",
+      "details": "p95 frame time is 422.92 ms."
+    },
+    {
+      "severity": "HIGH",
+      "category": "cpu",
+      "title": "CPU saturation risk",
+      "details": "Process CPU peaked at 121.90%."
+    },
+    {
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Upper FPS envelope",
+      "details": "p95 FPS is 4.75."
+    }
+  ],
+  "eventLog": [
+    {
+      "tSec": 235.8,
+      "timestamp": "2026-03-22T17:07:51.129762+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 363.66,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 235.95,
+      "timestamp": "2026-03-22T17:07:51.299824+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 117.87,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 236.34,
+      "timestamp": "2026-03-22T17:07:51.690638+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 311.03,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 236.55,
+      "timestamp": "2026-03-22T17:07:51.883189+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 123.25,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 237.0,
+      "timestamp": "2026-03-22T17:07:52.337196+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 288.24,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 237.22,
+      "timestamp": "2026-03-22T17:07:52.554010+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 103.73,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 237.59,
+      "timestamp": "2026-03-22T17:07:52.933632+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 282.26,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 237.86,
+      "timestamp": "2026-03-22T17:07:53.194895+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 149.98,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 238.41,
+      "timestamp": "2026-03-22T17:07:53.751135+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 425.03,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 238.64,
+      "timestamp": "2026-03-22T17:07:53.974064+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 142.17,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 238.98,
+      "timestamp": "2026-03-22T17:07:54.331405+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 301.38,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 239.23,
+      "timestamp": "2026-03-22T17:07:54.575595+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 152.35,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 239.69,
+      "timestamp": "2026-03-22T17:07:55.030555+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 343.51,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 240.75,
+      "timestamp": "2026-03-22T17:07:56.084993+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 161.05,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 241.14,
+      "timestamp": "2026-03-22T17:07:56.484992+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 354.83,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 241.34,
+      "timestamp": "2026-03-22T17:07:56.690360+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 161.22,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 241.81,
+      "timestamp": "2026-03-22T17:07:57.156678+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 366.86,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 242.0,
+      "timestamp": "2026-03-22T17:07:57.339938+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 141.15,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 242.39,
+      "timestamp": "2026-03-22T17:07:57.728653+00:00",
+      "severity": "HIGH",
+      "category": "cpu",
+      "title": "Process CPU spike",
+      "details": "cpuProcessPercent >= 90.0",
+      "evidence": {
+        "cpuProcessPercent": 91.7,
+        "threshold": 90.0
+      }
+    },
+    {
+      "tSec": 242.39,
+      "timestamp": "2026-03-22T17:07:57.728653+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 337.85,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 242.66,
+      "timestamp": "2026-03-22T17:07:57.993407+00:00",
+      "severity": "LOW",
+      "category": "cpu",
+      "title": "Process CPU recovered",
+      "details": "cpuProcessPercent returned inside expected range.",
+      "evidence": {
+        "cpuProcessPercent": 70.8,
+        "threshold": 90.0
+      }
+    },
+    {
+      "tSec": 242.66,
+      "timestamp": "2026-03-22T17:07:57.993407+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 197.72,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 243.16,
+      "timestamp": "2026-03-22T17:07:58.503175+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 353.19,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 243.42,
+      "timestamp": "2026-03-22T17:07:58.767827+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 202.54,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 243.86,
+      "timestamp": "2026-03-22T17:07:59.203997+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 356.18,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 244.17,
+      "timestamp": "2026-03-22T17:07:59.517276+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 173.36,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 244.59,
+      "timestamp": "2026-03-22T17:07:59.929688+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 379.29,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 245.01,
+      "timestamp": "2026-03-22T17:08:00.352933+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 149.5,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 246.47,
+      "timestamp": "2026-03-22T17:08:01.813941+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 529.62,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 247.08,
+      "timestamp": "2026-03-22T17:08:02.416391+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 210.54,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 248.28,
+      "timestamp": "2026-03-22T17:08:03.624770+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 339.01,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 249.0,
+      "timestamp": "2026-03-22T17:08:04.341109+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 135.77,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 250.5,
+      "timestamp": "2026-03-22T17:08:05.845089+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 444.96,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 251.03,
+      "timestamp": "2026-03-22T17:08:06.374681+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 166.17,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 252.34,
+      "timestamp": "2026-03-22T17:08:07.685758+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 386.62,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 253.03,
+      "timestamp": "2026-03-22T17:08:08.369886+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 151.75,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 254.38,
+      "timestamp": "2026-03-22T17:08:09.718914+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 415.7,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 255.03,
+      "timestamp": "2026-03-22T17:08:10.370160+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 154.17,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 256.31,
+      "timestamp": "2026-03-22T17:08:11.647597+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 362.42,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 257.03,
+      "timestamp": "2026-03-22T17:08:12.368716+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 153.72,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 258.44,
+      "timestamp": "2026-03-22T17:08:13.782182+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 453.85,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 259.05,
+      "timestamp": "2026-03-22T17:08:14.385061+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 174.94,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 260.42,
+      "timestamp": "2026-03-22T17:08:15.765909+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 459.41,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 261.05,
+      "timestamp": "2026-03-22T17:08:16.387858+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 179.66,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 262.41,
+      "timestamp": "2026-03-22T17:08:17.748760+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 445.28,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 263.01,
+      "timestamp": "2026-03-22T17:08:18.354848+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 148.76,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 264.26,
+      "timestamp": "2026-03-22T17:08:19.603519+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 319.02,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 265.01,
+      "timestamp": "2026-03-22T17:08:20.360739+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 154.24,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 266.38,
+      "timestamp": "2026-03-22T17:08:21.722404+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 406.56,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 267.01,
+      "timestamp": "2026-03-22T17:08:22.349016+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 146.56,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 268.33,
+      "timestamp": "2026-03-22T17:08:23.667644+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 374.38,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 269.0,
+      "timestamp": "2026-03-22T17:08:24.344575+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 131.68,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 270.36,
+      "timestamp": "2026-03-22T17:08:25.692632+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 394.65,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 271.0,
+      "timestamp": "2026-03-22T17:08:26.347419+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 135.5,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 272.34,
+      "timestamp": "2026-03-22T17:08:27.678104+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 382.91,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 273.0,
+      "timestamp": "2026-03-22T17:08:28.339121+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 134.38,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 274.36,
+      "timestamp": "2026-03-22T17:08:29.696121+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 382.64,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 275.0,
+      "timestamp": "2026-03-22T17:08:30.338155+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 133.57,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 276.26,
+      "timestamp": "2026-03-22T17:08:31.610594+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 323.2,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 277.03,
+      "timestamp": "2026-03-22T17:08:32.368026+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 162.76,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 278.41,
+      "timestamp": "2026-03-22T17:08:33.746094+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 460.24,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 279.03,
+      "timestamp": "2026-03-22T17:08:34.365425+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 161.0,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 280.3,
+      "timestamp": "2026-03-22T17:08:35.644788+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 344.12,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 281.03,
+      "timestamp": "2026-03-22T17:08:36.370648+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 163.99,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 282.33,
+      "timestamp": "2026-03-22T17:08:37.665839+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 386.75,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 283.0,
+      "timestamp": "2026-03-22T17:08:38.335929+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 120.23,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 284.36,
+      "timestamp": "2026-03-22T17:08:39.693607+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 415.72,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 285.03,
+      "timestamp": "2026-03-22T17:08:40.367387+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 153.95,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 286.34,
+      "timestamp": "2026-03-22T17:08:41.682327+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 376.28,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 286.98,
+      "timestamp": "2026-03-22T17:08:42.330884+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 126.07,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 288.41,
+      "timestamp": "2026-03-22T17:08:43.750892+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 439.56,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 289.03,
+      "timestamp": "2026-03-22T17:08:44.370798+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 155.03,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 290.28,
+      "timestamp": "2026-03-22T17:08:45.616655+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 323.71,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 291.01,
+      "timestamp": "2026-03-22T17:08:46.353001+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 145.68,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 292.39,
+      "timestamp": "2026-03-22T17:08:47.729867+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 446.35,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 293.0,
+      "timestamp": "2026-03-22T17:08:48.345590+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 135.42,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 294.26,
+      "timestamp": "2026-03-22T17:08:49.602128+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 311.74,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 294.97,
+      "timestamp": "2026-03-22T17:08:50.301060+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 86.57,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 296.36,
+      "timestamp": "2026-03-22T17:08:51.696245+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 408.9,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 297.05,
+      "timestamp": "2026-03-22T17:08:52.385993+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 162.64,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 298.31,
+      "timestamp": "2026-03-22T17:08:53.647614+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 356.63,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 299.0,
+      "timestamp": "2026-03-22T17:08:54.346089+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 136.57,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 300.34,
+      "timestamp": "2026-03-22T17:08:55.676336+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 381.52,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 301.05,
+      "timestamp": "2026-03-22T17:08:56.385323+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 175.92,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 302.26,
+      "timestamp": "2026-03-22T17:08:57.603600+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 313.08,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 303.0,
+      "timestamp": "2026-03-22T17:08:58.334983+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 129.47,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 304.38,
+      "timestamp": "2026-03-22T17:08:59.719980+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 429.4,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 305.01,
+      "timestamp": "2026-03-22T17:09:00.356179+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 148.68,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 306.31,
+      "timestamp": "2026-03-22T17:09:01.655522+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 383.33,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 307.0,
+      "timestamp": "2026-03-22T17:09:02.341668+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 138.66,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 308.31,
+      "timestamp": "2026-03-22T17:09:03.652264+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 357.45,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 309.03,
+      "timestamp": "2026-03-22T17:09:04.366659+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 161.06,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 310.28,
+      "timestamp": "2026-03-22T17:09:05.627868+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 347.62,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 311.01,
+      "timestamp": "2026-03-22T17:09:06.354571+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 140.95,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 312.34,
+      "timestamp": "2026-03-22T17:09:07.684264+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 398.21,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 313.03,
+      "timestamp": "2026-03-22T17:09:08.363938+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 148.25,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 314.25,
+      "timestamp": "2026-03-22T17:09:09.585737+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 300.75,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 315.0,
+      "timestamp": "2026-03-22T17:09:10.342586+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 127.77,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 316.38,
+      "timestamp": "2026-03-22T17:09:11.721841+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 423.67,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 317.01,
+      "timestamp": "2026-03-22T17:09:12.353517+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 144.56,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 318.22,
+      "timestamp": "2026-03-22T17:09:13.562657+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 275.24,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 318.98,
+      "timestamp": "2026-03-22T17:09:14.324520+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 114.77,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 320.3,
+      "timestamp": "2026-03-22T17:09:15.630943+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 348.38,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 320.98,
+      "timestamp": "2026-03-22T17:09:16.331945+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 126.29,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 322.22,
+      "timestamp": "2026-03-22T17:09:17.563058+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 284.97,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 322.98,
+      "timestamp": "2026-03-22T17:09:18.317635+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 114.45,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 324.31,
+      "timestamp": "2026-03-22T17:09:19.649121+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 319.29,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 325.01,
+      "timestamp": "2026-03-22T17:09:20.350676+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 145.4,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 326.33,
+      "timestamp": "2026-03-22T17:09:21.668619+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 389.79,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 327.0,
+      "timestamp": "2026-03-22T17:09:22.334672+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 131.74,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 328.45,
+      "timestamp": "2026-03-22T17:09:23.800765+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 490.86,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 329.01,
+      "timestamp": "2026-03-22T17:09:24.350462+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 134.52,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 330.26,
+      "timestamp": "2026-03-22T17:09:25.610851+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 305.93,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 331.03,
+      "timestamp": "2026-03-22T17:09:26.378339+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 171.54,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 332.45,
+      "timestamp": "2026-03-22T17:09:27.799737+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 405.66,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 333.0,
+      "timestamp": "2026-03-22T17:09:28.341984+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 137.46,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 334.25,
+      "timestamp": "2026-03-22T17:09:29.583876+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 303.25,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 335.0,
+      "timestamp": "2026-03-22T17:09:30.333268+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 127.35,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 336.45,
+      "timestamp": "2026-03-22T17:09:31.790302+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 510.23,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 337.0,
+      "timestamp": "2026-03-22T17:09:32.341258+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 126.22,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 338.31,
+      "timestamp": "2026-03-22T17:09:33.645261+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 360.44,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 339.0,
+      "timestamp": "2026-03-22T17:09:34.340944+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 129.99,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 340.26,
+      "timestamp": "2026-03-22T17:09:35.607067+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 326.34,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 341.01,
+      "timestamp": "2026-03-22T17:09:36.354655+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 138.84,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 342.31,
+      "timestamp": "2026-03-22T17:09:37.646780+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 355.47,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 343.01,
+      "timestamp": "2026-03-22T17:09:38.351598+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 140.64,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 344.31,
+      "timestamp": "2026-03-22T17:09:39.647759+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 357.8,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 344.98,
+      "timestamp": "2026-03-22T17:09:40.328827+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 122.4,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 346.41,
+      "timestamp": "2026-03-22T17:09:41.739000+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 415.97,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 346.95,
+      "timestamp": "2026-03-22T17:09:42.293351+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 86.41,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 348.26,
+      "timestamp": "2026-03-22T17:09:43.607752+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 332.65,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 348.97,
+      "timestamp": "2026-03-22T17:09:44.306999+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 100.76,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 350.39,
+      "timestamp": "2026-03-22T17:09:45.723921+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 431.08,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 351.03,
+      "timestamp": "2026-03-22T17:09:46.376300+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 142.55,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 352.22,
+      "timestamp": "2026-03-22T17:09:47.563472+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 279.2,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 352.98,
+      "timestamp": "2026-03-22T17:09:48.326625+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 122.9,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 354.23,
+      "timestamp": "2026-03-22T17:09:49.578404+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 312.04,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 355.0,
+      "timestamp": "2026-03-22T17:09:50.335177+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 129.09,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 356.31,
+      "timestamp": "2026-03-22T17:09:51.658875+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 371.25,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 356.98,
+      "timestamp": "2026-03-22T17:09:52.321865+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 108.38,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 358.5,
+      "timestamp": "2026-03-22T17:09:53.837265+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 543.71,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 359.05,
+      "timestamp": "2026-03-22T17:09:54.388896+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 171.97,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 360.26,
+      "timestamp": "2026-03-22T17:09:55.605651+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 317.31,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 361.0,
+      "timestamp": "2026-03-22T17:09:56.338706+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 131.75,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 362.42,
+      "timestamp": "2026-03-22T17:09:57.757843+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 456.14,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 363.01,
+      "timestamp": "2026-03-22T17:09:58.359722+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 150.13,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 364.41,
+      "timestamp": "2026-03-22T17:09:59.746495+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 351.76,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 365.05,
+      "timestamp": "2026-03-22T17:10:00.385463+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 171.47,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 366.38,
+      "timestamp": "2026-03-22T17:10:01.709242+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 422.16,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 367.0,
+      "timestamp": "2026-03-22T17:10:02.338896+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 128.85,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 368.26,
+      "timestamp": "2026-03-22T17:10:03.610639+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 333.58,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 368.98,
+      "timestamp": "2026-03-22T17:10:04.324199+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 113.31,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 370.38,
+      "timestamp": "2026-03-22T17:10:05.717162+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 420.2,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 371.0,
+      "timestamp": "2026-03-22T17:10:06.334834+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 120.86,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 372.25,
+      "timestamp": "2026-03-22T17:10:07.585686+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 303.68,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 373.01,
+      "timestamp": "2026-03-22T17:10:08.362131+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 154.34,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 374.31,
+      "timestamp": "2026-03-22T17:10:09.658777+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 367.65,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 375.03,
+      "timestamp": "2026-03-22T17:10:10.365217+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 149.06,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 376.41,
+      "timestamp": "2026-03-22T17:10:11.743206+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 444.87,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 377.01,
+      "timestamp": "2026-03-22T17:10:12.351445+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 140.49,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 378.38,
+      "timestamp": "2026-03-22T17:10:13.710609+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 403.19,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 379.05,
+      "timestamp": "2026-03-22T17:10:14.393884+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 183.25,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 380.41,
+      "timestamp": "2026-03-22T17:10:15.739890+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 442.51,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 381.05,
+      "timestamp": "2026-03-22T17:10:16.381381+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 171.84,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 382.23,
+      "timestamp": "2026-03-22T17:10:17.578563+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 297.27,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 383.01,
+      "timestamp": "2026-03-22T17:10:18.360939+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 153.09,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 384.28,
+      "timestamp": "2026-03-22T17:10:19.628164+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 357.29,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 384.98,
+      "timestamp": "2026-03-22T17:10:20.326166+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 112.8,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 386.23,
+      "timestamp": "2026-03-22T17:10:21.574441+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 280.25,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 386.98,
+      "timestamp": "2026-03-22T17:10:22.322705+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 115.13,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 388.34,
+      "timestamp": "2026-03-22T17:10:23.685581+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 397.76,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 388.98,
+      "timestamp": "2026-03-22T17:10:24.331561+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 124.85,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 390.34,
+      "timestamp": "2026-03-22T17:10:25.685206+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 390.23,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 391.01,
+      "timestamp": "2026-03-22T17:10:26.359438+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 154.44,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 392.28,
+      "timestamp": "2026-03-22T17:10:27.613440+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 328.26,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 393.11,
+      "timestamp": "2026-03-22T17:10:28.445865+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 148.08,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 394.42,
+      "timestamp": "2026-03-22T17:10:29.765021+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 471.27,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 395.0,
+      "timestamp": "2026-03-22T17:10:30.336955+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 125.22,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 396.33,
+      "timestamp": "2026-03-22T17:10:31.670218+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 389.87,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 397.05,
+      "timestamp": "2026-03-22T17:10:32.390635+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 187.39,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 398.31,
+      "timestamp": "2026-03-22T17:10:33.660084+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 373.19,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 398.98,
+      "timestamp": "2026-03-22T17:10:34.331888+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 124.89,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 400.23,
+      "timestamp": "2026-03-22T17:10:35.581872+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 293.07,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 401.06,
+      "timestamp": "2026-03-22T17:10:36.397908+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 185.67,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 402.34,
+      "timestamp": "2026-03-22T17:10:37.682766+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 391.64,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 402.98,
+      "timestamp": "2026-03-22T17:10:38.324245+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 107.42,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 404.36,
+      "timestamp": "2026-03-22T17:10:39.693754+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 395.32,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 404.95,
+      "timestamp": "2026-03-22T17:10:40.299138+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 92.79,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 406.25,
+      "timestamp": "2026-03-22T17:10:41.595002+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 318.75,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 406.95,
+      "timestamp": "2026-03-22T17:10:42.295227+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 93.23,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 408.22,
+      "timestamp": "2026-03-22T17:10:43.561173+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 280.82,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 409.05,
+      "timestamp": "2026-03-22T17:10:44.386396+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 169.4,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 410.33,
+      "timestamp": "2026-03-22T17:10:45.669217+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 379.09,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 411.0,
+      "timestamp": "2026-03-22T17:10:46.344371+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 132.79,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 412.23,
+      "timestamp": "2026-03-22T17:10:47.567747+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 280.38,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 412.97,
+      "timestamp": "2026-03-22T17:10:48.308218+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 101.5,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 414.33,
+      "timestamp": "2026-03-22T17:10:49.666486+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 380.84,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 415.11,
+      "timestamp": "2026-03-22T17:10:50.450632+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 186.92,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 416.22,
+      "timestamp": "2026-03-22T17:10:51.566206+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 285.95,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 416.97,
+      "timestamp": "2026-03-22T17:10:52.302455+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 96.13,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 418.36,
+      "timestamp": "2026-03-22T17:10:53.692219+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 402.08,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 418.95,
+      "timestamp": "2026-03-22T17:10:54.295571+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 88.05,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 420.22,
+      "timestamp": "2026-03-22T17:10:55.552387+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 268.11,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 420.98,
+      "timestamp": "2026-03-22T17:10:56.322339+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 116.84,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 422.31,
+      "timestamp": "2026-03-22T17:10:57.654395+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 356.17,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 422.97,
+      "timestamp": "2026-03-22T17:10:58.312997+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 100.9,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 424.2,
+      "timestamp": "2026-03-22T17:10:59.540749+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 256.97,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 424.98,
+      "timestamp": "2026-03-22T17:11:00.326555+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 116.57,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 426.31,
+      "timestamp": "2026-03-22T17:11:01.654495+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 348.16,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 426.97,
+      "timestamp": "2026-03-22T17:11:02.308335+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 99.38,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 428.31,
+      "timestamp": "2026-03-22T17:11:03.654394+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 355.9,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 428.98,
+      "timestamp": "2026-03-22T17:11:04.321893+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 113.76,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 430.22,
+      "timestamp": "2026-03-22T17:11:05.557749+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 275.14,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 431.0,
+      "timestamp": "2026-03-22T17:11:06.346670+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 130.26,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 432.38,
+      "timestamp": "2026-03-22T17:11:07.713075+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 424.8,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 432.98,
+      "timestamp": "2026-03-22T17:11:08.322735+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 114.51,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 434.28,
+      "timestamp": "2026-03-22T17:11:09.615829+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 302.52,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 434.97,
+      "timestamp": "2026-03-22T17:11:10.306525+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 94.15,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 436.34,
+      "timestamp": "2026-03-22T17:11:11.690451+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 404.33,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 436.95,
+      "timestamp": "2026-03-22T17:11:12.296669+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 93.48,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 438.25,
+      "timestamp": "2026-03-22T17:11:13.591489+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 320.36,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 439.0,
+      "timestamp": "2026-03-22T17:11:14.333947+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 121.29,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 440.36,
+      "timestamp": "2026-03-22T17:11:15.697593+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 390.75,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 440.98,
+      "timestamp": "2026-03-22T17:11:16.331421+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 122.68,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 442.31,
+      "timestamp": "2026-03-22T17:11:17.651017+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 300.29,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 442.98,
+      "timestamp": "2026-03-22T17:11:18.326076+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 116.55,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 444.26,
+      "timestamp": "2026-03-22T17:11:19.603686+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 292.19,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 445.01,
+      "timestamp": "2026-03-22T17:11:20.359799+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 146.99,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 446.42,
+      "timestamp": "2026-03-22T17:11:21.758050+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 472.47,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 446.97,
+      "timestamp": "2026-03-22T17:11:22.305153+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 94.51,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 448.36,
+      "timestamp": "2026-03-22T17:11:23.703655+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 405.78,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 449.03,
+      "timestamp": "2026-03-22T17:11:24.366579+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 158.3,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 450.2,
+      "timestamp": "2026-03-22T17:11:25.547647+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 261.77,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 451.0,
+      "timestamp": "2026-03-22T17:11:26.342832+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 135.7,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 452.36,
+      "timestamp": "2026-03-22T17:11:27.694478+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 405.1,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 452.98,
+      "timestamp": "2026-03-22T17:11:28.323766+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 115.1,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 454.28,
+      "timestamp": "2026-03-22T17:11:29.627352+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 345.08,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 454.97,
+      "timestamp": "2026-03-22T17:11:30.308854+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 99.4,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 456.3,
+      "timestamp": "2026-03-22T17:11:31.640255+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 359.06,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 456.97,
+      "timestamp": "2026-03-22T17:11:32.315797+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 109.53,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 458.22,
+      "timestamp": "2026-03-22T17:11:33.566123+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 285.54,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 459.0,
+      "timestamp": "2026-03-22T17:11:34.332851+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 127.31,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 460.23,
+      "timestamp": "2026-03-22T17:11:35.573833+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 282.73,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 461.0,
+      "timestamp": "2026-03-22T17:11:36.340732+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 120.48,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 462.33,
+      "timestamp": "2026-03-22T17:11:37.662513+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 357.75,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 462.95,
+      "timestamp": "2026-03-22T17:11:38.289930+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 89.97,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 464.25,
+      "timestamp": "2026-03-22T17:11:39.585753+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 299.59,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 464.98,
+      "timestamp": "2026-03-22T17:11:40.330211+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 120.3,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 466.34,
+      "timestamp": "2026-03-22T17:11:41.675946+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 388.66,
+        "threshold": 220.0
+      }
+    },
+    {
+      "tSec": 466.95,
+      "timestamp": "2026-03-22T17:11:42.289355+00:00",
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Frame latency normalized",
+      "details": "totalTimeMs returned inside expected range.",
+      "evidence": {
+        "totalTimeMs": 82.17,
+        "threshold": 220.0
+      }
+    }
+  ],
+  "timeline": [
+    {
+      "tSec": 0.92,
+      "fps": 0.0,
+      "frameMs": 807.38,
+      "cpuProcessPercent": 118.9,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1482.71,
+      "gpuUtilPercent": 27.0,
+      "gpuTempC": 41.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0
+    },
+    {
+      "tSec": 1.92,
+      "fps": 1.99,
+      "frameMs": 147.41,
+      "cpuProcessPercent": 99.5,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1525.46,
+      "gpuUtilPercent": 41.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.02
+    },
+    {
+      "tSec": 3.03,
+      "fps": 2.72,
+      "frameMs": 128.89,
+      "cpuProcessPercent": 64.2,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1529.58,
+      "gpuUtilPercent": 20.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0424
+    },
+    {
+      "tSec": 4.25,
+      "fps": 3.21,
+      "frameMs": 324.56,
+      "cpuProcessPercent": 84.5,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1528.45,
+      "gpuUtilPercent": 26.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.038
+    },
+    {
+      "tSec": 5.3,
+      "fps": 3.58,
+      "frameMs": 106.67,
+      "cpuProcessPercent": 61.6,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1533.57,
+      "gpuUtilPercent": 22.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0581
+    },
+    {
+      "tSec": 6.36,
+      "fps": 3.84,
+      "frameMs": 236.41,
+      "cpuProcessPercent": 93.8,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1534.0,
+      "gpuUtilPercent": 27.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0409
+    },
+    {
+      "tSec": 8.03,
+      "fps": 3.51,
+      "frameMs": 956.48,
+      "cpuProcessPercent": 98.4,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1538.75,
+      "gpuUtilPercent": 10.0,
+      "gpuTempC": 41.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0357
+    },
+    {
+      "tSec": 9.34,
+      "fps": 3.86,
+      "frameMs": 320.31,
+      "cpuProcessPercent": 83.9,
+      "memorySystemPercent": 47.1,
+      "processRssMb": 1543.56,
+      "gpuUtilPercent": 16.0,
+      "gpuTempC": 41.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.046
+    },
+    {
+      "tSec": 10.66,
+      "fps": 4.02,
+      "frameMs": 310.9,
+      "cpuProcessPercent": 100.2,
+      "memorySystemPercent": 47.1,
+      "processRssMb": 1544.27,
+      "gpuUtilPercent": 36.0,
+      "gpuTempC": 41.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0401
+    },
+    {
+      "tSec": 11.75,
+      "fps": 4.09,
+      "frameMs": 113.53,
+      "cpuProcessPercent": 87.5,
+      "memorySystemPercent": 47.1,
+      "processRssMb": 1544.44,
+      "gpuUtilPercent": 12.0,
+      "gpuTempC": 41.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0467
+    },
+    {
+      "tSec": 12.84,
+      "fps": 4.04,
+      "frameMs": 231.53,
+      "cpuProcessPercent": 99.7,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1544.47,
+      "gpuUtilPercent": 22.0,
+      "gpuTempC": 41.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0405
+    },
+    {
+      "tSec": 14.03,
+      "fps": 4.12,
+      "frameMs": 235.97,
+      "cpuProcessPercent": 93.8,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1544.79,
+      "gpuUtilPercent": 34.0,
+      "gpuTempC": 41.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0439
+    },
+    {
+      "tSec": 15.06,
+      "fps": 4.65,
+      "frameMs": 144.94,
+      "cpuProcessPercent": 56.2,
+      "memorySystemPercent": 47.1,
+      "processRssMb": 1545.66,
+      "gpuUtilPercent": 12.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0827
+    },
+    {
+      "tSec": 16.28,
+      "fps": 4.53,
+      "frameMs": 308.1,
+      "cpuProcessPercent": 73.1,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1546.11,
+      "gpuUtilPercent": 31.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.062
+    },
+    {
+      "tSec": 17.33,
+      "fps": 4.44,
+      "frameMs": 333.69,
+      "cpuProcessPercent": 81.5,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1546.25,
+      "gpuUtilPercent": 36.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0545
+    },
+    {
+      "tSec": 18.55,
+      "fps": 4.53,
+      "frameMs": 246.98,
+      "cpuProcessPercent": 100.0,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1546.51,
+      "gpuUtilPercent": 34.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0453
+    },
+    {
+      "tSec": 19.59,
+      "fps": 4.56,
+      "frameMs": 132.98,
+      "cpuProcessPercent": 78.5,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1546.83,
+      "gpuUtilPercent": 23.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0581
+    },
+    {
+      "tSec": 20.78,
+      "fps": 4.39,
+      "frameMs": 325.19,
+      "cpuProcessPercent": 84.1,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1546.91,
+      "gpuUtilPercent": 28.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0522
+    },
+    {
+      "tSec": 21.8,
+      "fps": 4.51,
+      "frameMs": 114.86,
+      "cpuProcessPercent": 69.3,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1546.91,
+      "gpuUtilPercent": 35.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0651
+    },
+    {
+      "tSec": 22.84,
+      "fps": 4.58,
+      "frameMs": 235.8,
+      "cpuProcessPercent": 106.4,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1546.92,
+      "gpuUtilPercent": 20.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.043
+    },
+    {
+      "tSec": 23.84,
+      "fps": 4.81,
+      "frameMs": 134.38,
+      "cpuProcessPercent": 99.7,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1547.0,
+      "gpuUtilPercent": 30.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0482
+    },
+    {
+      "tSec": 25.11,
+      "fps": 4.57,
+      "frameMs": 264.77,
+      "cpuProcessPercent": 106.1,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1547.01,
+      "gpuUtilPercent": 35.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0431
+    },
+    {
+      "tSec": 26.25,
+      "fps": 4.6,
+      "frameMs": 144.0,
+      "cpuProcessPercent": 100.2,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1547.31,
+      "gpuUtilPercent": 53.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0459
+    },
+    {
+      "tSec": 27.47,
+      "fps": 4.48,
+      "frameMs": 262.17,
+      "cpuProcessPercent": 99.9,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1547.48,
+      "gpuUtilPercent": 20.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0448
+    },
+    {
+      "tSec": 28.51,
+      "fps": 4.54,
+      "frameMs": 162.41,
+      "cpuProcessPercent": 75.2,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1547.91,
+      "gpuUtilPercent": 26.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0604
+    },
+    {
+      "tSec": 29.67,
+      "fps": 4.39,
+      "frameMs": 232.92,
+      "cpuProcessPercent": 100.0,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1548.12,
+      "gpuUtilPercent": 34.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0439
+    },
+    {
+      "tSec": 30.89,
+      "fps": 4.49,
+      "frameMs": 251.63,
+      "cpuProcessPercent": 94.3,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1548.4,
+      "gpuUtilPercent": 13.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0476
+    },
+    {
+      "tSec": 32.09,
+      "fps": 4.62,
+      "frameMs": 244.34,
+      "cpuProcessPercent": 100.0,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1548.41,
+      "gpuUtilPercent": 33.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0462
+    },
+    {
+      "tSec": 33.14,
+      "fps": 4.78,
+      "frameMs": 111.59,
+      "cpuProcessPercent": 75.0,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1548.5,
+      "gpuUtilPercent": 26.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0637
+    },
+    {
+      "tSec": 34.34,
+      "fps": 4.61,
+      "frameMs": 243.42,
+      "cpuProcessPercent": 93.8,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1548.61,
+      "gpuUtilPercent": 29.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0491
+    },
+    {
+      "tSec": 35.56,
+      "fps": 4.73,
+      "frameMs": 240.63,
+      "cpuProcessPercent": 100.0,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1548.64,
+      "gpuUtilPercent": 58.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0473
+    },
+    {
+      "tSec": 36.75,
+      "fps": 4.73,
+      "frameMs": 233.6,
+      "cpuProcessPercent": 100.0,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1548.64,
+      "gpuUtilPercent": 33.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0473
+    },
+    {
+      "tSec": 37.8,
+      "fps": 4.75,
+      "frameMs": 110.95,
+      "cpuProcessPercent": 100.0,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1548.73,
+      "gpuUtilPercent": 28.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0475
+    },
+    {
+      "tSec": 38.94,
+      "fps": 4.62,
+      "frameMs": 234.55,
+      "cpuProcessPercent": 100.0,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1548.73,
+      "gpuUtilPercent": 22.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0462
+    },
+    {
+      "tSec": 40.16,
+      "fps": 4.78,
+      "frameMs": 232.51,
+      "cpuProcessPercent": 93.8,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1548.98,
+      "gpuUtilPercent": 29.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.051
+    },
+    {
+      "tSec": 41.19,
+      "fps": 4.84,
+      "frameMs": 112.94,
+      "cpuProcessPercent": 114.7,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1549.05,
+      "gpuUtilPercent": 28.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0422
+    },
+    {
+      "tSec": 42.41,
+      "fps": 4.63,
+      "frameMs": 239.79,
+      "cpuProcessPercent": 100.0,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1549.07,
+      "gpuUtilPercent": 32.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0463
+    },
+    {
+      "tSec": 43.62,
+      "fps": 4.67,
+      "frameMs": 255.45,
+      "cpuProcessPercent": 88.1,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1549.41,
+      "gpuUtilPercent": 53.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.053
+    },
+    {
+      "tSec": 44.83,
+      "fps": 4.73,
+      "frameMs": 236.53,
+      "cpuProcessPercent": 100.2,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1549.56,
+      "gpuUtilPercent": 28.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0472
+    },
+    {
+      "tSec": 45.83,
+      "fps": 4.8,
+      "frameMs": 105.08,
+      "cpuProcessPercent": 114.7,
+      "memorySystemPercent": 46.7,
+      "processRssMb": 1549.61,
+      "gpuUtilPercent": 27.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0418
+    },
+    {
+      "tSec": 47.0,
+      "fps": 4.69,
+      "frameMs": 234.8,
+      "cpuProcessPercent": 106.4,
+      "memorySystemPercent": 46.7,
+      "processRssMb": 1549.61,
+      "gpuUtilPercent": 26.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0441
+    },
+    {
+      "tSec": 48.22,
+      "fps": 4.78,
+      "frameMs": 241.87,
+      "cpuProcessPercent": 112.0,
+      "memorySystemPercent": 46.7,
+      "processRssMb": 1549.68,
+      "gpuUtilPercent": 22.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0427
+    },
+    {
+      "tSec": 49.47,
+      "fps": 4.75,
+      "frameMs": 276.93,
+      "cpuProcessPercent": 105.3,
+      "memorySystemPercent": 46.7,
+      "processRssMb": 1549.68,
+      "gpuUtilPercent": 24.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0451
+    },
+    {
+      "tSec": 50.47,
+      "fps": 4.81,
+      "frameMs": 111.06,
+      "cpuProcessPercent": 99.4,
+      "memorySystemPercent": 46.7,
+      "processRssMb": 1549.93,
+      "gpuUtilPercent": 33.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0484
+    },
+    {
+      "tSec": 51.67,
+      "fps": 4.66,
+      "frameMs": 236.89,
+      "cpuProcessPercent": 86.4,
+      "memorySystemPercent": 46.7,
+      "processRssMb": 1550.08,
+      "gpuUtilPercent": 30.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0539
+    },
+    {
+      "tSec": 52.92,
+      "fps": 4.7,
+      "frameMs": 249.3,
+      "cpuProcessPercent": 82.5,
+      "memorySystemPercent": 46.7,
+      "processRssMb": 1550.11,
+      "gpuUtilPercent": 30.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.057
+    },
+    {
+      "tSec": 54.31,
+      "fps": 4.08,
+      "frameMs": 346.38,
+      "cpuProcessPercent": 27.4,
+      "memorySystemPercent": 46.7,
+      "processRssMb": 1550.23,
+      "gpuUtilPercent": 20.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.1489
+    },
+    {
+      "tSec": 56.3,
+      "fps": 3.32,
+      "frameMs": 351.73,
+      "cpuProcessPercent": 27.5,
+      "memorySystemPercent": 46.7,
+      "processRssMb": 1550.27,
+      "gpuUtilPercent": 15.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.1207
+    },
+    {
+      "tSec": 58.33,
+      "fps": 2.8,
+      "frameMs": 376.37,
+      "cpuProcessPercent": 29.5,
+      "memorySystemPercent": 46.7,
+      "processRssMb": 1550.51,
+      "gpuUtilPercent": 71.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0949
+    },
+    {
+      "tSec": 60.26,
+      "fps": 2.45,
+      "frameMs": 313.0,
+      "cpuProcessPercent": 24.4,
+      "memorySystemPercent": 46.7,
+      "processRssMb": 1550.54,
+      "gpuUtilPercent": 13.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.1004
+    },
+    {
+      "tSec": 62.33,
+      "fps": 2.14,
+      "frameMs": 382.78,
+      "cpuProcessPercent": 30.5,
+      "memorySystemPercent": 46.7,
+      "processRssMb": 1550.6,
+      "gpuUtilPercent": 85.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0702
+    },
+    {
+      "tSec": 64.28,
+      "fps": 1.93,
+      "frameMs": 289.99,
+      "cpuProcessPercent": 25.3,
+      "memorySystemPercent": 46.7,
+      "processRssMb": 1550.66,
+      "gpuUtilPercent": 3.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0763
+    },
+    {
+      "tSec": 66.23,
+      "fps": 1.75,
+      "frameMs": 297.95,
+      "cpuProcessPercent": 23.4,
+      "memorySystemPercent": 46.7,
+      "processRssMb": 1550.66,
+      "gpuUtilPercent": 5.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0748
+    },
+    {
+      "tSec": 68.36,
+      "fps": 1.59,
+      "frameMs": 391.86,
+      "cpuProcessPercent": 32.1,
+      "memorySystemPercent": 46.6,
+      "processRssMb": 1550.67,
+      "gpuUtilPercent": 84.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0495
+    },
+    {
+      "tSec": 70.28,
+      "fps": 1.46,
+      "frameMs": 326.76,
+      "cpuProcessPercent": 25.3,
+      "memorySystemPercent": 46.6,
+      "processRssMb": 1550.67,
+      "gpuUtilPercent": 4.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0577
+    },
+    {
+      "tSec": 72.22,
+      "fps": 1.37,
+      "frameMs": 279.4,
+      "cpuProcessPercent": 22.7,
+      "memorySystemPercent": 46.6,
+      "processRssMb": 1550.67,
+      "gpuUtilPercent": 6.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0604
+    },
+    {
+      "tSec": 74.44,
+      "fps": 1.26,
+      "frameMs": 463.38,
+      "cpuProcessPercent": 28.6,
+      "memorySystemPercent": 46.6,
+      "processRssMb": 1550.67,
+      "gpuUtilPercent": 84.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0441
+    },
+    {
+      "tSec": 76.25,
+      "fps": 1.19,
+      "frameMs": 298.55,
+      "cpuProcessPercent": 23.1,
+      "memorySystemPercent": 46.6,
+      "processRssMb": 1550.67,
+      "gpuUtilPercent": 5.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0515
+    },
+    {
+      "tSec": 78.26,
+      "fps": 1.12,
+      "frameMs": 324.45,
+      "cpuProcessPercent": 25.3,
+      "memorySystemPercent": 46.6,
+      "processRssMb": 1550.69,
+      "gpuUtilPercent": 4.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0443
+    },
+    {
+      "tSec": 80.39,
+      "fps": 1.05,
+      "frameMs": 450.91,
+      "cpuProcessPercent": 26.7,
+      "memorySystemPercent": 46.6,
+      "processRssMb": 1550.69,
+      "gpuUtilPercent": 24.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0393
+    },
+    {
+      "tSec": 82.33,
+      "fps": 0.99,
+      "frameMs": 379.22,
+      "cpuProcessPercent": 24.1,
+      "memorySystemPercent": 46.1,
+      "processRssMb": 1550.69,
+      "gpuUtilPercent": 33.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0411
+    },
+    {
+      "tSec": 84.23,
+      "fps": 0.99,
+      "frameMs": 307.64,
+      "cpuProcessPercent": 28.0,
+      "memorySystemPercent": 46.1,
+      "processRssMb": 1550.71,
+      "gpuUtilPercent": 4.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0354
+    },
+    {
+      "tSec": 86.36,
+      "fps": 0.99,
+      "frameMs": 414.26,
+      "cpuProcessPercent": 28.6,
+      "memorySystemPercent": 46.1,
+      "processRssMb": 1550.74,
+      "gpuUtilPercent": 96.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0346
+    },
+    {
+      "tSec": 88.25,
+      "fps": 0.99,
+      "frameMs": 298.84,
+      "cpuProcessPercent": 21.8,
+      "memorySystemPercent": 46.1,
+      "processRssMb": 1550.89,
+      "gpuUtilPercent": 3.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0454
+    },
+    {
+      "tSec": 90.3,
+      "fps": 0.99,
+      "frameMs": 340.92,
+      "cpuProcessPercent": 20.0,
+      "memorySystemPercent": 46.0,
+      "processRssMb": 1551.0,
+      "gpuUtilPercent": 6.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0495
+    },
+    {
+      "tSec": 92.34,
+      "fps": 0.99,
+      "frameMs": 393.23,
+      "cpuProcessPercent": 28.4,
+      "memorySystemPercent": 46.1,
+      "processRssMb": 1551.01,
+      "gpuUtilPercent": 89.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0349
+    },
+    {
+      "tSec": 94.28,
+      "fps": 0.99,
+      "frameMs": 310.99,
+      "cpuProcessPercent": 23.7,
+      "memorySystemPercent": 46.1,
+      "processRssMb": 1551.13,
+      "gpuUtilPercent": 3.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0418
+    },
+    {
+      "tSec": 96.23,
+      "fps": 0.99,
+      "frameMs": 290.53,
+      "cpuProcessPercent": 24.7,
+      "memorySystemPercent": 46.1,
+      "processRssMb": 1551.13,
+      "gpuUtilPercent": 4.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0401
+    },
+    {
+      "tSec": 98.33,
+      "fps": 0.99,
+      "frameMs": 379.68,
+      "cpuProcessPercent": 29.3,
+      "memorySystemPercent": 46.1,
+      "processRssMb": 1551.14,
+      "gpuUtilPercent": 90.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0338
+    },
+    {
+      "tSec": 100.55,
+      "fps": 0.99,
+      "frameMs": 421.53,
+      "cpuProcessPercent": 28.2,
+      "memorySystemPercent": 46.1,
+      "processRssMb": 1551.14,
+      "gpuUtilPercent": 28.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0351
+    },
+    {
+      "tSec": 102.25,
+      "fps": 1.0,
+      "frameMs": 300.65,
+      "cpuProcessPercent": 26.0,
+      "memorySystemPercent": 46.2,
+      "processRssMb": 1551.14,
+      "gpuUtilPercent": 5.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0385
+    },
+    {
+      "tSec": 104.28,
+      "fps": 0.99,
+      "frameMs": 343.4,
+      "cpuProcessPercent": 28.0,
+      "memorySystemPercent": 46.2,
+      "processRssMb": 1551.31,
+      "gpuUtilPercent": 13.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0354
+    },
+    {
+      "tSec": 106.34,
+      "fps": 0.99,
+      "frameMs": 385.34,
+      "cpuProcessPercent": 32.1,
+      "memorySystemPercent": 46.2,
+      "processRssMb": 1551.31,
+      "gpuUtilPercent": 94.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0308
+    },
+    {
+      "tSec": 108.31,
+      "fps": 0.99,
+      "frameMs": 361.0,
+      "cpuProcessPercent": 26.2,
+      "memorySystemPercent": 46.2,
+      "processRssMb": 1551.5,
+      "gpuUtilPercent": 14.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0378
+    },
+    {
+      "tSec": 110.23,
+      "fps": 0.99,
+      "frameMs": 281.95,
+      "cpuProcessPercent": 25.3,
+      "memorySystemPercent": 46.5,
+      "processRssMb": 1551.5,
+      "gpuUtilPercent": 17.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0391
+    },
+    {
+      "tSec": 112.3,
+      "fps": 0.99,
+      "frameMs": 363.75,
+      "cpuProcessPercent": 27.2,
+      "memorySystemPercent": 46.5,
+      "processRssMb": 1551.5,
+      "gpuUtilPercent": 16.0,
+      "gpuTempC": 41.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0364
+    },
+    {
+      "tSec": 114.25,
+      "fps": 0.99,
+      "frameMs": 300.02,
+      "cpuProcessPercent": 26.7,
+      "memorySystemPercent": 46.5,
+      "processRssMb": 1551.51,
+      "gpuUtilPercent": 4.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0371
+    },
+    {
+      "tSec": 116.34,
+      "fps": 0.99,
+      "frameMs": 380.31,
+      "cpuProcessPercent": 29.8,
+      "memorySystemPercent": 46.5,
+      "processRssMb": 1551.61,
+      "gpuUtilPercent": 23.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0332
+    },
+    {
+      "tSec": 118.34,
+      "fps": 0.99,
+      "frameMs": 400.83,
+      "cpuProcessPercent": 31.0,
+      "memorySystemPercent": 46.5,
+      "processRssMb": 1551.62,
+      "gpuUtilPercent": 84.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0319
+    },
+    {
+      "tSec": 120.31,
+      "fps": 0.99,
+      "frameMs": 347.75,
+      "cpuProcessPercent": 27.9,
+      "memorySystemPercent": 46.5,
+      "processRssMb": 1551.69,
+      "gpuUtilPercent": 3.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0355
+    },
+    {
+      "tSec": 122.34,
+      "fps": 0.99,
+      "frameMs": 410.12,
+      "cpuProcessPercent": 30.1,
+      "memorySystemPercent": 46.5,
+      "processRssMb": 1551.93,
+      "gpuUtilPercent": 88.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0329
+    },
+    {
+      "tSec": 124.2,
+      "fps": 0.99,
+      "frameMs": 257.64,
+      "cpuProcessPercent": 23.0,
+      "memorySystemPercent": 46.5,
+      "processRssMb": 1551.93,
+      "gpuUtilPercent": 5.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.043
+    },
+    {
+      "tSec": 126.39,
+      "fps": 0.99,
+      "frameMs": 430.87,
+      "cpuProcessPercent": 29.8,
+      "memorySystemPercent": 46.4,
+      "processRssMb": 1551.93,
+      "gpuUtilPercent": 92.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0332
+    },
+    {
+      "tSec": 128.36,
+      "fps": 0.99,
+      "frameMs": 367.58,
+      "cpuProcessPercent": 27.2,
+      "memorySystemPercent": 46.4,
+      "processRssMb": 1551.94,
+      "gpuUtilPercent": 87.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0364
+    },
+    {
+      "tSec": 130.38,
+      "fps": 0.99,
+      "frameMs": 391.91,
+      "cpuProcessPercent": 25.0,
+      "memorySystemPercent": 46.4,
+      "processRssMb": 1551.94,
+      "gpuUtilPercent": 43.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0396
+    },
+    {
+      "tSec": 132.25,
+      "fps": 1.0,
+      "frameMs": 299.05,
+      "cpuProcessPercent": 22.1,
+      "memorySystemPercent": 46.4,
+      "processRssMb": 1551.94,
+      "gpuUtilPercent": 5.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0452
+    },
+    {
+      "tSec": 134.33,
+      "fps": 0.99,
+      "frameMs": 338.85,
+      "cpuProcessPercent": 26.3,
+      "memorySystemPercent": 46.2,
+      "processRssMb": 1552.04,
+      "gpuUtilPercent": 26.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0376
+    },
+    {
+      "tSec": 136.3,
+      "fps": 0.99,
+      "frameMs": 345.26,
+      "cpuProcessPercent": 30.4,
+      "memorySystemPercent": 46.5,
+      "processRssMb": 1552.04,
+      "gpuUtilPercent": 11.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0326
+    },
+    {
+      "tSec": 138.26,
+      "fps": 0.99,
+      "frameMs": 319.34,
+      "cpuProcessPercent": 21.8,
+      "memorySystemPercent": 46.5,
+      "processRssMb": 1552.04,
+      "gpuUtilPercent": 5.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0454
+    },
+    {
+      "tSec": 140.31,
+      "fps": 0.99,
+      "frameMs": 370.48,
+      "cpuProcessPercent": 30.4,
+      "memorySystemPercent": 46.5,
+      "processRssMb": 1552.04,
+      "gpuUtilPercent": 11.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0326
+    },
+    {
+      "tSec": 142.23,
+      "fps": 0.99,
+      "frameMs": 284.42,
+      "cpuProcessPercent": 23.7,
+      "memorySystemPercent": 46.5,
+      "processRssMb": 1552.04,
+      "gpuUtilPercent": 4.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0418
+    },
+    {
+      "tSec": 144.3,
+      "fps": 0.99,
+      "frameMs": 344.52,
+      "cpuProcessPercent": 25.3,
+      "memorySystemPercent": 46.5,
+      "processRssMb": 1552.05,
+      "gpuUtilPercent": 4.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0391
+    },
+    {
+      "tSec": 146.38,
+      "fps": 0.99,
+      "frameMs": 407.23,
+      "cpuProcessPercent": 28.1,
+      "memorySystemPercent": 46.6,
+      "processRssMb": 1552.96,
+      "gpuUtilPercent": 67.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0352
+    },
+    {
+      "tSec": 148.41,
+      "fps": 0.99,
+      "frameMs": 464.26,
+      "cpuProcessPercent": 34.1,
+      "memorySystemPercent": 46.6,
+      "processRssMb": 1553.64,
+      "gpuUtilPercent": 27.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.029
+    },
+    {
+      "tSec": 149.76,
+      "fps": 1.01,
+      "frameMs": 472.71,
+      "cpuProcessPercent": 77.7,
+      "memorySystemPercent": 46.7,
+      "processRssMb": 1553.64,
+      "gpuUtilPercent": 53.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.013
+    },
+    {
+      "tSec": 151.05,
+      "fps": 1.08,
+      "frameMs": 222.61,
+      "cpuProcessPercent": 54.5,
+      "memorySystemPercent": 47.1,
+      "processRssMb": 1553.69,
+      "gpuUtilPercent": 40.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0198
+    },
+    {
+      "tSec": 152.41,
+      "fps": 1.15,
+      "frameMs": 414.08,
+      "cpuProcessPercent": 81.2,
+      "memorySystemPercent": 47.3,
+      "processRssMb": 1553.69,
+      "gpuUtilPercent": 50.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0142
+    },
+    {
+      "tSec": 153.45,
+      "fps": 1.26,
+      "frameMs": 142.52,
+      "cpuProcessPercent": 57.3,
+      "memorySystemPercent": 47.4,
+      "processRssMb": 1553.7,
+      "gpuUtilPercent": 25.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.022
+    },
+    {
+      "tSec": 154.62,
+      "fps": 1.35,
+      "frameMs": 363.41,
+      "cpuProcessPercent": 85.2,
+      "memorySystemPercent": 47.4,
+      "processRssMb": 1553.71,
+      "gpuUtilPercent": 25.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0158
+    },
+    {
+      "tSec": 156.03,
+      "fps": 1.53,
+      "frameMs": 446.95,
+      "cpuProcessPercent": 69.6,
+      "memorySystemPercent": 47.8,
+      "processRssMb": 1553.93,
+      "gpuUtilPercent": 46.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.022
+    },
+    {
+      "tSec": 157.42,
+      "fps": 1.77,
+      "frameMs": 378.49,
+      "cpuProcessPercent": 75.9,
+      "memorySystemPercent": 47.4,
+      "processRssMb": 1554.1,
+      "gpuUtilPercent": 23.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0233
+    },
+    {
+      "tSec": 158.73,
+      "fps": 2.13,
+      "frameMs": 365.11,
+      "cpuProcessPercent": 92.4,
+      "memorySystemPercent": 47.1,
+      "processRssMb": 1554.12,
+      "gpuUtilPercent": 35.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0231
+    },
+    {
+      "tSec": 160.16,
+      "fps": 2.64,
+      "frameMs": 454.31,
+      "cpuProcessPercent": 93.8,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1554.23,
+      "gpuUtilPercent": 37.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0281
+    },
+    {
+      "tSec": 161.55,
+      "fps": 2.76,
+      "frameMs": 376.44,
+      "cpuProcessPercent": 85.6,
+      "memorySystemPercent": 47.1,
+      "processRssMb": 1554.35,
+      "gpuUtilPercent": 21.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0322
+    },
+    {
+      "tSec": 162.95,
+      "fps": 2.81,
+      "frameMs": 326.6,
+      "cpuProcessPercent": 68.8,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1554.53,
+      "gpuUtilPercent": 41.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0408
+    },
+    {
+      "tSec": 164.33,
+      "fps": 2.84,
+      "frameMs": 331.74,
+      "cpuProcessPercent": 83.9,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1554.55,
+      "gpuUtilPercent": 19.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0338
+    },
+    {
+      "tSec": 165.55,
+      "fps": 2.87,
+      "frameMs": 300.51,
+      "cpuProcessPercent": 99.8,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1554.69,
+      "gpuUtilPercent": 25.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0288
+    },
+    {
+      "tSec": 166.84,
+      "fps": 2.92,
+      "frameMs": 338.74,
+      "cpuProcessPercent": 77.8,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1554.9,
+      "gpuUtilPercent": 34.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0375
+    },
+    {
+      "tSec": 168.08,
+      "fps": 2.95,
+      "frameMs": 319.74,
+      "cpuProcessPercent": 80.6,
+      "memorySystemPercent": 46.9,
+      "processRssMb": 1554.98,
+      "gpuUtilPercent": 36.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0366
+    },
+    {
+      "tSec": 169.42,
+      "fps": 2.95,
+      "frameMs": 394.02,
+      "cpuProcessPercent": 77.3,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1555.08,
+      "gpuUtilPercent": 32.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0382
+    },
+    {
+      "tSec": 170.69,
+      "fps": 3.0,
+      "frameMs": 321.08,
+      "cpuProcessPercent": 84.7,
+      "memorySystemPercent": 46.9,
+      "processRssMb": 1555.09,
+      "gpuUtilPercent": 12.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0354
+    },
+    {
+      "tSec": 171.97,
+      "fps": 3.05,
+      "frameMs": 336.62,
+      "cpuProcessPercent": 84.5,
+      "memorySystemPercent": 46.9,
+      "processRssMb": 1555.11,
+      "gpuUtilPercent": 37.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0361
+    },
+    {
+      "tSec": 173.26,
+      "fps": 3.11,
+      "frameMs": 350.15,
+      "cpuProcessPercent": 88.9,
+      "memorySystemPercent": 46.9,
+      "processRssMb": 1555.15,
+      "gpuUtilPercent": 23.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.035
+    },
+    {
+      "tSec": 174.61,
+      "fps": 3.09,
+      "frameMs": 316.65,
+      "cpuProcessPercent": 72.1,
+      "memorySystemPercent": 46.9,
+      "processRssMb": 1555.15,
+      "gpuUtilPercent": 38.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0429
+    },
+    {
+      "tSec": 175.88,
+      "fps": 3.06,
+      "frameMs": 330.0,
+      "cpuProcessPercent": 79.9,
+      "memorySystemPercent": 46.9,
+      "processRssMb": 1555.17,
+      "gpuUtilPercent": 26.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0383
+    },
+    {
+      "tSec": 177.14,
+      "fps": 3.07,
+      "frameMs": 326.75,
+      "cpuProcessPercent": 88.1,
+      "memorySystemPercent": 46.9,
+      "processRssMb": 1555.38,
+      "gpuUtilPercent": 13.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0348
+    },
+    {
+      "tSec": 178.14,
+      "fps": 3.06,
+      "frameMs": 159.07,
+      "cpuProcessPercent": 55.4,
+      "memorySystemPercent": 46.9,
+      "processRssMb": 1555.56,
+      "gpuUtilPercent": 49.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0552
+    },
+    {
+      "tSec": 179.16,
+      "fps": 3.07,
+      "frameMs": 326.82,
+      "cpuProcessPercent": 84.5,
+      "memorySystemPercent": 46.9,
+      "processRssMb": 1555.56,
+      "gpuUtilPercent": 25.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0363
+    },
+    {
+      "tSec": 180.42,
+      "fps": 3.06,
+      "frameMs": 325.77,
+      "cpuProcessPercent": 87.9,
+      "memorySystemPercent": 46.9,
+      "processRssMb": 1555.57,
+      "gpuUtilPercent": 38.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0348
+    },
+    {
+      "tSec": 181.73,
+      "fps": 3.04,
+      "frameMs": 314.99,
+      "cpuProcessPercent": 71.3,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1555.69,
+      "gpuUtilPercent": 12.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0426
+    },
+    {
+      "tSec": 183.03,
+      "fps": 3.03,
+      "frameMs": 396.06,
+      "cpuProcessPercent": 92.6,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1556.83,
+      "gpuUtilPercent": 39.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0327
+    },
+    {
+      "tSec": 184.33,
+      "fps": 3.07,
+      "frameMs": 318.1,
+      "cpuProcessPercent": 76.8,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1556.96,
+      "gpuUtilPercent": 20.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.04
+    },
+    {
+      "tSec": 185.66,
+      "fps": 3.05,
+      "frameMs": 332.54,
+      "cpuProcessPercent": 80.6,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1556.98,
+      "gpuUtilPercent": 27.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0378
+    },
+    {
+      "tSec": 186.94,
+      "fps": 3.08,
+      "frameMs": 334.1,
+      "cpuProcessPercent": 80.8,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1556.99,
+      "gpuUtilPercent": 28.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0381
+    },
+    {
+      "tSec": 188.14,
+      "fps": 3.09,
+      "frameMs": 301.56,
+      "cpuProcessPercent": 90.8,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1556.99,
+      "gpuUtilPercent": 19.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.034
+    },
+    {
+      "tSec": 189.66,
+      "fps": 3.01,
+      "frameMs": 553.33,
+      "cpuProcessPercent": 82.1,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1557.01,
+      "gpuUtilPercent": 11.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0367
+    },
+    {
+      "tSec": 190.92,
+      "fps": 3.02,
+      "frameMs": 374.97,
+      "cpuProcessPercent": 82.0,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1557.01,
+      "gpuUtilPercent": 25.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0368
+    },
+    {
+      "tSec": 192.01,
+      "fps": 3.02,
+      "frameMs": 140.99,
+      "cpuProcessPercent": 61.6,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1557.01,
+      "gpuUtilPercent": 26.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.049
+    },
+    {
+      "tSec": 193.08,
+      "fps": 2.98,
+      "frameMs": 331.8,
+      "cpuProcessPercent": 74.9,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1557.02,
+      "gpuUtilPercent": 29.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0398
+    },
+    {
+      "tSec": 194.45,
+      "fps": 2.95,
+      "frameMs": 432.61,
+      "cpuProcessPercent": 93.6,
+      "memorySystemPercent": 46.9,
+      "processRssMb": 1585.16,
+      "gpuUtilPercent": 30.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0315
+    },
+    {
+      "tSec": 195.56,
+      "fps": 2.93,
+      "frameMs": 174.38,
+      "cpuProcessPercent": 80.1,
+      "memorySystemPercent": 46.9,
+      "processRssMb": 1586.44,
+      "gpuUtilPercent": 29.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0366
+    },
+    {
+      "tSec": 197.0,
+      "fps": 2.77,
+      "frameMs": 549.48,
+      "cpuProcessPercent": 61.9,
+      "memorySystemPercent": 46.9,
+      "processRssMb": 1586.48,
+      "gpuUtilPercent": 19.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0447
+    },
+    {
+      "tSec": 198.42,
+      "fps": 2.73,
+      "frameMs": 421.4,
+      "cpuProcessPercent": 93.1,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1586.54,
+      "gpuUtilPercent": 36.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0293
+    },
+    {
+      "tSec": 199.92,
+      "fps": 2.67,
+      "frameMs": 393.51,
+      "cpuProcessPercent": 78.1,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1586.54,
+      "gpuUtilPercent": 39.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0342
+    },
+    {
+      "tSec": 201.38,
+      "fps": 2.67,
+      "frameMs": 387.77,
+      "cpuProcessPercent": 89.7,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1586.54,
+      "gpuUtilPercent": 34.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0298
+    },
+    {
+      "tSec": 202.39,
+      "fps": 2.74,
+      "frameMs": 152.83,
+      "cpuProcessPercent": 50.0,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1586.54,
+      "gpuUtilPercent": 24.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0548
+    },
+    {
+      "tSec": 203.45,
+      "fps": 2.69,
+      "frameMs": 347.85,
+      "cpuProcessPercent": 87.5,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1586.55,
+      "gpuUtilPercent": 28.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0307
+    },
+    {
+      "tSec": 204.48,
+      "fps": 2.7,
+      "frameMs": 120.92,
+      "cpuProcessPercent": 40.1,
+      "memorySystemPercent": 47.1,
+      "processRssMb": 1586.55,
+      "gpuUtilPercent": 32.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0673
+    },
+    {
+      "tSec": 205.58,
+      "fps": 2.69,
+      "frameMs": 342.27,
+      "cpuProcessPercent": 87.9,
+      "memorySystemPercent": 47.1,
+      "processRssMb": 1586.55,
+      "gpuUtilPercent": 19.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0306
+    },
+    {
+      "tSec": 206.88,
+      "fps": 2.75,
+      "frameMs": 372.04,
+      "cpuProcessPercent": 78.7,
+      "memorySystemPercent": 47.1,
+      "processRssMb": 1588.03,
+      "gpuUtilPercent": 57.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0349
+    },
+    {
+      "tSec": 208.16,
+      "fps": 2.85,
+      "frameMs": 365.14,
+      "cpuProcessPercent": 82.2,
+      "memorySystemPercent": 47.1,
+      "processRssMb": 1588.0,
+      "gpuUtilPercent": 12.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0347
+    },
+    {
+      "tSec": 209.44,
+      "fps": 2.9,
+      "frameMs": 347.08,
+      "cpuProcessPercent": 88.1,
+      "memorySystemPercent": 47.1,
+      "processRssMb": 1588.0,
+      "gpuUtilPercent": 40.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0329
+    },
+    {
+      "tSec": 210.44,
+      "fps": 2.98,
+      "frameMs": 166.02,
+      "cpuProcessPercent": 55.4,
+      "memorySystemPercent": 47.1,
+      "processRssMb": 1588.0,
+      "gpuUtilPercent": 44.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0538
+    },
+    {
+      "tSec": 211.48,
+      "fps": 2.96,
+      "frameMs": 348.83,
+      "cpuProcessPercent": 81.5,
+      "memorySystemPercent": 47.1,
+      "processRssMb": 1588.88,
+      "gpuUtilPercent": 26.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0363
+    },
+    {
+      "tSec": 212.78,
+      "fps": 2.98,
+      "frameMs": 385.36,
+      "cpuProcessPercent": 85.2,
+      "memorySystemPercent": 47.1,
+      "processRssMb": 1588.88,
+      "gpuUtilPercent": 26.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.035
+    },
+    {
+      "tSec": 213.78,
+      "fps": 3.04,
+      "frameMs": 145.68,
+      "cpuProcessPercent": 50.0,
+      "memorySystemPercent": 47.1,
+      "processRssMb": 1588.88,
+      "gpuUtilPercent": 23.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0608
+    },
+    {
+      "tSec": 215.34,
+      "fps": 2.87,
+      "frameMs": 709.19,
+      "cpuProcessPercent": 57.2,
+      "memorySystemPercent": 47.2,
+      "processRssMb": 1588.88,
+      "gpuUtilPercent": 13.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0502
+    },
+    {
+      "tSec": 216.64,
+      "fps": 2.85,
+      "frameMs": 338.28,
+      "cpuProcessPercent": 83.3,
+      "memorySystemPercent": 47.3,
+      "processRssMb": 1588.88,
+      "gpuUtilPercent": 31.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0342
+    },
+    {
+      "tSec": 217.91,
+      "fps": 2.85,
+      "frameMs": 346.55,
+      "cpuProcessPercent": 77.8,
+      "memorySystemPercent": 47.3,
+      "processRssMb": 1588.88,
+      "gpuUtilPercent": 39.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0366
+    },
+    {
+      "tSec": 219.3,
+      "fps": 2.84,
+      "frameMs": 401.29,
+      "cpuProcessPercent": 76.6,
+      "memorySystemPercent": 47.3,
+      "processRssMb": 1589.76,
+      "gpuUtilPercent": 23.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0371
+    },
+    {
+      "tSec": 220.92,
+      "fps": 2.78,
+      "frameMs": 489.26,
+      "cpuProcessPercent": 60.0,
+      "memorySystemPercent": 47.4,
+      "processRssMb": 1589.76,
+      "gpuUtilPercent": 19.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0463
+    },
+    {
+      "tSec": 222.2,
+      "fps": 2.78,
+      "frameMs": 318.24,
+      "cpuProcessPercent": 83.3,
+      "memorySystemPercent": 47.4,
+      "processRssMb": 1589.76,
+      "gpuUtilPercent": 34.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0334
+    },
+    {
+      "tSec": 223.39,
+      "fps": 2.82,
+      "frameMs": 290.3,
+      "cpuProcessPercent": 86.3,
+      "memorySystemPercent": 47.4,
+      "processRssMb": 1589.76,
+      "gpuUtilPercent": 35.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0327
+    },
+    {
+      "tSec": 224.69,
+      "fps": 2.86,
+      "frameMs": 370.63,
+      "cpuProcessPercent": 82.2,
+      "memorySystemPercent": 47.4,
+      "processRssMb": 1589.77,
+      "gpuUtilPercent": 31.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0348
+    },
+    {
+      "tSec": 226.08,
+      "fps": 2.95,
+      "frameMs": 377.59,
+      "cpuProcessPercent": 65.6,
+      "memorySystemPercent": 47.4,
+      "processRssMb": 1589.79,
+      "gpuUtilPercent": 18.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.045
+    },
+    {
+      "tSec": 227.19,
+      "fps": 2.93,
+      "frameMs": 189.02,
+      "cpuProcessPercent": 80.1,
+      "memorySystemPercent": 47.4,
+      "processRssMb": 1589.79,
+      "gpuUtilPercent": 42.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0366
+    },
+    {
+      "tSec": 228.33,
+      "fps": 2.86,
+      "frameMs": 372.05,
+      "cpuProcessPercent": 87.9,
+      "memorySystemPercent": 47.3,
+      "processRssMb": 1589.79,
+      "gpuUtilPercent": 15.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0325
+    },
+    {
+      "tSec": 229.61,
+      "fps": 2.9,
+      "frameMs": 329.15,
+      "cpuProcessPercent": 87.5,
+      "memorySystemPercent": 47.3,
+      "processRssMb": 1589.79,
+      "gpuUtilPercent": 32.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0331
+    },
+    {
+      "tSec": 230.95,
+      "fps": 2.99,
+      "frameMs": 382.94,
+      "cpuProcessPercent": 96.3,
+      "memorySystemPercent": 47.3,
+      "processRssMb": 1589.8,
+      "gpuUtilPercent": 41.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.031
+    },
+    {
+      "tSec": 232.06,
+      "fps": 2.93,
+      "frameMs": 142.87,
+      "cpuProcessPercent": 66.8,
+      "memorySystemPercent": 47.3,
+      "processRssMb": 1589.8,
+      "gpuUtilPercent": 20.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0439
+    },
+    {
+      "tSec": 233.25,
+      "fps": 2.85,
+      "frameMs": 361.23,
+      "cpuProcessPercent": 91.9,
+      "memorySystemPercent": 47.4,
+      "processRssMb": 1589.8,
+      "gpuUtilPercent": 24.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.031
+    },
+    {
+      "tSec": 234.41,
+      "fps": 2.85,
+      "frameMs": 285.21,
+      "cpuProcessPercent": 81.0,
+      "memorySystemPercent": 47.4,
+      "processRssMb": 1589.8,
+      "gpuUtilPercent": 40.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0352
+    },
+    {
+      "tSec": 235.8,
+      "fps": 2.84,
+      "frameMs": 363.66,
+      "cpuProcessPercent": 70.1,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1589.8,
+      "gpuUtilPercent": 21.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0405
+    },
+    {
+      "tSec": 237.0,
+      "fps": 2.96,
+      "frameMs": 288.24,
+      "cpuProcessPercent": 70.8,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1589.83,
+      "gpuUtilPercent": 40.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0418
+    },
+    {
+      "tSec": 238.41,
+      "fps": 2.97,
+      "frameMs": 425.03,
+      "cpuProcessPercent": 61.2,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1589.82,
+      "gpuUtilPercent": 51.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0485
+    },
+    {
+      "tSec": 239.69,
+      "fps": 2.96,
+      "frameMs": 343.51,
+      "cpuProcessPercent": 72.9,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1589.82,
+      "gpuUtilPercent": 18.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0406
+    },
+    {
+      "tSec": 240.75,
+      "fps": 2.96,
+      "frameMs": 161.05,
+      "cpuProcessPercent": 70.5,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1589.82,
+      "gpuUtilPercent": 42.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.042
+    },
+    {
+      "tSec": 241.81,
+      "fps": 2.97,
+      "frameMs": 366.86,
+      "cpuProcessPercent": 87.9,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1589.82,
+      "gpuUtilPercent": 54.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0338
+    },
+    {
+      "tSec": 243.16,
+      "fps": 3.01,
+      "frameMs": 353.19,
+      "cpuProcessPercent": 75.9,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1589.82,
+      "gpuUtilPercent": 35.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0397
+    },
+    {
+      "tSec": 244.17,
+      "fps": 2.98,
+      "frameMs": 173.36,
+      "cpuProcessPercent": 85.6,
+      "memorySystemPercent": 46.9,
+      "processRssMb": 1589.82,
+      "gpuUtilPercent": 36.0,
+      "gpuTempC": 45.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0348
+    },
+    {
+      "tSec": 246.47,
+      "fps": 2.6,
+      "frameMs": 529.62,
+      "cpuProcessPercent": 32.6,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1589.82,
+      "gpuUtilPercent": 32.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0798
+    },
+    {
+      "tSec": 248.28,
+      "fps": 2.37,
+      "frameMs": 339.01,
+      "cpuProcessPercent": 29.2,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1589.82,
+      "gpuUtilPercent": 4.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0812
+    },
+    {
+      "tSec": 250.5,
+      "fps": 2.1,
+      "frameMs": 444.96,
+      "cpuProcessPercent": 36.1,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1589.82,
+      "gpuUtilPercent": 80.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0582
+    },
+    {
+      "tSec": 252.34,
+      "fps": 1.93,
+      "frameMs": 386.62,
+      "cpuProcessPercent": 32.9,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1589.8,
+      "gpuUtilPercent": 12.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0587
+    },
+    {
+      "tSec": 254.38,
+      "fps": 1.76,
+      "frameMs": 415.7,
+      "cpuProcessPercent": 28.4,
+      "memorySystemPercent": 47.0,
+      "processRssMb": 1589.8,
+      "gpuUtilPercent": 25.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.062
+    },
+    {
+      "tSec": 256.31,
+      "fps": 1.65,
+      "frameMs": 362.42,
+      "cpuProcessPercent": 28.6,
+      "memorySystemPercent": 46.9,
+      "processRssMb": 1589.8,
+      "gpuUtilPercent": 6.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0577
+    },
+    {
+      "tSec": 258.44,
+      "fps": 1.52,
+      "frameMs": 453.85,
+      "cpuProcessPercent": 32.1,
+      "memorySystemPercent": 47.1,
+      "processRssMb": 1589.8,
+      "gpuUtilPercent": 38.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0474
+    },
+    {
+      "tSec": 260.42,
+      "fps": 1.43,
+      "frameMs": 459.41,
+      "cpuProcessPercent": 28.9,
+      "memorySystemPercent": 47.7,
+      "processRssMb": 1589.8,
+      "gpuUtilPercent": 39.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0495
+    },
+    {
+      "tSec": 262.41,
+      "fps": 1.34,
+      "frameMs": 445.28,
+      "cpuProcessPercent": 30.9,
+      "memorySystemPercent": 47.7,
+      "processRssMb": 1589.8,
+      "gpuUtilPercent": 30.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0434
+    },
+    {
+      "tSec": 264.26,
+      "fps": 1.27,
+      "frameMs": 319.02,
+      "cpuProcessPercent": 23.7,
+      "memorySystemPercent": 47.6,
+      "processRssMb": 1589.8,
+      "gpuUtilPercent": 3.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0536
+    },
+    {
+      "tSec": 266.38,
+      "fps": 1.19,
+      "frameMs": 406.56,
+      "cpuProcessPercent": 30.9,
+      "memorySystemPercent": 47.6,
+      "processRssMb": 1589.8,
+      "gpuUtilPercent": 18.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0385
+    },
+    {
+      "tSec": 268.33,
+      "fps": 1.13,
+      "frameMs": 374.38,
+      "cpuProcessPercent": 27.5,
+      "memorySystemPercent": 47.6,
+      "processRssMb": 1589.8,
+      "gpuUtilPercent": 3.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0411
+    },
+    {
+      "tSec": 270.36,
+      "fps": 1.08,
+      "frameMs": 394.65,
+      "cpuProcessPercent": 30.9,
+      "memorySystemPercent": 47.6,
+      "processRssMb": 1589.8,
+      "gpuUtilPercent": 19.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.035
+    },
+    {
+      "tSec": 272.34,
+      "fps": 1.03,
+      "frameMs": 382.91,
+      "cpuProcessPercent": 30.0,
+      "memorySystemPercent": 47.6,
+      "processRssMb": 1589.8,
+      "gpuUtilPercent": 5.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0343
+    },
+    {
+      "tSec": 274.36,
+      "fps": 0.99,
+      "frameMs": 382.64,
+      "cpuProcessPercent": 23.5,
+      "memorySystemPercent": 47.6,
+      "processRssMb": 1589.8,
+      "gpuUtilPercent": 27.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0421
+    },
+    {
+      "tSec": 276.26,
+      "fps": 1.0,
+      "frameMs": 323.2,
+      "cpuProcessPercent": 24.7,
+      "memorySystemPercent": 47.6,
+      "processRssMb": 1589.8,
+      "gpuUtilPercent": 6.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0405
+    },
+    {
+      "tSec": 278.41,
+      "fps": 0.99,
+      "frameMs": 460.24,
+      "cpuProcessPercent": 32.5,
+      "memorySystemPercent": 47.5,
+      "processRssMb": 1589.8,
+      "gpuUtilPercent": 23.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0305
+    },
+    {
+      "tSec": 280.3,
+      "fps": 0.99,
+      "frameMs": 344.12,
+      "cpuProcessPercent": 27.6,
+      "memorySystemPercent": 47.5,
+      "processRssMb": 1589.8,
+      "gpuUtilPercent": 7.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0359
+    },
+    {
+      "tSec": 282.33,
+      "fps": 0.99,
+      "frameMs": 386.75,
+      "cpuProcessPercent": 29.5,
+      "memorySystemPercent": 47.5,
+      "processRssMb": 1589.8,
+      "gpuUtilPercent": 13.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0336
+    },
+    {
+      "tSec": 284.36,
+      "fps": 0.99,
+      "frameMs": 415.72,
+      "cpuProcessPercent": 27.7,
+      "memorySystemPercent": 47.5,
+      "processRssMb": 1589.92,
+      "gpuUtilPercent": 26.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0357
+    },
+    {
+      "tSec": 286.34,
+      "fps": 0.99,
+      "frameMs": 376.28,
+      "cpuProcessPercent": 29.1,
+      "memorySystemPercent": 47.5,
+      "processRssMb": 1589.92,
+      "gpuUtilPercent": 5.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.034
+    },
+    {
+      "tSec": 288.41,
+      "fps": 0.99,
+      "frameMs": 439.56,
+      "cpuProcessPercent": 33.3,
+      "memorySystemPercent": 47.5,
+      "processRssMb": 1589.92,
+      "gpuUtilPercent": 86.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0297
+    },
+    {
+      "tSec": 290.28,
+      "fps": 0.99,
+      "frameMs": 323.71,
+      "cpuProcessPercent": 22.7,
+      "memorySystemPercent": 47.5,
+      "processRssMb": 1589.94,
+      "gpuUtilPercent": 8.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0436
+    },
+    {
+      "tSec": 292.39,
+      "fps": 0.99,
+      "frameMs": 446.35,
+      "cpuProcessPercent": 31.3,
+      "memorySystemPercent": 47.6,
+      "processRssMb": 1589.94,
+      "gpuUtilPercent": 40.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0316
+    },
+    {
+      "tSec": 294.26,
+      "fps": 0.99,
+      "frameMs": 311.74,
+      "cpuProcessPercent": 23.7,
+      "memorySystemPercent": 47.6,
+      "processRssMb": 1589.94,
+      "gpuUtilPercent": 7.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0418
+    },
+    {
+      "tSec": 296.36,
+      "fps": 0.99,
+      "frameMs": 408.9,
+      "cpuProcessPercent": 29.8,
+      "memorySystemPercent": 47.6,
+      "processRssMb": 1589.94,
+      "gpuUtilPercent": 35.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0332
+    },
+    {
+      "tSec": 298.31,
+      "fps": 0.99,
+      "frameMs": 356.63,
+      "cpuProcessPercent": 28.0,
+      "memorySystemPercent": 47.6,
+      "processRssMb": 1589.94,
+      "gpuUtilPercent": 3.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0354
+    },
+    {
+      "tSec": 300.34,
+      "fps": 0.99,
+      "frameMs": 381.52,
+      "cpuProcessPercent": 28.7,
+      "memorySystemPercent": 47.6,
+      "processRssMb": 1589.94,
+      "gpuUtilPercent": 6.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0345
+    },
+    {
+      "tSec": 302.26,
+      "fps": 0.99,
+      "frameMs": 313.08,
+      "cpuProcessPercent": 23.3,
+      "memorySystemPercent": 47.6,
+      "processRssMb": 1589.94,
+      "gpuUtilPercent": 7.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0425
+    },
+    {
+      "tSec": 304.38,
+      "fps": 0.99,
+      "frameMs": 429.4,
+      "cpuProcessPercent": 28.9,
+      "memorySystemPercent": 47.6,
+      "processRssMb": 1589.94,
+      "gpuUtilPercent": 69.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0343
+    },
+    {
+      "tSec": 306.31,
+      "fps": 0.99,
+      "frameMs": 383.33,
+      "cpuProcessPercent": 28.2,
+      "memorySystemPercent": 47.6,
+      "processRssMb": 1589.94,
+      "gpuUtilPercent": 12.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0351
+    },
+    {
+      "tSec": 308.31,
+      "fps": 0.99,
+      "frameMs": 357.45,
+      "cpuProcessPercent": 26.6,
+      "memorySystemPercent": 47.5,
+      "processRssMb": 1589.94,
+      "gpuUtilPercent": 2.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0372
+    },
+    {
+      "tSec": 310.28,
+      "fps": 0.99,
+      "frameMs": 347.62,
+      "cpuProcessPercent": 23.7,
+      "memorySystemPercent": 47.5,
+      "processRssMb": 1589.94,
+      "gpuUtilPercent": 4.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0418
+    },
+    {
+      "tSec": 312.34,
+      "fps": 0.99,
+      "frameMs": 398.21,
+      "cpuProcessPercent": 28.7,
+      "memorySystemPercent": 47.5,
+      "processRssMb": 1589.94,
+      "gpuUtilPercent": 7.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0345
+    },
+    {
+      "tSec": 314.25,
+      "fps": 0.99,
+      "frameMs": 300.75,
+      "cpuProcessPercent": 24.3,
+      "memorySystemPercent": 47.5,
+      "processRssMb": 1589.94,
+      "gpuUtilPercent": 6.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0407
+    },
+    {
+      "tSec": 316.38,
+      "fps": 0.99,
+      "frameMs": 423.67,
+      "cpuProcessPercent": 31.7,
+      "memorySystemPercent": 47.6,
+      "processRssMb": 1589.94,
+      "gpuUtilPercent": 82.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0312
+    },
+    {
+      "tSec": 318.22,
+      "fps": 1.0,
+      "frameMs": 275.24,
+      "cpuProcessPercent": 23.3,
+      "memorySystemPercent": 47.4,
+      "processRssMb": 1589.94,
+      "gpuUtilPercent": 6.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0429
+    },
+    {
+      "tSec": 320.3,
+      "fps": 0.99,
+      "frameMs": 348.38,
+      "cpuProcessPercent": 27.8,
+      "memorySystemPercent": 47.8,
+      "processRssMb": 1589.94,
+      "gpuUtilPercent": 13.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0356
+    },
+    {
+      "tSec": 322.22,
+      "fps": 1.0,
+      "frameMs": 284.97,
+      "cpuProcessPercent": 23.0,
+      "memorySystemPercent": 47.3,
+      "processRssMb": 1589.94,
+      "gpuUtilPercent": 13.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0435
+    },
+    {
+      "tSec": 324.31,
+      "fps": 0.99,
+      "frameMs": 319.29,
+      "cpuProcessPercent": 27.3,
+      "memorySystemPercent": 47.2,
+      "processRssMb": 1589.94,
+      "gpuUtilPercent": 3.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0363
+    },
+    {
+      "tSec": 326.33,
+      "fps": 0.99,
+      "frameMs": 389.79,
+      "cpuProcessPercent": 30.0,
+      "memorySystemPercent": 47.2,
+      "processRssMb": 1589.94,
+      "gpuUtilPercent": 10.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.033
+    },
+    {
+      "tSec": 328.45,
+      "fps": 0.99,
+      "frameMs": 490.86,
+      "cpuProcessPercent": 35.2,
+      "memorySystemPercent": 47.2,
+      "processRssMb": 1589.94,
+      "gpuUtilPercent": 61.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0281
+    },
+    {
+      "tSec": 330.26,
+      "fps": 1.0,
+      "frameMs": 305.93,
+      "cpuProcessPercent": 25.4,
+      "memorySystemPercent": 47.2,
+      "processRssMb": 1589.94,
+      "gpuUtilPercent": 4.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0394
+    },
+    {
+      "tSec": 332.45,
+      "fps": 0.99,
+      "frameMs": 405.66,
+      "cpuProcessPercent": 27.9,
+      "memorySystemPercent": 47.3,
+      "processRssMb": 1589.94,
+      "gpuUtilPercent": 36.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0355
+    },
+    {
+      "tSec": 334.25,
+      "fps": 0.99,
+      "frameMs": 303.25,
+      "cpuProcessPercent": 24.3,
+      "memorySystemPercent": 47.3,
+      "processRssMb": 1589.94,
+      "gpuUtilPercent": 5.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0407
+    },
+    {
+      "tSec": 336.45,
+      "fps": 0.99,
+      "frameMs": 510.23,
+      "cpuProcessPercent": 34.8,
+      "memorySystemPercent": 47.3,
+      "processRssMb": 1589.94,
+      "gpuUtilPercent": 86.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0284
+    },
+    {
+      "tSec": 338.31,
+      "fps": 0.99,
+      "frameMs": 360.44,
+      "cpuProcessPercent": 28.2,
+      "memorySystemPercent": 47.3,
+      "processRssMb": 1589.94,
+      "gpuUtilPercent": 13.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0351
+    },
+    {
+      "tSec": 340.26,
+      "fps": 0.99,
+      "frameMs": 326.34,
+      "cpuProcessPercent": 26.3,
+      "memorySystemPercent": 47.3,
+      "processRssMb": 1589.94,
+      "gpuUtilPercent": 4.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0376
+    },
+    {
+      "tSec": 342.31,
+      "fps": 0.99,
+      "frameMs": 355.47,
+      "cpuProcessPercent": 24.7,
+      "memorySystemPercent": 47.2,
+      "processRssMb": 1589.94,
+      "gpuUtilPercent": 9.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0401
+    },
+    {
+      "tSec": 344.31,
+      "fps": 0.99,
+      "frameMs": 357.8,
+      "cpuProcessPercent": 28.2,
+      "memorySystemPercent": 47.2,
+      "processRssMb": 1589.94,
+      "gpuUtilPercent": 11.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0351
+    },
+    {
+      "tSec": 346.41,
+      "fps": 0.99,
+      "frameMs": 415.97,
+      "cpuProcessPercent": 32.9,
+      "memorySystemPercent": 46.9,
+      "processRssMb": 1589.94,
+      "gpuUtilPercent": 30.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0301
+    },
+    {
+      "tSec": 348.26,
+      "fps": 0.99,
+      "frameMs": 332.65,
+      "cpuProcessPercent": 22.8,
+      "memorySystemPercent": 46.4,
+      "processRssMb": 1589.94,
+      "gpuUtilPercent": 7.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0434
+    },
+    {
+      "tSec": 350.39,
+      "fps": 0.99,
+      "frameMs": 431.08,
+      "cpuProcessPercent": 32.6,
+      "memorySystemPercent": 46.4,
+      "processRssMb": 1589.94,
+      "gpuUtilPercent": 94.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0304
+    },
+    {
+      "tSec": 352.22,
+      "fps": 0.99,
+      "frameMs": 279.2,
+      "cpuProcessPercent": 26.8,
+      "memorySystemPercent": 46.4,
+      "processRssMb": 1590.82,
+      "gpuUtilPercent": 11.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0369
+    },
+    {
+      "tSec": 354.23,
+      "fps": 0.99,
+      "frameMs": 312.04,
+      "cpuProcessPercent": 26.3,
+      "memorySystemPercent": 46.4,
+      "processRssMb": 1591.68,
+      "gpuUtilPercent": 8.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0376
+    },
+    {
+      "tSec": 356.31,
+      "fps": 0.99,
+      "frameMs": 371.25,
+      "cpuProcessPercent": 28.7,
+      "memorySystemPercent": 46.4,
+      "processRssMb": 1591.69,
+      "gpuUtilPercent": 3.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0345
+    },
+    {
+      "tSec": 358.5,
+      "fps": 0.99,
+      "frameMs": 543.71,
+      "cpuProcessPercent": 35.5,
+      "memorySystemPercent": 46.4,
+      "processRssMb": 1592.85,
+      "gpuUtilPercent": 98.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0279
+    },
+    {
+      "tSec": 360.26,
+      "fps": 0.99,
+      "frameMs": 317.31,
+      "cpuProcessPercent": 30.1,
+      "memorySystemPercent": 46.4,
+      "processRssMb": 1596.29,
+      "gpuUtilPercent": 3.0,
+      "gpuTempC": 45.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0329
+    },
+    {
+      "tSec": 362.42,
+      "fps": 0.99,
+      "frameMs": 456.14,
+      "cpuProcessPercent": 31.4,
+      "memorySystemPercent": 46.4,
+      "processRssMb": 1596.18,
+      "gpuUtilPercent": 86.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0315
+    },
+    {
+      "tSec": 364.41,
+      "fps": 0.99,
+      "frameMs": 351.76,
+      "cpuProcessPercent": 28.6,
+      "memorySystemPercent": 46.4,
+      "processRssMb": 1596.18,
+      "gpuUtilPercent": 12.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0346
+    },
+    {
+      "tSec": 366.38,
+      "fps": 0.99,
+      "frameMs": 422.16,
+      "cpuProcessPercent": 31.2,
+      "memorySystemPercent": 46.5,
+      "processRssMb": 1591.7,
+      "gpuUtilPercent": 91.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0317
+    },
+    {
+      "tSec": 368.26,
+      "fps": 0.99,
+      "frameMs": 333.58,
+      "cpuProcessPercent": 26.0,
+      "memorySystemPercent": 46.4,
+      "processRssMb": 1591.7,
+      "gpuUtilPercent": 8.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0381
+    },
+    {
+      "tSec": 370.38,
+      "fps": 0.99,
+      "frameMs": 420.2,
+      "cpuProcessPercent": 28.6,
+      "memorySystemPercent": 46.5,
+      "processRssMb": 1591.7,
+      "gpuUtilPercent": 87.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0346
+    },
+    {
+      "tSec": 372.25,
+      "fps": 0.99,
+      "frameMs": 303.68,
+      "cpuProcessPercent": 22.4,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1591.7,
+      "gpuUtilPercent": 7.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0442
+    },
+    {
+      "tSec": 374.31,
+      "fps": 0.99,
+      "frameMs": 367.65,
+      "cpuProcessPercent": 33.3,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1591.7,
+      "gpuUtilPercent": 13.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0297
+    },
+    {
+      "tSec": 376.41,
+      "fps": 0.99,
+      "frameMs": 444.87,
+      "cpuProcessPercent": 30.1,
+      "memorySystemPercent": 46.7,
+      "processRssMb": 1591.71,
+      "gpuUtilPercent": 42.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0329
+    },
+    {
+      "tSec": 378.38,
+      "fps": 0.99,
+      "frameMs": 403.19,
+      "cpuProcessPercent": 29.6,
+      "memorySystemPercent": 46.7,
+      "processRssMb": 1591.71,
+      "gpuUtilPercent": 71.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0334
+    },
+    {
+      "tSec": 380.41,
+      "fps": 0.99,
+      "frameMs": 442.51,
+      "cpuProcessPercent": 31.2,
+      "memorySystemPercent": 46.7,
+      "processRssMb": 1591.71,
+      "gpuUtilPercent": 10.0,
+      "gpuTempC": 45.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0317
+    },
+    {
+      "tSec": 382.23,
+      "fps": 0.99,
+      "frameMs": 297.27,
+      "cpuProcessPercent": 26.4,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1591.71,
+      "gpuUtilPercent": 3.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0375
+    },
+    {
+      "tSec": 384.28,
+      "fps": 0.99,
+      "frameMs": 357.29,
+      "cpuProcessPercent": 31.2,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1591.71,
+      "gpuUtilPercent": 11.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0317
+    },
+    {
+      "tSec": 386.23,
+      "fps": 0.99,
+      "frameMs": 280.25,
+      "cpuProcessPercent": 23.0,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1591.71,
+      "gpuUtilPercent": 10.0,
+      "gpuTempC": 43.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.043
+    },
+    {
+      "tSec": 388.34,
+      "fps": 0.99,
+      "frameMs": 397.76,
+      "cpuProcessPercent": 30.9,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1591.75,
+      "gpuUtilPercent": 4.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.032
+    },
+    {
+      "tSec": 390.34,
+      "fps": 0.99,
+      "frameMs": 390.23,
+      "cpuProcessPercent": 29.6,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1591.97,
+      "gpuUtilPercent": 23.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0334
+    },
+    {
+      "tSec": 392.28,
+      "fps": 0.99,
+      "frameMs": 328.26,
+      "cpuProcessPercent": 32.0,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1591.97,
+      "gpuUtilPercent": 4.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0309
+    },
+    {
+      "tSec": 394.42,
+      "fps": 0.99,
+      "frameMs": 471.27,
+      "cpuProcessPercent": 36.2,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1591.97,
+      "gpuUtilPercent": 70.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0273
+    },
+    {
+      "tSec": 396.33,
+      "fps": 0.99,
+      "frameMs": 389.87,
+      "cpuProcessPercent": 29.3,
+      "memorySystemPercent": 46.7,
+      "processRssMb": 1591.97,
+      "gpuUtilPercent": 3.0,
+      "gpuTempC": 45.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0338
+    },
+    {
+      "tSec": 398.31,
+      "fps": 0.99,
+      "frameMs": 373.19,
+      "cpuProcessPercent": 32.9,
+      "memorySystemPercent": 46.7,
+      "processRssMb": 1592.01,
+      "gpuUtilPercent": 21.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0301
+    },
+    {
+      "tSec": 400.23,
+      "fps": 0.99,
+      "frameMs": 293.07,
+      "cpuProcessPercent": 26.7,
+      "memorySystemPercent": 46.5,
+      "processRssMb": 1592.01,
+      "gpuUtilPercent": 4.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0371
+    },
+    {
+      "tSec": 402.34,
+      "fps": 0.99,
+      "frameMs": 391.64,
+      "cpuProcessPercent": 29.5,
+      "memorySystemPercent": 46.5,
+      "processRssMb": 1592.01,
+      "gpuUtilPercent": 13.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0336
+    },
+    {
+      "tSec": 404.36,
+      "fps": 0.99,
+      "frameMs": 395.32,
+      "cpuProcessPercent": 31.7,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1592.01,
+      "gpuUtilPercent": 14.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0312
+    },
+    {
+      "tSec": 406.25,
+      "fps": 0.99,
+      "frameMs": 318.75,
+      "cpuProcessPercent": 25.3,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1592.01,
+      "gpuUtilPercent": 4.0,
+      "gpuTempC": 45.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0391
+    },
+    {
+      "tSec": 408.22,
+      "fps": 1.0,
+      "frameMs": 280.82,
+      "cpuProcessPercent": 23.7,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1592.01,
+      "gpuUtilPercent": 18.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0422
+    },
+    {
+      "tSec": 410.33,
+      "fps": 0.99,
+      "frameMs": 379.09,
+      "cpuProcessPercent": 31.1,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1592.01,
+      "gpuUtilPercent": 12.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0318
+    },
+    {
+      "tSec": 412.23,
+      "fps": 1.0,
+      "frameMs": 280.38,
+      "cpuProcessPercent": 23.3,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1592.01,
+      "gpuUtilPercent": 14.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0429
+    },
+    {
+      "tSec": 414.33,
+      "fps": 0.99,
+      "frameMs": 380.84,
+      "cpuProcessPercent": 30.5,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1592.01,
+      "gpuUtilPercent": 12.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0325
+    },
+    {
+      "tSec": 416.22,
+      "fps": 0.99,
+      "frameMs": 285.95,
+      "cpuProcessPercent": 25.7,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1592.01,
+      "gpuUtilPercent": 13.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0385
+    },
+    {
+      "tSec": 418.36,
+      "fps": 0.99,
+      "frameMs": 402.08,
+      "cpuProcessPercent": 28.9,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1592.04,
+      "gpuUtilPercent": 5.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0343
+    },
+    {
+      "tSec": 420.22,
+      "fps": 1.0,
+      "frameMs": 268.11,
+      "cpuProcessPercent": 21.1,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1592.01,
+      "gpuUtilPercent": 3.0,
+      "gpuTempC": 45.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0474
+    },
+    {
+      "tSec": 422.31,
+      "fps": 1.0,
+      "frameMs": 356.17,
+      "cpuProcessPercent": 23.8,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1592.01,
+      "gpuUtilPercent": 4.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.042
+    },
+    {
+      "tSec": 424.2,
+      "fps": 1.0,
+      "frameMs": 256.97,
+      "cpuProcessPercent": 23.0,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1592.01,
+      "gpuUtilPercent": 3.0,
+      "gpuTempC": 45.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0435
+    },
+    {
+      "tSec": 426.31,
+      "fps": 0.99,
+      "frameMs": 348.16,
+      "cpuProcessPercent": 29.1,
+      "memorySystemPercent": 46.7,
+      "processRssMb": 1592.01,
+      "gpuUtilPercent": 4.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.034
+    },
+    {
+      "tSec": 428.31,
+      "fps": 0.99,
+      "frameMs": 355.9,
+      "cpuProcessPercent": 23.8,
+      "memorySystemPercent": 46.7,
+      "processRssMb": 1592.01,
+      "gpuUtilPercent": 12.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0416
+    },
+    {
+      "tSec": 430.22,
+      "fps": 1.0,
+      "frameMs": 275.14,
+      "cpuProcessPercent": 23.0,
+      "memorySystemPercent": 46.7,
+      "processRssMb": 1592.01,
+      "gpuUtilPercent": 5.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0435
+    },
+    {
+      "tSec": 432.38,
+      "fps": 0.99,
+      "frameMs": 424.8,
+      "cpuProcessPercent": 34.2,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1592.01,
+      "gpuUtilPercent": 25.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0289
+    },
+    {
+      "tSec": 434.28,
+      "fps": 0.99,
+      "frameMs": 302.52,
+      "cpuProcessPercent": 19.7,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1592.01,
+      "gpuUtilPercent": 4.0,
+      "gpuTempC": 45.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0503
+    },
+    {
+      "tSec": 436.34,
+      "fps": 0.99,
+      "frameMs": 404.33,
+      "cpuProcessPercent": 29.8,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1592.01,
+      "gpuUtilPercent": 8.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0332
+    },
+    {
+      "tSec": 438.25,
+      "fps": 1.0,
+      "frameMs": 320.36,
+      "cpuProcessPercent": 25.7,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1592.01,
+      "gpuUtilPercent": 6.0,
+      "gpuTempC": 45.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0389
+    },
+    {
+      "tSec": 440.36,
+      "fps": 0.99,
+      "frameMs": 390.75,
+      "cpuProcessPercent": 30.5,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1592.01,
+      "gpuUtilPercent": 12.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0325
+    },
+    {
+      "tSec": 442.31,
+      "fps": 0.99,
+      "frameMs": 300.29,
+      "cpuProcessPercent": 25.3,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1592.01,
+      "gpuUtilPercent": 11.0,
+      "gpuTempC": 45.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0391
+    },
+    {
+      "tSec": 444.26,
+      "fps": 1.0,
+      "frameMs": 292.19,
+      "cpuProcessPercent": 22.7,
+      "memorySystemPercent": 46.9,
+      "processRssMb": 1592.01,
+      "gpuUtilPercent": 16.0,
+      "gpuTempC": 45.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0441
+    },
+    {
+      "tSec": 446.42,
+      "fps": 0.99,
+      "frameMs": 472.47,
+      "cpuProcessPercent": 34.5,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1592.01,
+      "gpuUtilPercent": 90.0,
+      "gpuTempC": 45.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0287
+    },
+    {
+      "tSec": 448.36,
+      "fps": 0.99,
+      "frameMs": 405.78,
+      "cpuProcessPercent": 28.6,
+      "memorySystemPercent": 46.9,
+      "processRssMb": 1592.04,
+      "gpuUtilPercent": 3.0,
+      "gpuTempC": 45.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0346
+    },
+    {
+      "tSec": 450.2,
+      "fps": 0.99,
+      "frameMs": 261.77,
+      "cpuProcessPercent": 23.9,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1592.01,
+      "gpuUtilPercent": 7.0,
+      "gpuTempC": 45.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0414
+    },
+    {
+      "tSec": 452.36,
+      "fps": 0.99,
+      "frameMs": 405.1,
+      "cpuProcessPercent": 30.9,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1592.01,
+      "gpuUtilPercent": 12.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.032
+    },
+    {
+      "tSec": 454.28,
+      "fps": 0.99,
+      "frameMs": 345.08,
+      "cpuProcessPercent": 28.2,
+      "memorySystemPercent": 46.8,
+      "processRssMb": 1591.99,
+      "gpuUtilPercent": 14.0,
+      "gpuTempC": 44.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0351
+    },
+    {
+      "tSec": 456.3,
+      "fps": 0.99,
+      "frameMs": 359.06,
+      "cpuProcessPercent": 26.2,
+      "memorySystemPercent": 46.7,
+      "processRssMb": 1591.99,
+      "gpuUtilPercent": 4.0,
+      "gpuTempC": 45.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0378
+    },
+    {
+      "tSec": 458.22,
+      "fps": 0.99,
+      "frameMs": 285.54,
+      "cpuProcessPercent": 24.0,
+      "memorySystemPercent": 46.7,
+      "processRssMb": 1591.99,
+      "gpuUtilPercent": 3.0,
+      "gpuTempC": 45.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0413
+    },
+    {
+      "tSec": 460.23,
+      "fps": 0.99,
+      "frameMs": 282.73,
+      "cpuProcessPercent": 25.3,
+      "memorySystemPercent": 46.7,
+      "processRssMb": 1591.99,
+      "gpuUtilPercent": 10.0,
+      "gpuTempC": 45.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0391
+    },
+    {
+      "tSec": 462.33,
+      "fps": 0.99,
+      "frameMs": 357.75,
+      "cpuProcessPercent": 25.7,
+      "memorySystemPercent": 46.7,
+      "processRssMb": 1591.99,
+      "gpuUtilPercent": 5.0,
+      "gpuTempC": 45.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0385
+    },
+    {
+      "tSec": 464.25,
+      "fps": 0.99,
+      "frameMs": 299.59,
+      "cpuProcessPercent": 24.1,
+      "memorySystemPercent": 46.4,
+      "processRssMb": 1591.99,
+      "gpuUtilPercent": 4.0,
+      "gpuTempC": 46.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0411
+    },
+    {
+      "tSec": 466.34,
+      "fps": 0.99,
+      "frameMs": 388.66,
+      "cpuProcessPercent": 29.6,
+      "memorySystemPercent": 46.4,
+      "processRssMb": 1591.99,
+      "gpuUtilPercent": 9.0,
+      "gpuTempC": 45.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0334
+    }
+  ],
+  "llmReady": {
+    "headline": [
+      "Session 1714abe9 on LENOVO-LOQ",
+      "Duration 467.3s, samples 831."
+    ],
+    "keyMetrics": {
+      "fpsAvg": 2.6099,
+      "fpsP95": 4.75,
+      "frameTimeAvgMs": 236.096,
+      "frameTimeP95Ms": 422.915,
+      "cpuProcessAvgPercent": 58.2775,
+      "cpuProcessPeakPercent": 121.9,
+      "memorySystemPeakPercent": 48.2,
+      "processRssPeakMb": 1596.29,
+      "gpuUtilAvgPercent": 27.3694,
+      "gpuTempPeakC": 46.0,
+      "gpuMemoryUtilPeakPercent": 78.0,
+      "fpsPerCpuProcessAvg": 0.0484
+    },
+    "eventCount": 250,
+    "observationCount": 4,
+    "reportUseHint": "Use device + comparisonVector across laptops to compare throughput, CPU/GPU pressure, and memory behavior for the same model/scenario."
+  }
+}

@@ -1,0 +1,2506 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Proctoring Live Console</title>
+  <style>
+    :root {
+      --bg-0: #081018;
+      --bg-1: #0e1b26;
+      --bg-2: #102535;
+      --line: #194760;
+      --text: #d4f2ff;
+      --muted: #7eb5c9;
+      --cyan: #31d9ff;
+      --lime: #87f87c;
+      --amber: #ffcf4a;
+      --red: #ff5f73;
+      --panel: rgba(8, 21, 32, 0.78);
+      --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "IBM Plex Sans", "Helvetica Neue", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1000px 700px at 90% -20%, #123550 0%, transparent 60%),
+        radial-gradient(900px 600px at -20% 120%, #0f4e63 0%, transparent 55%),
+        linear-gradient(160deg, var(--bg-0), var(--bg-1) 45%, var(--bg-2));
+      min-height: 100vh;
+      padding: 18px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 16px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid rgba(75, 155, 180, 0.24);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(4px);
+    }
+
+    .video-panel {
+      padding: 14px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .video-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .title {
+      font-size: 18px;
+      letter-spacing: 0.7px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #d9fbff;
+    }
+
+    .status-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .status-pill {
+      border: 1px solid rgba(79, 170, 196, 0.35);
+      border-radius: 999px;
+      padding: 5px 9px;
+      background: rgba(7, 28, 42, 0.65);
+    }
+
+    .cam-stage {
+      position: relative;
+      border-radius: 14px;
+      border: 1px solid rgba(80, 160, 190, 0.33);
+      overflow: hidden;
+      background: #03090f;
+      aspect-ratio: 16/9;
+    }
+
+    .cam-stage > video, .cam-stage > canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hud-scan {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        repeating-linear-gradient(
+          to bottom,
+          rgba(130, 255, 255, 0.03) 0px,
+          rgba(130, 255, 255, 0.03) 2px,
+          rgba(0, 0, 0, 0) 3px,
+          rgba(0, 0, 0, 0) 6px
+        );
+      mix-blend-mode: screen;
+    }
+    .coach-overlay {
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(88, 179, 205, 0.35);
+      background: linear-gradient(180deg, rgba(6, 27, 39, 0.86), rgba(5, 19, 28, 0.9));
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+      padding: 10px 12px;
+      pointer-events: none;
+      z-index: 3;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
+    }
+
+    .coach-overlay.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .coach-overlay[data-mode="running"] {
+      border-color: rgba(84, 222, 166, 0.55);
+    }
+
+    .coach-overlay[data-mode="completed"] {
+      border-color: rgba(126, 204, 255, 0.55);
+    }
+
+    .coach-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: #bce6f7;
+    }
+
+    .controls {
+      margin-top: 12px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .camera-picker {
+      min-width: 170px;
+      max-width: 240px;
+    }
+
+    button,
+    select {
+      border: 1px solid rgba(92, 183, 209, 0.48);
+      background: rgba(9, 34, 49, 0.86);
+      color: #ddf7ff;
+      padding: 9px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    select {
+      cursor: pointer;
+      appearance: none;
+    }
+
+    button:hover,
+    select:hover {
+      border-color: rgba(130, 233, 255, 0.8);
+      transform: translateY(-1px);
+    }
+
+    button.mini {
+      padding: 5px 8px;
+      font-size: 11px;
+      border-radius: 8px;
+    }
+
+    button.mini.active {
+      border-color: rgba(125, 244, 194, 0.86);
+      color: #b9ffe7;
+      background: rgba(7, 52, 44, 0.78);
+    }
+
+    .right {
+      display: grid;
+      gap: 12px;
+      align-content: start;
+      grid-auto-rows: min-content;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      padding: 10px;
+    }
+
+    .card {
+      border: 1px solid rgba(89, 167, 194, 0.3);
+      border-radius: 12px;
+      padding: 8px;
+      background: rgba(6, 26, 39, 0.72);
+    }
+
+    .card .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--muted);
+      letter-spacing: 0.7px;
+    }
+
+    .card .value {
+      margin-top: 5px;
+      font-size: 18px;
+      font-weight: 700;
+      color: #f3fdff;
+    }
+
+    .risk-band {
+      margin: 0 10px 10px;
+      border-radius: 11px;
+      border: 1px solid rgba(89, 167, 194, 0.3);
+      overflow: hidden;
+    }
+
+    .risk-bar {
+      height: 12px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--lime), var(--amber), var(--red));
+      transition: width 0.12s linear;
+    }
+
+    .logs {
+      height: 390px;
+      max-height: 390px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .video-panel .warning-panel {
+      margin-top: 10px;
+    }
+
+    .video-panel .logs {
+      margin-top: 12px;
+      height: 340px;
+      max-height: 340px;
+      border: 1px solid rgba(79, 160, 185, 0.25);
+      background: rgba(8, 21, 31, 0.58);
+    }
+
+    .video-panel .pipeline-strip {
+      margin-top: 0;
+      border-top: 1px solid rgba(96, 168, 193, 0.26);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      padding: 8px 10px;
+      background: rgba(8, 23, 35, 0.60);
+    }
+
+    .warning-panel {
+      padding: 10px 12px;
+      border: 1px solid rgba(201, 165, 88, 0.35);
+      background: rgba(42, 29, 6, 0.35);
+    }
+
+    .risk-debug {
+      padding: 10px 12px;
+      border: 1px solid rgba(98, 170, 194, 0.28);
+      background: rgba(8, 28, 40, 0.54);
+    }
+
+    .risk-debug-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #b8def0;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 8px;
+    }
+
+    .risk-source {
+      color: #7fb2c7;
+      font-size: 11px;
+      text-transform: lowercase;
+    }
+
+    .risk-driver-list {
+      display: grid;
+      gap: 6px;
+      min-height: 28px;
+    }
+
+    .risk-driver {
+      border: 1px solid rgba(96, 169, 193, 0.32);
+      border-radius: 8px;
+      background: rgba(5, 22, 33, 0.68);
+      padding: 6px 8px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 6px;
+      align-items: center;
+      color: #dff6ff;
+      font-size: 12px;
+    }
+
+    .risk-driver small {
+      grid-column: 1 / -1;
+      color: #89bed2;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 10px;
+      line-height: 1.3;
+    }
+
+    .risk-driver.none {
+      color: #98c7d9;
+      font-size: 12px;
+      border-style: dashed;
+      display: block;
+    }
+
+    .risk-math {
+      margin-top: 8px;
+      color: #8bb8cb;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 11px;
+      min-height: 14px;
+    }
+    .calib-mode {
+      color: #85bdd0;
+      font-size: 11px;
+    }
+
+    .calib-instruction {
+      font-size: 12px;
+      color: #d5f3ff;
+      line-height: 1.35;
+      min-height: 32px;
+    }
+
+    .calib-progress-wrap {
+      margin-top: 8px;
+      border: 1px solid rgba(86, 161, 186, 0.32);
+      border-radius: 999px;
+      height: 10px;
+      overflow: hidden;
+      background: rgba(5, 20, 30, 0.65);
+    }
+
+    .calib-progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #46d6ff, #7afaa3);
+      transition: width 0.2s linear;
+    }
+
+    .calib-meta {
+      margin-top: 6px;
+      color: #91bdd0;
+      font-size: 11px;
+      font-family: Consolas, "Courier New", monospace;
+      min-height: 14px;
+    }
+    .warning-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #ffdba2;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+    }
+
+    .warning-list {
+      margin-top: 8px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      min-height: 28px;
+    }
+
+    .warn-chip {
+      border-radius: 999px;
+      border: 1px solid rgba(255, 182, 77, 0.58);
+      background: rgba(74, 45, 4, 0.7);
+      color: #ffd79b;
+      padding: 5px 10px;
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .warn-chip.high {
+      border-color: rgba(255, 98, 116, 0.75);
+      background: rgba(85, 16, 26, 0.66);
+      color: #ffb1bc;
+    }
+
+    .warn-chip.none {
+      border-color: rgba(99, 168, 191, 0.4);
+      background: rgba(7, 30, 42, 0.52);
+      color: #a2d4e6;
+    }
+
+    .charts {
+      padding: 10px;
+    }
+
+    .chart-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .chart-card {
+      border: 1px solid rgba(90, 170, 196, 0.28);
+      border-radius: 10px;
+      background: rgba(6, 26, 39, 0.66);
+      padding: 8px;
+    }
+
+    .chart-title {
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .chart-meta {
+      color: #9ecadb;
+      font-size: 11px;
+      margin-top: 5px;
+      font-family: Consolas, "Courier New", monospace;
+      min-height: 14px;
+    }
+
+    .chart-canvas {
+      width: 100%;
+      height: 130px;
+      display: block;
+      border-radius: 8px;
+      background: rgba(4, 19, 29, 0.72);
+      border: 1px solid rgba(91, 162, 188, 0.18);
+    }
+
+    .pipeline-strip {
+      padding: 10px;
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .pipeline-item {
+      border: 1px solid rgba(90, 170, 196, 0.25);
+      border-radius: 9px;
+      padding: 6px 8px;
+      background: rgba(6, 24, 36, 0.62);
+    }
+
+    .pipeline-item .k {
+      color: #8eb8ca;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+
+    .pipeline-item .v {
+      margin-top: 3px;
+      color: #dff6ff;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .resources-panel {
+      margin-top: 10px;
+      padding: 10px;
+      border: 1px solid rgba(98, 171, 195, 0.3);
+      background: rgba(6, 24, 36, 0.66);
+    }
+
+    .resources-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #b4dded;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+
+    .resource-state {
+      color: #8bc2d5;
+      font-size: 11px;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .resource-grid {
+      margin-top: 8px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .resource-item {
+      border: 1px solid rgba(93, 168, 194, 0.24);
+      border-radius: 9px;
+      padding: 6px 7px;
+      background: rgba(7, 28, 41, 0.64);
+    }
+
+    .resource-item .k {
+      color: #8ebdce;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+
+    .resource-item .v {
+      margin-top: 4px;
+      color: #e4f7ff;
+      font-size: 12px;
+      font-family: Consolas, "Courier New", monospace;
+      font-weight: 700;
+    }
+
+    .snapshot-panel {
+      margin: 16px auto 0;
+      max-width: 1400px;
+      padding: 10px 12px;
+    }
+
+    .snapshot-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #b8def0;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 8px;
+    }
+
+    .snapshot-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      min-height: 74px;
+    }
+
+    .snapshot-empty {
+      border: 1px dashed rgba(97, 171, 195, 0.36);
+      border-radius: 10px;
+      padding: 14px;
+      color: #96c7da;
+      font-size: 12px;
+      grid-column: 1 / -1;
+    }
+
+    .snapshot-thumb {
+      border: 1px solid rgba(98, 171, 195, 0.35);
+      border-radius: 10px;
+      background: rgba(7, 27, 40, 0.72);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.12s ease, border-color 0.12s ease;
+    }
+
+    .snapshot-thumb:hover {
+      transform: translateY(-1px);
+      border-color: rgba(129, 232, 255, 0.7);
+    }
+
+    .snapshot-thumb img {
+      width: 100%;
+      height: 100px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .snapshot-meta {
+      padding: 6px 8px;
+      font-size: 11px;
+      color: #c6ebf9;
+      font-family: Consolas, "Courier New", monospace;
+      line-height: 1.3;
+    }
+
+    .snapshot-modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 40;
+    }
+
+    .snapshot-modal.show {
+      display: flex;
+    }
+
+    .snapshot-modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(2, 9, 14, 0.78);
+    }
+
+    .snapshot-modal-content {
+      position: relative;
+      width: min(88vw, 980px);
+      max-height: 88vh;
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(100, 177, 201, 0.45);
+      background: rgba(4, 17, 26, 0.96);
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .snapshot-modal-content img {
+      width: 100%;
+      max-height: 72vh;
+      object-fit: contain;
+      background: #02070c;
+      border-radius: 8px;
+      border: 1px solid rgba(95, 165, 190, 0.35);
+    }
+
+    .snapshot-modal-meta {
+      color: #bde3f2;
+      font-size: 12px;
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    .snapshot-close {
+      align-self: flex-end;
+      padding: 6px 10px;
+      font-size: 11px;
+    }
+    .logs-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(96, 168, 193, 0.26);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .log-tools {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .log-list {
+      flex: 1;
+      min-height: 150px;
+      overflow: auto;
+      padding: 8px 10px;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 12px;
+      line-height: 1.45;
+      color: #b5e4f5;
+      background: rgba(5, 20, 30, 0.58);
+    }
+
+    .log-item {
+      border-left: 2px solid rgba(101, 201, 230, 0.45);
+      padding: 4px 7px;
+      margin-bottom: 5px;
+      background: rgba(8, 33, 47, 0.42);
+    }
+
+    .log-item.warn {
+      border-left-color: var(--amber);
+    }
+
+    .log-item.error {
+      border-left-color: var(--red);
+    }
+
+    @media (max-width: 1100px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+      .cam-stage {
+        aspect-ratio: 4/3;
+      }
+      .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .chart-grid {
+        grid-template-columns: 1fr;
+      }
+      .pipeline-strip {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .resource-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .snapshot-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 700px) {
+      .pipeline-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .resource-grid {
+        grid-template-columns: 1fr;
+      }
+      .snapshot-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <section class="panel video-panel">
+      <div class="video-head">
+        <div class="title">Live Proctoring Console</div>
+        <div class="status-row">
+          <div class="status-pill" id="connStatus">WS: DISCONNECTED</div>
+          <div class="status-pill" id="camStatus">CAM: IDLE</div>
+          <div class="status-pill" id="gpuStatus">YOLO: --</div>
+        </div>
+      </div>
+
+      <div class="cam-stage">
+        <video id="video" autoplay playsinline muted></video>
+        <canvas id="overlay"></canvas>
+        <div class="hud-scan"></div>
+        <div id="coachOverlay" class="coach-overlay" data-mode="idle">
+          <div class="coach-head">
+            <span id="calibMode" class="calib-mode">IDLE</span>
+            <span id="calibStage" class="calib-mode">stage idle</span>
+          </div>
+          <div id="calibInstruction" class="calib-instruction">Press "Run Calibration" to start guided setup.</div>
+          <div class="calib-progress-wrap">
+            <div id="calibProgressBar" class="calib-progress-bar"></div>
+          </div>
+          <div id="calibMeta" class="calib-meta">overall 0% | remaining 0.0s</div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button id="startBtn">Start Monitoring</button>
+        <button id="calibrateBtn">Run Calibration</button>
+        <button id="stopBtn">Stop</button>
+        <button id="resetStatsBtn">Reset Stats</button>
+        <button id="clearBtn">Clear Logs</button>
+        <select id="cameraSelect" class="camera-picker" title="Choose input camera"></select>
+        <button id="switchCamBtn">Switch Camera</button>
+        <button id="refreshCamBtn">Refresh Cameras</button>
+      </div>
+
+      <div class="panel warning-panel">
+        <div class="warning-head">
+          <strong>Environment Warnings</strong>
+          <span id="warningCount">0 active</span>
+        </div>
+        <div class="warning-list" id="warningList">
+          <div class="warn-chip none">No warnings</div>
+        </div>
+      </div>
+      <div class="panel logs">
+        <div class="logs-head">
+          <strong>Stream Log</strong>
+          <span id="logCount">0 entries</span>
+          <div class="log-tools">
+            <button class="mini" id="pauseLogsBtn">Pause</button>
+            <button class="mini" id="logSlowBtn" data-speed="slow">Slow</button>
+            <button class="mini active" id="logNormalBtn" data-speed="normal">Normal</button>
+            <button class="mini" id="logFastBtn" data-speed="fast">Fast</button>
+          </div>
+        </div>
+        <div id="logList" class="log-list"></div>
+        <div class="pipeline-strip">
+          <div class="pipeline-item">
+            <div class="k">Face Time</div>
+            <div class="v" id="pipeFaceMs">0.00 ms</div>
+          </div>
+          <div class="pipeline-item">
+            <div class="k">YOLO Time</div>
+            <div class="v" id="pipeYoloMs">0.00 ms</div>
+          </div>
+          <div class="pipeline-item">
+            <div class="k">Pose Time</div>
+            <div class="v" id="pipePoseMs">0.00 ms</div>
+          </div>
+          <div class="pipeline-item">
+            <div class="k">Quality Time</div>
+            <div class="v" id="pipeQualityMs">0.00 ms</div>
+          </div>
+          <div class="pipeline-item">
+            <div class="k">Risk Engine</div>
+            <div class="v" id="pipeRiskMs">0.00 ms</div>
+          </div>
+          <div class="pipeline-item">
+            <div class="k">Dropped Total</div>
+            <div class="v" id="pipeDropped">0</div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="right">
+      <div class="panel cards">
+        <div class="card">
+          <div class="label">Risk Level</div>
+          <div class="value" id="riskLevel">--</div>
+        </div>
+        <div class="card">
+          <div class="label">Risk Score</div>
+          <div class="value" id="riskScore">0.00</div>
+        </div>
+        <div class="card">
+          <div class="label">Faces</div>
+          <div class="value" id="faceCount">0</div>
+        </div>
+        <div class="card">
+          <div class="label">Persons</div>
+          <div class="value" id="personCount">0</div>
+        </div>
+        <div class="card">
+          <div class="label">FPS</div>
+          <div class="value" id="fps">0.00</div>
+        </div>
+        <div class="card">
+          <div class="label">Frame Time (ms)</div>
+          <div class="value" id="frameMs">0.00</div>
+        </div>
+        <div class="card">
+          <div class="label">Dropped Frames</div>
+          <div class="value" id="dropped">0</div>
+        </div>
+      </div>
+      <div class="risk-band panel">
+        <div class="risk-bar" id="riskBar"></div>
+      </div>
+
+      <div class="panel risk-debug">
+        <div class="risk-debug-head">
+          <strong>Risk Drivers</strong>
+          <span id="riskDriverCount">0 active</span>
+        </div>
+        <div id="riskDriverSource" class="risk-source">source: --</div>
+        <div id="riskDriverList" class="risk-driver-list">
+          <div class="risk-driver none">No active risk rule</div>
+        </div>
+        <div id="riskMath" class="risk-math">raw 0.00 | ema 0.00 | smooth 0.00</div>
+      </div>
+
+      <div class="panel resources-panel">
+        <div class="resources-head">
+          <strong>Attention Debug</strong>
+          <span id="attentionSignalState" class="resource-state">idle</span>
+        </div>
+        <div class="resource-grid">
+          <div class="resource-item"><div class="k">Yaw</div><div class="v" id="attYaw">--</div></div>
+          <div class="resource-item"><div class="k">Pitch</div><div class="v" id="attPitch">--</div></div>
+          <div class="resource-item"><div class="k">Pitch Ratio</div><div class="v" id="attPitchRatio">--</div></div>
+          <div class="resource-item"><div class="k">Gaze X</div><div class="v" id="attGazeX">--</div></div>
+          <div class="resource-item"><div class="k">Gaze Y</div><div class="v" id="attGazeY">--</div></div>
+          <div class="resource-item"><div class="k">Eye Visibility</div><div class="v" id="attEyeVisibility">--</div></div>
+          <div class="resource-item"><div class="k">Frontalness</div><div class="v" id="attFrontalness">--</div></div>
+          <div class="resource-item"><div class="k">Signal Confidence</div><div class="v" id="attSignalConfidence">--</div></div>
+          <div class="resource-item"><div class="k">Attention Confidence</div><div class="v" id="attAttentionConfidence">--</div></div>
+          <div class="resource-item"><div class="k">Attention Score</div><div class="v" id="attAttentionScore">--</div></div>
+        </div>
+        <div id="attentionThresholds" class="chart-meta">thresholds unavailable</div>
+      </div>
+
+      <div class="panel charts">
+        <div class="chart-grid">
+          <div class="chart-card">
+            <div class="chart-title">FPS</div>
+            <canvas class="chart-canvas" id="chartFps"></canvas>
+            <div class="chart-meta" id="metaFps"></div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-title">Risk Score</div>
+            <canvas class="chart-canvas" id="chartRiskScore"></canvas>
+            <div class="chart-meta" id="metaRiskScore"></div>
+          </div>
+        </div>
+      </div>
+      <div class="panel resources-panel">
+        <div class="resources-head">
+          <strong>Resource Usage</strong>
+          <span id="resourceState" class="resource-state">sampling...</span>
+        </div>
+        <div class="resource-grid">
+          <div class="resource-item"><div class="k">CPU System</div><div class="v" id="resCpuSystem">--</div></div>
+          <div class="resource-item"><div class="k">CPU Process</div><div class="v" id="resCpuProcess">--</div></div>
+          <div class="resource-item"><div class="k">CPU Cores</div><div class="v" id="resCpuCores">--</div></div>
+          <div class="resource-item"><div class="k">RAM System</div><div class="v" id="resRamSystem">--</div></div>
+          <div class="resource-item"><div class="k">RAM Used</div><div class="v" id="resRamUsed">--</div></div>
+          <div class="resource-item"><div class="k">RAM Avail</div><div class="v" id="resRamAvail">--</div></div>
+          <div class="resource-item"><div class="k">Proc RSS</div><div class="v" id="resProcRss">--</div></div>
+          <div class="resource-item"><div class="k">Proc Threads</div><div class="v" id="resProcThreads">--</div></div>
+          <div class="resource-item"><div class="k">GPU Util</div><div class="v" id="resGpuUtil">--</div></div>
+          <div class="resource-item"><div class="k">GPU Mem Util</div><div class="v" id="resGpuMemUtil">--</div></div>
+          <div class="resource-item"><div class="k">GPU Temp</div><div class="v" id="resGpuTemp">--</div></div>
+          <div class="resource-item"><div class="k">GPU Power</div><div class="v" id="resGpuPower">--</div></div>
+          <div class="resource-item"><div class="k">GPU Mem Used</div><div class="v" id="resGpuMemUsed">--</div></div>
+          <div class="resource-item"><div class="k">GPU Mem Total</div><div class="v" id="resGpuMemTotal">--</div></div>
+          <div class="resource-item"><div class="k">GPU Alloc</div><div class="v" id="resGpuAlloc">--</div></div>
+          <div class="resource-item"><div class="k">GPU Reserved</div><div class="v" id="resGpuReserved">--</div></div>
+          <div class="resource-item"><div class="k">FPS/CPU%</div><div class="v" id="resPerfFpsCpu">--</div></div>
+          <div class="resource-item"><div class="k">Frame/CPU%</div><div class="v" id="resPerfMsCpu">--</div></div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+  <section class="panel snapshot-panel">
+    <div class="snapshot-head">
+      <strong>Risk Snapshots</strong>
+      <span id="snapshotCount">0/3 captures</span>
+    </div>
+    <div id="snapshotGrid" class="snapshot-grid">
+      <div class="snapshot-empty">No risk snapshots captured.</div>
+    </div>
+  </section>
+
+  <div id="snapshotModal" class="snapshot-modal" aria-hidden="true">
+    <div id="snapshotModalBackdrop" class="snapshot-modal-backdrop"></div>
+    <div class="snapshot-modal-content">
+      <button id="snapshotModalClose" class="snapshot-close">Close</button>
+      <img id="snapshotModalImage" alt="Risk snapshot preview" />
+      <div id="snapshotModalMeta" class="snapshot-modal-meta"></div>
+    </div>
+  </div>
+
+  <script>
+    const state = {
+      ws: null,
+      stream: null,
+      running: false,
+      inFlight: false,
+      resizeHandlerBound: false,
+      selectedCameraId: "",
+      cameraDevices: [],
+      frameIntervalMs: 90,
+      processWidth: 640,
+      processHeight: 360,
+      seq: 0,
+      response: null,
+      logs: [],
+      maxLogs: 140,
+      logTtlMs: 45000,
+      logThrottleMs: 1200,
+      logsPaused: false,
+      lastFrameLogAt: 0,
+      statsUpdateIntervalMs: 550,
+      chartUpdateIntervalMs: 220,
+      lastStatsRenderAt: 0,
+      lastChartRenderAt: 0,
+      lastWarningSignature: "",
+      lastRiskDriverSignature: "",
+      lastRiskSource: "",
+      localRiskStreaks: {},
+      calibrationStatus: null,
+      lastCalibrationStage: "",
+      calibrationCompletedAtMs: 0,
+      calibrationOverlayHoldMs: 3200,
+      chartMaxPoints: 140,
+      history: {
+        fps: [],
+        riskScore: [],
+      },
+      riskSnapshots: [],
+      snapshotLimit: 3,
+    };
+
+    const ui = {
+      video: document.getElementById("video"),
+      overlay: document.getElementById("overlay"),
+      connStatus: document.getElementById("connStatus"),
+      camStatus: document.getElementById("camStatus"),
+      gpuStatus: document.getElementById("gpuStatus"),
+      riskLevel: document.getElementById("riskLevel"),
+      riskScore: document.getElementById("riskScore"),
+      faceCount: document.getElementById("faceCount"),
+      personCount: document.getElementById("personCount"),
+      fps: document.getElementById("fps"),
+      frameMs: document.getElementById("frameMs"),
+      dropped: document.getElementById("dropped"),
+      riskBar: document.getElementById("riskBar"),
+      warningList: document.getElementById("warningList"),
+      warningCount: document.getElementById("warningCount"),
+      riskDriverCount: document.getElementById("riskDriverCount"),
+      riskDriverSource: document.getElementById("riskDriverSource"),
+      riskDriverList: document.getElementById("riskDriverList"),
+      riskMath: document.getElementById("riskMath"),
+      attentionSignalState: document.getElementById("attentionSignalState"),
+      attYaw: document.getElementById("attYaw"),
+      attPitch: document.getElementById("attPitch"),
+      attPitchRatio: document.getElementById("attPitchRatio"),
+      attGazeX: document.getElementById("attGazeX"),
+      attGazeY: document.getElementById("attGazeY"),
+      attEyeVisibility: document.getElementById("attEyeVisibility"),
+      attFrontalness: document.getElementById("attFrontalness"),
+      attSignalConfidence: document.getElementById("attSignalConfidence"),
+      attAttentionConfidence: document.getElementById("attAttentionConfidence"),
+      attAttentionScore: document.getElementById("attAttentionScore"),
+      attentionThresholds: document.getElementById("attentionThresholds"),
+      chartFps: document.getElementById("chartFps"),
+      chartRiskScore: document.getElementById("chartRiskScore"),
+      metaFps: document.getElementById("metaFps"),
+      metaRiskScore: document.getElementById("metaRiskScore"),
+      resourceState: document.getElementById("resourceState"),
+      resCpuSystem: document.getElementById("resCpuSystem"),
+      resCpuProcess: document.getElementById("resCpuProcess"),
+      resCpuCores: document.getElementById("resCpuCores"),
+      resRamSystem: document.getElementById("resRamSystem"),
+      resRamUsed: document.getElementById("resRamUsed"),
+      resRamAvail: document.getElementById("resRamAvail"),
+      resProcRss: document.getElementById("resProcRss"),
+      resProcThreads: document.getElementById("resProcThreads"),
+      resGpuUtil: document.getElementById("resGpuUtil"),
+      resGpuMemUtil: document.getElementById("resGpuMemUtil"),
+      resGpuTemp: document.getElementById("resGpuTemp"),
+      resGpuPower: document.getElementById("resGpuPower"),
+      resGpuMemUsed: document.getElementById("resGpuMemUsed"),
+      resGpuMemTotal: document.getElementById("resGpuMemTotal"),
+      resGpuAlloc: document.getElementById("resGpuAlloc"),
+      resGpuReserved: document.getElementById("resGpuReserved"),
+      resPerfFpsCpu: document.getElementById("resPerfFpsCpu"),
+      resPerfMsCpu: document.getElementById("resPerfMsCpu"),
+      pipeFaceMs: document.getElementById("pipeFaceMs"),
+      pipeYoloMs: document.getElementById("pipeYoloMs"),
+      pipePoseMs: document.getElementById("pipePoseMs"),
+      pipeQualityMs: document.getElementById("pipeQualityMs"),
+      pipeRiskMs: document.getElementById("pipeRiskMs"),
+      pipeDropped: document.getElementById("pipeDropped"),
+      logList: document.getElementById("logList"),
+      logCount: document.getElementById("logCount"),
+      coachOverlay: document.getElementById("coachOverlay"),
+      calibMode: document.getElementById("calibMode"),
+      calibStage: document.getElementById("calibStage"),
+      calibInstruction: document.getElementById("calibInstruction"),
+      calibProgressBar: document.getElementById("calibProgressBar"),
+      calibMeta: document.getElementById("calibMeta"),
+      startBtn: document.getElementById("startBtn"),
+      calibrateBtn: document.getElementById("calibrateBtn"),
+      stopBtn: document.getElementById("stopBtn"),
+      resetStatsBtn: document.getElementById("resetStatsBtn"),
+      clearBtn: document.getElementById("clearBtn"),
+      cameraSelect: document.getElementById("cameraSelect"),
+      switchCamBtn: document.getElementById("switchCamBtn"),
+      refreshCamBtn: document.getElementById("refreshCamBtn"),
+      pauseLogsBtn: document.getElementById("pauseLogsBtn"),
+      logSlowBtn: document.getElementById("logSlowBtn"),
+      logNormalBtn: document.getElementById("logNormalBtn"),
+      logFastBtn: document.getElementById("logFastBtn"),
+      snapshotCount: document.getElementById("snapshotCount"),
+      snapshotGrid: document.getElementById("snapshotGrid"),
+      snapshotModal: document.getElementById("snapshotModal"),
+      snapshotModalBackdrop: document.getElementById("snapshotModalBackdrop"),
+      snapshotModalClose: document.getElementById("snapshotModalClose"),
+      snapshotModalImage: document.getElementById("snapshotModalImage"),
+      snapshotModalMeta: document.getElementById("snapshotModalMeta"),
+    };
+
+    ui.logSpeedButtons = [ui.logSlowBtn, ui.logNormalBtn, ui.logFastBtn].filter(Boolean);
+
+    const captureCanvas = document.createElement("canvas");
+    const captureCtx = captureCanvas.getContext("2d", { willReadFrequently: false });
+
+    const RISK_RULE_CONFIG = {
+      multiple_persons: { label: "Multiple persons", severity: 3.6 },
+      multiple_faces: { label: "Multiple faces", severity: 3.0 },
+      phone_detected: { label: "Phone detected", severity: 5.0 },
+      wearing_audio_device: { label: "Audio device detected", severity: 4.2 },
+      face_missing: { label: "Face missing", severity: 2.0 },
+      high_movement: { label: "High movement", severity: 2.0 },
+      extreme_gaze: { label: "Extreme gaze", severity: 2.0 },
+      vertical_head_motion: { label: "Vertical head movement", severity: 2.0 },
+      horizontal_head_motion: { label: "Horizontal head movement", severity: 2.2 },
+      face_not_facing_camera: { label: "Face not facing camera", severity: 1.9 },
+      hand_on_face: { label: "Hand on face", severity: 2.0 },
+    };
+
+    const RISK_RULE_ORDER = [
+      "multiple_persons",
+      "multiple_faces",
+      "phone_detected",
+      "wearing_audio_device",
+      "face_missing",
+      "high_movement",
+      "extreme_gaze",
+      "vertical_head_motion",
+      "horizontal_head_motion",
+      "face_not_facing_camera",
+      "hand_on_face",
+    ];
+
+    const LOG_SPEED_PRESETS = {
+      slow: 2400,
+      normal: 1200,
+      fast: 450,
+    };
+
+    const CALIBRATION_STEP_HELP = {
+      neutral: "Step 1/8: Face the camera, keep your shoulders steady, and keep hands away from your face.",
+      gaze_center: "Step 2/8: Look at the center of the screen and keep your head still.",
+      gaze_left: "Step 3/8: Look at the left edge of the screen without turning your head.",
+      gaze_right: "Step 4/8: Look at the right edge of the screen without turning your head.",
+      gaze_top: "Step 5/8: Look at the top edge of the screen without lifting your head.",
+      gaze_bottom: "Step 6/8: Look at the bottom edge of the screen without lowering your head too much.",
+      head_vertical: "Step 7/8: Move your head gently UP and DOWN while facing the camera.",
+      hand_face: "Step 8/8: Bring one hand near your face for a moment, then move it away.",
+      completed: "Calibration complete. Personalized thresholds are now active.",
+      idle: "Click Run Calibration before monitoring for personalized tracking thresholds.",
+    };
+
+    function setLogSpeed(speedKey, announce = true) {
+      const speed = LOG_SPEED_PRESETS[speedKey] ?? LOG_SPEED_PRESETS.normal;
+      state.logThrottleMs = speed;
+      for (const btn of ui.logSpeedButtons) {
+        if (!btn) continue;
+        btn.classList.toggle("active", String(btn.dataset.speed) === String(speedKey));
+      }
+      if (announce) {
+        log(`Log speed set to ${String(speedKey).toUpperCase()} (${speed}ms).`);
+      }
+    }
+
+    function setLogsPaused(paused, announce = true) {
+      state.logsPaused = Boolean(paused);
+      if (ui.pauseLogsBtn) {
+        ui.pauseLogsBtn.textContent = state.logsPaused ? "Resume" : "Pause";
+        ui.pauseLogsBtn.classList.toggle("active", state.logsPaused);
+      }
+      if (announce) {
+        log(state.logsPaused ? "Frame logs paused." : "Frame logs resumed.", "warn");
+      }
+    }
+
+    function log(message, type = "info") {
+      if (state.logsPaused && type === "info") return;
+      const now = new Date();
+      const stamp = now.toLocaleTimeString();
+      state.logs.push({ stamp, tsMs: now.getTime(), message, type });
+      pruneLogs();
+      renderLogs();
+    }
+
+    function pruneLogs() {
+      const nowMs = Date.now();
+      state.logs = state.logs.filter(entry => nowMs - entry.tsMs <= state.logTtlMs);
+      if (state.logs.length > state.maxLogs) {
+        state.logs = state.logs.slice(state.logs.length - state.maxLogs);
+      }
+    }
+
+    function renderLogs() {
+      pruneLogs();
+      ui.logList.innerHTML = state.logs.map(entry => {
+        const safe = entry.message.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        return `<div class="log-item ${entry.type}">[${entry.stamp}] ${safe}</div>`;
+      }).join("");
+      ui.logList.scrollTop = ui.logList.scrollHeight;
+      ui.logCount.textContent = `${state.logs.length} entries`;
+    }
+
+    function setConnectionStatus(text, ok = false) {
+      ui.connStatus.textContent = `WS: ${text}`;
+      ui.connStatus.style.color = ok ? "#9fffb2" : "#ffabb7";
+    }
+
+    function setCameraStatus(text, ok = false) {
+      ui.camStatus.textContent = `CAM: ${text}`;
+      ui.camStatus.style.color = ok ? "#9fffb2" : "#ffcf84";
+    }
+
+    function formatSnapshotTime(value) {
+      try {
+        const dt = new Date(String(value || ""));
+        if (Number.isNaN(dt.getTime())) return "--";
+        return dt.toLocaleTimeString();
+      } catch (_) {
+        return "--";
+      }
+    }
+
+    function snapshotDataUri(snapshot) {
+      const mime = String(snapshot?.mimeType || "image/jpeg");
+      const b64 = String(snapshot?.imageBase64 || "");
+      if (!b64) return "";
+      return `data:${mime};base64,${b64}`;
+    }
+
+    function renderRiskSnapshots() {
+      if (!ui.snapshotGrid || !ui.snapshotCount) return;
+      const maxCount = Math.max(0, Number(state.snapshotLimit || 0));
+      if (maxCount <= 0) {
+        ui.snapshotCount.textContent = `Disabled`;
+        ui.snapshotGrid.innerHTML = `<div class="snapshot-empty">Risk snapshots are temporarily disabled.</div>`;
+        return;
+      }
+      ui.snapshotCount.textContent = `${state.riskSnapshots.length}/${maxCount} captures`;
+
+      if (!Array.isArray(state.riskSnapshots) || state.riskSnapshots.length === 0) {
+        ui.snapshotGrid.innerHTML = `<div class="snapshot-empty">No risk snapshots captured.</div>`;
+        return;
+      }
+
+      ui.snapshotGrid.innerHTML = "";
+      for (const snapshot of state.riskSnapshots) {
+        const card = document.createElement("button");
+        card.type = "button";
+        card.className = "snapshot-thumb";
+
+        const image = document.createElement("img");
+        image.src = snapshotDataUri(snapshot);
+        image.alt = `Risk snapshot ${snapshot.id}`;
+
+        const meta = document.createElement("div");
+        meta.className = "snapshot-meta";
+        meta.textContent = `#${snapshot.id} | risk ${Number(snapshot.riskScore || 0).toFixed(2)} | ${formatSnapshotTime(snapshot.capturedAt)}`;
+
+        card.appendChild(image);
+        card.appendChild(meta);
+        card.addEventListener("click", () => openSnapshotModal(snapshot));
+        ui.snapshotGrid.appendChild(card);
+      }
+    }
+
+    function upsertRiskSnapshot(snapshot) {
+      if (!snapshot || !snapshot.imageBase64) return;
+      const id = Number(snapshot.id || 0);
+      if (id <= 0) return;
+
+      const existingIndex = state.riskSnapshots.findIndex(item => Number(item.id) === id);
+      if (existingIndex >= 0) {
+        state.riskSnapshots[existingIndex] = snapshot;
+      } else {
+        state.riskSnapshots.push(snapshot);
+        state.riskSnapshots.sort((a, b) => Number(a.id || 0) - Number(b.id || 0));
+      }
+
+      const maxCount = Math.max(0, Number(state.snapshotLimit || 0));
+      if (maxCount <= 0) {
+        state.riskSnapshots = [];
+        renderRiskSnapshots();
+        return;
+      }
+      if (state.riskSnapshots.length > maxCount) {
+        state.riskSnapshots = state.riskSnapshots.slice(state.riskSnapshots.length - maxCount);
+      }
+      renderRiskSnapshots();
+    }
+
+    function openSnapshotModal(snapshot) {
+      if (!ui.snapshotModal || !ui.snapshotModalImage || !ui.snapshotModalMeta) return;
+      ui.snapshotModalImage.src = snapshotDataUri(snapshot);
+      ui.snapshotModalMeta.textContent = `Snapshot #${snapshot.id} | Risk ${Number(snapshot.riskScore || 0).toFixed(2)} (${snapshot.riskLevel || "--"}) | ${formatSnapshotTime(snapshot.capturedAt)}`;
+      ui.snapshotModal.classList.add("show");
+      ui.snapshotModal.setAttribute("aria-hidden", "false");
+    }
+
+    function closeSnapshotModal() {
+      if (!ui.snapshotModal || !ui.snapshotModalImage) return;
+      ui.snapshotModal.classList.remove("show");
+      ui.snapshotModal.setAttribute("aria-hidden", "true");
+      ui.snapshotModalImage.src = "";
+    }
+
+    function handleMonitoringControl(control) {
+      if (!control || !control.shouldStop) return;
+      const reason = String(control.reason || "AUTO_STOP");
+      const message = String(control.message || "Monitoring stopped automatically.");
+      log(`${message} [${reason}]`, "error");
+      stopMonitoring();
+    }
+
+    function resourceValue(value, unit = "", digits = 2) {
+      if (value === null || value === undefined || Number.isNaN(Number(value))) return "--";
+      const num = Number(value);
+      return `${num.toFixed(digits)}${unit}`;
+    }
+
+    function updateResourcePanel(metrics, data) {
+      const resources = metrics?.resources || {};
+      const gpuAvailable = Boolean(resources.gpuAvailable);
+      ui.resourceState.textContent = gpuAvailable
+        ? `GPU: ${String(resources.gpuName || "available")}`
+        : "GPU: unavailable";
+      ui.resourceState.style.color = gpuAvailable ? "#9fe6b6" : "#ffd3a8";
+
+      ui.resCpuSystem.textContent = resourceValue(resources.cpuSystemPercent, "%", 1);
+      ui.resCpuProcess.textContent = resourceValue(resources.cpuProcessPercent, "%", 1);
+      ui.resCpuCores.textContent = resourceValue(resources.cpuLogicalCores, "", 0);
+      ui.resRamSystem.textContent = resourceValue(resources.memorySystemPercent, "%", 1);
+      ui.resRamUsed.textContent = resourceValue(resources.memoryUsedGb, " GB", 2);
+      ui.resRamAvail.textContent = resourceValue(resources.memoryAvailableGb, " GB", 2);
+      ui.resProcRss.textContent = resourceValue(resources.processRssMb, " MB", 1);
+      ui.resProcThreads.textContent = resourceValue(resources.processThreads, "", 0);
+
+      ui.resGpuUtil.textContent = resourceValue(resources.gpuUtilPercent, "%", 1);
+      ui.resGpuMemUtil.textContent = resourceValue(resources.gpuMemoryUtilPercent, "%", 1);
+      ui.resGpuTemp.textContent = resourceValue(resources.gpuTempC, " C", 1);
+      ui.resGpuPower.textContent = resourceValue(resources.gpuPowerW, " W", 1);
+      ui.resGpuMemUsed.textContent = resourceValue(resources.gpuMemoryUsedMb, " MB", 1);
+      ui.resGpuMemTotal.textContent = resourceValue(resources.gpuMemoryTotalMb, " MB", 1);
+      ui.resGpuAlloc.textContent = resourceValue(resources.gpuMemoryAllocatedMb, " MB", 1);
+      ui.resGpuReserved.textContent = resourceValue(resources.gpuMemoryReservedMb, " MB", 1);
+
+      const fps = Number(metrics?.fps || 0);
+      const frameMs = Number(metrics?.totalTimeMs || 0);
+      const cpuSystem = Number(resources.cpuSystemPercent || 0);
+      const fpsPerCpu = cpuSystem > 0.01 ? fps / cpuSystem : 0;
+      const msPerCpu = cpuSystem > 0.01 ? frameMs / cpuSystem : 0;
+      ui.resPerfFpsCpu.textContent = resourceValue(fpsPerCpu, "", 3);
+      ui.resPerfMsCpu.textContent = resourceValue(msPerCpu, "", 3);
+    }
+
+    function riskColor(level) {
+      if (level === "LOW") return "#87f87c";
+      if (level === "MEDIUM") return "#ffcf4a";
+      if (level === "HIGH") return "#ff8f4a";
+      return "#ff5f73";
+    }
+
+    function warningClass(severity) {
+      return severity === "HIGH" ? "warn-chip high" : "warn-chip";
+    }
+
+    function updateWarnings(warnings) {
+      const items = Array.isArray(warnings) ? warnings : [];
+      const signature = items.map(w => `${w.code}:${w.severity}`).sort().join("|");
+
+      if (signature !== state.lastWarningSignature) {
+        if (items.length > 0) {
+          log(`Warnings: ${items.map(w => w.code).join(", ")}`, "warn");
+        } else if (state.lastWarningSignature) {
+          log("Warnings cleared.");
+        }
+        state.lastWarningSignature = signature;
+      }
+
+      if (items.length === 0) {
+        ui.warningList.innerHTML = `<div class="warn-chip none">No warnings</div>`;
+        ui.warningCount.textContent = "0 active";
+        return;
+      }
+
+      ui.warningList.innerHTML = items
+        .map(w => `<div class="${warningClass(w.severity)}">${w.code.replaceAll("_", " ")}</div>`)
+        .join("");
+      ui.warningCount.textContent = `${items.length} active`;
+    }
+    function updateCalibrationPanel(calibration) {
+      const c = calibration || {};
+      const mode = String(c.mode || "IDLE").toUpperCase();
+      const stage = String(c.stageCode || "idle");
+      const stageLabel = String(c.stageLabel || stage.replaceAll("_", " "));
+      const backendInstruction = String(c.instruction || "Press \"Run Calibration\" before monitoring to personalize thresholds.");
+      const stageFeedback = String(c.stageFeedback || "").trim();
+      const helperInstruction = CALIBRATION_STEP_HELP[stage] || backendInstruction;
+      const instruction = mode === "RUNNING"
+        ? helperInstruction
+        : (CALIBRATION_STEP_HELP[mode === "COMPLETED" ? "completed" : stage] || backendInstruction);
+      const overallProgress = Math.max(0, Math.min(1, Number(c.overallProgress || 0)));
+      const remaining = Number(c.remainingSec || 0).toFixed(1);
+      const stageElapsed = Number(c.stageElapsedSec || 0).toFixed(1);
+      const stageMax = Number(c.stageMaxSec || 0).toFixed(1);
+      const holdSec = Number(c.completedHoldSec || 0);
+      if (Number.isFinite(holdSec) && holdSec > 0.2) {
+        state.calibrationOverlayHoldMs = Math.round(holdSec * 1000);
+      }
+
+      ui.calibMode.textContent = mode;
+      ui.calibMode.style.color = mode === "RUNNING" ? "#7afaa3" : mode === "COMPLETED" ? "#9dd7ff" : "#85bdd0";
+      ui.calibStage.textContent = stageLabel;
+      ui.calibInstruction.textContent = stageFeedback ? `${instruction} ${stageFeedback}` : instruction;
+      ui.calibProgressBar.style.width = `${Math.round(overallProgress * 100)}%`;
+      ui.calibMeta.textContent = `overall ${Math.round(overallProgress * 100)}% | remaining ${remaining}s | stage ${stageElapsed}/${stageMax}s`;
+
+      ui.coachOverlay.dataset.mode = mode.toLowerCase();
+      ui.coachOverlay.dataset.stage = stage.toLowerCase();
+
+      let showOverlay = false;
+      if (mode === "RUNNING") {
+        state.calibrationCompletedAtMs = 0;
+        showOverlay = true;
+      } else if (mode === "COMPLETED") {
+        if (!state.calibrationCompletedAtMs) {
+          state.calibrationCompletedAtMs = Date.now();
+          setTimeout(() => {
+            if (!state.calibrationStatus) return;
+            const liveMode = String(state.calibrationStatus.mode || "").toUpperCase();
+            if (liveMode === "COMPLETED") {
+              ui.coachOverlay.classList.remove("show");
+            }
+          }, state.calibrationOverlayHoldMs + 80);
+        }
+        const elapsedMs = Date.now() - state.calibrationCompletedAtMs;
+        showOverlay = elapsedMs < state.calibrationOverlayHoldMs;
+      } else {
+        state.calibrationCompletedAtMs = 0;
+        showOverlay = false;
+      }
+      ui.coachOverlay.classList.toggle("show", showOverlay);
+
+      if (stage !== state.lastCalibrationStage && mode === "RUNNING") {
+        state.lastCalibrationStage = stage;
+        log(`Calibration stage: ${stage}`);
+      }
+
+      if (mode === "COMPLETED" && c.profileThresholds) {
+        const th = c.profileThresholds;
+        const profileAttention = c.profile?.attentionModel || {};
+        const left = Number(profileAttention.gazeLeftBoundary ?? 0).toFixed(3);
+        const right = Number(profileAttention.gazeRightBoundary ?? 0).toFixed(3);
+        const up = Number(th.vertical_pitch_ratio_up_threshold || profileAttention.pitchRatioUpThreshold || 0).toFixed(3);
+        const down = Number(th.vertical_pitch_ratio_down_threshold || profileAttention.pitchRatioDownThreshold || 0).toFixed(3);
+        ui.calibMeta.textContent = `completed | gazeX ${left}..${right} | pitchRatio ${up}/${down}`;
+      }
+    }
+    async function waitForWsOpen(timeoutMs = 3000) {
+      const start = performance.now();
+      while (performance.now() - start < timeoutMs) {
+        if (state.ws && state.ws.readyState === WebSocket.OPEN) {
+          return true;
+        }
+        await new Promise(resolve => setTimeout(resolve, 80));
+      }
+      return false;
+    }
+
+    async function runCalibration() {
+      if (!state.running) {
+        await startMonitoring();
+      }
+      const ready = await waitForWsOpen();
+      if (!ready || !state.ws || state.ws.readyState !== WebSocket.OPEN) {
+        log("WebSocket not ready for calibration.", "warn");
+        return;
+      }
+      state.ws.send(JSON.stringify({ command: "start_calibration" }));
+      log("Calibration requested. Follow the on-screen Step 1/8 to Step 8/8 guidance.");
+    }
+    function escapeHtml(text) {
+      return String(text || "").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+
+    function formatRuleLine(rule) {
+      const label = escapeHtml(rule.label || rule.code || "Unknown");
+      const points = Number(rule.points || 0).toFixed(2);
+      const mult = Number(rule.multiplier || 1).toFixed(2);
+      const streak = Number(rule.streak || 0);
+      return `
+        <div class="risk-driver">
+          <span>${label}</span>
+          <strong>+${points}</strong>
+          <small>multiplier x${mult} | streak ${streak}</small>
+        </div>
+      `;
+    }
+
+    function inferRiskBreakdown(data) {
+      const persons = Array.isArray(data?.trackedPersons) ? data.trackedPersons : [];
+      const faces = Array.isArray(data?.trackedFaces) ? data.trackedFaces : [];
+      const objects = Array.isArray(data?.objects) ? data.objects : [];
+      const faceCount = Number(data?.faceCount || 0);
+      const personCount = Number(data?.personCount || persons.length || 0);
+      const faceSignalAvailable = Boolean(data?.metrics?.faceDetectorAvailable ?? true);
+
+      const isLikelyPhoneObject = (obj) => {
+        if (!obj || obj.label !== "phone") return false;
+        const conf = Number(obj.confidence || 0);
+        if (conf < 0.32) return false;
+
+        const b = obj.bbox;
+        if (!b) return true;
+        const bw = Math.max(1, Number(b.w || 0));
+        const bh = Math.max(1, Number(b.h || 0));
+        const frameArea = Math.max(1, Number(state.processWidth || 1) * Number(state.processHeight || 1));
+        const areaRatio = (bw * bh) / frameArea;
+        if (areaRatio < 0.002) return false;
+
+        const aspect = bw / Math.max(bh, 1);
+        return aspect >= 0.12 && aspect <= 6.2;
+      };
+
+      const activeFlags = {
+        multiple_persons: personCount > 1,
+        multiple_faces: faceSignalAvailable && faceCount > 1 && personCount <= 1,
+        phone_detected: objects.some(isLikelyPhoneObject),
+        wearing_audio_device: objects.some(obj => obj?.label === "audio_device" && Number(obj?.confidence || 0) >= 0.35),
+        face_missing: faceSignalAvailable && faceCount === 0,
+        high_movement: faces.some(face => Number(face?.movement || 0) >= 0.045),
+        extreme_gaze: faces.some(face => Boolean(face?.eyeVisible) && ["LEFT", "RIGHT", "UP", "DOWN"].includes(String(face?.gaze || ""))),
+        vertical_head_motion: faces.some(face =>
+          Math.abs(Number(face?.headPose?.pitch || 0)) >= 22.0 && Number(face?.movement || 0) >= 0.015
+        ),
+        horizontal_head_motion: faces.some(face =>
+          Math.abs(Number(face?.headPose?.yaw || 0)) >= 12.0 && Number(face?.movement || 0) >= 0.015
+        ),
+        face_not_facing_camera: faces.some(face =>
+          Math.abs(Number(face?.headPose?.yaw || 0)) >= 20.0 || Math.abs(Number(face?.headPose?.pitch || 0)) >= 16.0
+        ),
+        hand_on_face: faces.some(face => Boolean(face?.handOnFace)),
+      };
+
+      let rawScore = 0;
+      const ruleStates = [];
+      for (const code of RISK_RULE_ORDER) {
+        const active = Boolean(activeFlags[code]);
+        const baseSeverity = Number(RISK_RULE_CONFIG[code]?.severity || 0);
+        const prevStreak = Number(state.localRiskStreaks[code] || 0);
+        const streak = active ? prevStreak + 1 : 0;
+        state.localRiskStreaks[code] = streak;
+
+        const repetitionFrames = Math.max(streak - 3, 0);
+        const repetitionFactor = Math.min(repetitionFrames * 0.2, 2.0);
+        const multiplier = active ? 1 + repetitionFactor : 1;
+        const points = active ? baseSeverity * multiplier : 0;
+        rawScore += points;
+
+        ruleStates.push({
+          code,
+          label: RISK_RULE_CONFIG[code]?.label || code,
+          active,
+          baseSeverity: Number(baseSeverity.toFixed(3)),
+          streak,
+          repetitionFactor: Number(repetitionFactor.toFixed(3)),
+          multiplier: Number(multiplier.toFixed(3)),
+          points: Number(points.toFixed(3)),
+        });
+      }
+
+      const activeRules = ruleStates
+        .filter(rule => rule.active)
+        .sort((a, b) => b.points - a.points);
+
+      return {
+        rawScore: Number(rawScore.toFixed(3)),
+        emaScore: Number(rawScore.toFixed(3)),
+        smoothedScore: Number(Number(data?.riskScore || 0).toFixed(3)),
+        riskLevel: String(data?.riskLevel || "LOW"),
+        activeRules,
+        ruleStates,
+        dominantRule: activeRules.length > 0 ? activeRules[0].code : null,
+      };
+    }
+
+    function updateRiskBreakdown(breakdown, source = "backend") {
+      const activeRules = Array.isArray(breakdown?.activeRules) ? breakdown.activeRules : [];
+      const signature = activeRules
+        .map(rule => `${rule.code}:${Number(rule.streak || 0)}:${Number(rule.points || 0).toFixed(2)}`)
+        .join("|");
+      state.lastRiskDriverSignature = signature;
+
+      if (state.lastRiskSource !== source) {
+        state.lastRiskSource = source;
+        log(`Risk driver source: ${source}`);
+      }
+
+      ui.riskDriverCount.textContent = `${activeRules.length} active`;
+      ui.riskDriverSource.textContent = `source: ${source}`;
+      ui.riskDriverSource.style.color = source === "backend" ? "#9fd9ef" : "#ffcf84";
+      if (activeRules.length === 0) {
+        ui.riskDriverList.innerHTML = `<div class="risk-driver none">No active risk rule</div>`;
+      } else {
+        ui.riskDriverList.innerHTML = activeRules.slice(0, 4).map(formatRuleLine).join("");
+      }
+
+      const raw = Number(breakdown?.rawScore || 0).toFixed(2);
+      const ema = Number(breakdown?.emaScore || 0).toFixed(2);
+      const smooth = Number(breakdown?.smoothedScore || 0).toFixed(2);
+      ui.riskMath.textContent = `raw ${raw} | ema ${ema} | smooth ${smooth}`;
+    }
+
+    function updateAttentionDebug(data) {
+      const faces = Array.isArray(data?.trackedFaces) ? data.trackedFaces : [];
+      const attention = data?.metrics?.attentionModel || {};
+      const calibrationAttention = data?.calibration?.profile?.attentionModel || {};
+      const primaryFaceId = Number(attention.primaryFaceId || -1);
+      const primary = faces.find(face => Number(face?.id || -1) === primaryFaceId) || faces[0] || null;
+
+      if (!primary) {
+        ui.attentionSignalState.textContent = "idle";
+        ui.attentionSignalState.style.color = "#8bc2d5";
+        ui.attYaw.textContent = "--";
+        ui.attPitch.textContent = "--";
+        ui.attPitchRatio.textContent = "--";
+        ui.attGazeX.textContent = "--";
+        ui.attGazeY.textContent = "--";
+        ui.attEyeVisibility.textContent = "--";
+        ui.attFrontalness.textContent = "--";
+        ui.attSignalConfidence.textContent = "--";
+        ui.attAttentionConfidence.textContent = "--";
+        ui.attAttentionScore.textContent = "--";
+        ui.attentionThresholds.textContent = "thresholds unavailable";
+        return;
+      }
+
+      const stateLabel = String(primary.attentionState || attention.state || "FOCUSED");
+      ui.attentionSignalState.textContent = stateLabel;
+      ui.attentionSignalState.style.color = stateLabel === "LOOKING_AWAY"
+        ? "#ff9aa8"
+        : stateLabel === "TRANSITIONING"
+          ? "#ffd18c"
+          : "#9fffb2";
+
+      ui.attYaw.textContent = Number(primary?.headPose?.yaw || 0).toFixed(2);
+      ui.attPitch.textContent = Number(primary?.headPose?.pitch || 0).toFixed(2);
+      ui.attPitchRatio.textContent = Number(primary?.pitchRatio || attention.pitchRatio || 0).toFixed(4);
+      ui.attGazeX.textContent = Number(primary?.gazeX || attention.gazeX || 0).toFixed(4);
+      ui.attGazeY.textContent = Number(primary?.gazeY || attention.gazeY || 0).toFixed(4);
+      ui.attEyeVisibility.textContent = Number(primary?.eyeVisibility || attention.eyeVisibility || 0).toFixed(4);
+      ui.attFrontalness.textContent = Number(primary?.frontalness || attention.frontalness || 0).toFixed(4);
+      ui.attSignalConfidence.textContent = Number(primary?.signalConfidence || attention.signalConfidence || attention.confidence || 0).toFixed(4);
+      ui.attAttentionConfidence.textContent = Number(primary?.attentionConfidence || attention.attentionConfidence || attention.attention_confidence || 0).toFixed(4);
+      ui.attAttentionScore.textContent = Number(primary?.attentionScore || attention.attentionScore || 0).toFixed(4);
+
+      const left = Number(attention.gazeLeftBoundary ?? calibrationAttention.gazeLeftBoundary);
+      const right = Number(attention.gazeRightBoundary ?? calibrationAttention.gazeRightBoundary);
+      const top = Number(attention.gazeTopBoundary ?? calibrationAttention.gazeTopBoundary);
+      const bottom = Number(attention.gazeBottomBoundary ?? calibrationAttention.gazeBottomBoundary);
+      const up = Number(attention.pitchRatioUpThreshold ?? calibrationAttention.pitchRatioUpThreshold);
+      const down = Number(attention.pitchRatioDownThreshold ?? calibrationAttention.pitchRatioDownThreshold);
+
+      if ([left, right, top, bottom, up, down].every(Number.isFinite)) {
+        ui.attentionThresholds.textContent =
+          `gaze x [${left.toFixed(4)}, ${right.toFixed(4)}] | gaze y [${top.toFixed(4)}, ${bottom.toFixed(4)}] | pitch ratio up ${up.toFixed(4)} down ${down.toFixed(4)}`;
+      } else {
+        ui.attentionThresholds.textContent = "thresholds unavailable";
+      }
+    }
+
+    function updateStats(data) {
+      const metrics = data.metrics || {};
+      ui.riskLevel.textContent = data.riskLevel;
+      ui.riskLevel.style.color = riskColor(data.riskLevel);
+      ui.riskScore.textContent = Number(data.riskScore || 0).toFixed(2);
+      ui.faceCount.textContent = String(data.faceCount || 0);
+      ui.personCount.textContent = String(data.personCount || 0);
+      ui.fps.textContent = Number(metrics.fps || 0).toFixed(2);
+      ui.frameMs.textContent = Number(metrics.totalTimeMs || 0).toFixed(2);
+      ui.dropped.textContent = String(metrics.droppedFrames || 0);
+      const hwMode = String(metrics?.hardwareProfile?.mode || "--");
+      const skipped = Boolean(metrics?.inferenceSkipped);
+      const skipTag = skipped ? " | skip" : "";
+      ui.gpuStatus.textContent = `YOLO: ${metrics.yoloDevice || "--"} | ${hwMode}${skipTag}`;
+      ui.gpuStatus.style.color = (metrics.yoloDevice || "").startsWith("cuda") ? "#9fffb2" : "#ffd5a5";
+
+      const clamped = Math.max(0, Math.min(20, Number(data.riskScore || 0)));
+      ui.riskBar.style.width = `${(clamped / 20) * 100}%`;
+      ui.pipeFaceMs.textContent = `${Number(metrics.faceTimeMs || 0).toFixed(2)} ms`;
+      ui.pipeYoloMs.textContent = `${Number(metrics.yoloTimeMs || 0).toFixed(2)} ms`;
+      ui.pipePoseMs.textContent = `${Number(metrics.poseTimeMs || 0).toFixed(2)} ms`;
+      ui.pipeQualityMs.textContent = `${Number(metrics.qualityTimeMs || 0).toFixed(2)} ms`;
+      ui.pipeRiskMs.textContent = `${Number(metrics.riskTimeMs || 0).toFixed(2)} ms`;
+      ui.pipeDropped.textContent = `${Number(metrics.droppedFrames || 0)}`;
+      updateResourcePanel(metrics, data);
+      updateAttentionDebug(data);
+    }
+
+    function resetStatCards() {
+      ui.riskLevel.textContent = "--";
+      ui.riskScore.textContent = "0.00";
+      ui.faceCount.textContent = "0";
+      ui.personCount.textContent = "0";
+      ui.fps.textContent = "0.00";
+      ui.frameMs.textContent = "0.00";
+      ui.dropped.textContent = "0";
+      ui.riskBar.style.width = "0%";
+      ui.pipeFaceMs.textContent = "0.00 ms";
+      ui.pipeYoloMs.textContent = "0.00 ms";
+      ui.pipePoseMs.textContent = "0.00 ms";
+      ui.pipeQualityMs.textContent = "0.00 ms";
+      ui.pipeRiskMs.textContent = "0.00 ms";
+      ui.pipeDropped.textContent = "0";
+      ui.riskDriverCount.textContent = "0 active";
+      ui.riskDriverSource.textContent = "source: --";
+      ui.riskDriverSource.style.color = "#7fb2c7";
+      ui.riskDriverList.innerHTML = `<div class="risk-driver none">No active risk rule</div>`;
+      ui.riskMath.textContent = "raw 0.00 | ema 0.00 | smooth 0.00";
+      ui.attentionSignalState.textContent = "idle";
+      ui.attentionSignalState.style.color = "#8bc2d5";
+      ui.attYaw.textContent = "--";
+      ui.attPitch.textContent = "--";
+      ui.attPitchRatio.textContent = "--";
+      ui.attGazeX.textContent = "--";
+      ui.attGazeY.textContent = "--";
+      ui.attEyeVisibility.textContent = "--";
+      ui.attFrontalness.textContent = "--";
+      ui.attSignalConfidence.textContent = "--";
+      ui.attAttentionConfidence.textContent = "--";
+      ui.attAttentionScore.textContent = "--";
+      ui.attentionThresholds.textContent = "thresholds unavailable";
+      ui.resourceState.textContent = "sampling...";
+      ui.resourceState.style.color = "#8bc2d5";
+      const resourceTargets = [
+        ui.resCpuSystem, ui.resCpuProcess, ui.resCpuCores,
+        ui.resRamSystem, ui.resRamUsed, ui.resRamAvail,
+        ui.resProcRss, ui.resProcThreads,
+        ui.resGpuUtil, ui.resGpuMemUtil, ui.resGpuTemp, ui.resGpuPower,
+        ui.resGpuMemUsed, ui.resGpuMemTotal, ui.resGpuAlloc, ui.resGpuReserved,
+        ui.resPerfFpsCpu, ui.resPerfMsCpu,
+      ];
+      for (const target of resourceTargets) {
+        if (target) target.textContent = "--";
+      }
+      state.lastRiskDriverSignature = "";
+      state.lastRiskSource = "";
+      state.localRiskStreaks = {};
+      state.lastCalibrationStage = "";
+      updateCalibrationPanel(state.calibrationStatus);
+    }
+
+    function resetDashboardStats(sendServerReset = true) {
+      for (const key of Object.keys(state.history)) {
+        state.history[key] = [];
+      }
+      state.lastStatsRenderAt = 0;
+      state.lastChartRenderAt = 0;
+      resetStatCards();
+      drawCharts();
+      if (sendServerReset && state.ws && state.ws.readyState === WebSocket.OPEN) {
+        state.ws.send(JSON.stringify({ command: "reset_stats" }));
+      }
+      log("Metrics reset.");
+    }
+
+    function pushHistory(key, value) {
+      const arr = state.history[key];
+      arr.push(Number.isFinite(value) ? value : 0);
+      if (arr.length > state.chartMaxPoints) arr.shift();
+    }
+
+    function updateMetricHistory(data) {
+      const metrics = data.metrics || {};
+      pushHistory("fps", Number(metrics.fps || 0));
+      pushHistory("riskScore", Number(data.riskScore || 0));
+    }
+
+    function resizeOverlay() {
+      const rect = ui.video.getBoundingClientRect();
+      ui.overlay.width = Math.max(1, Math.floor(rect.width));
+      ui.overlay.height = Math.max(1, Math.floor(rect.height));
+    }
+
+    function logFrameSummary(data) {
+      if (state.logsPaused) return;
+      const now = performance.now();
+      if (now - state.lastFrameLogAt < state.logThrottleMs) return;
+      state.lastFrameLogAt = now;
+      log(
+        `seq=${state.seq} persons=${Number(data.personCount || 0)} faces=${data.faceCount} risk=${Number(data.riskScore).toFixed(2)} level=${data.riskLevel} fps=${Number(data.metrics?.fps || 0).toFixed(2)}`
+      );
+    }
+
+    function prepareChart(canvas) {
+      const rect = canvas.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      const cssW = Math.max(1, Math.floor(rect.width));
+      const cssH = Math.max(1, Math.floor(rect.height));
+      const rawW = Math.floor(cssW * dpr);
+      const rawH = Math.floor(cssH * dpr);
+      if (canvas.width !== rawW || canvas.height !== rawH) {
+        canvas.width = rawW;
+        canvas.height = rawH;
+      }
+      const ctx = canvas.getContext("2d");
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      return { ctx, w: cssW, h: cssH };
+    }
+
+    function formatMetricValue(value, unit) {
+      if (!Number.isFinite(value)) return `0${unit}`;
+      if (Math.abs(value) >= 100) return `${Math.round(value)}${unit}`;
+      return `${value.toFixed(2)}${unit}`;
+    }
+
+    function drawMetricChart(canvas, values, color, maxHint = 1, unit = "", fixedMax = false) {
+      const { ctx, w, h } = prepareChart(canvas);
+      ctx.clearRect(0, 0, w, h);
+
+      const padL = 34;
+      const padR = 8;
+      const padT = 8;
+      const padB = 16;
+      const plotW = Math.max(1, w - padL - padR);
+      const plotH = Math.max(1, h - padT - padB);
+
+      ctx.fillStyle = "rgba(5, 18, 28, 0.65)";
+      ctx.fillRect(0, 0, w, h);
+
+      let maxVal = Math.max(1, maxHint);
+      let minVal = Number.POSITIVE_INFINITY;
+      for (const v of values) {
+        if (!fixedMax && v > maxVal) maxVal = v;
+        if (v < minVal) minVal = v;
+      }
+      if (!Number.isFinite(minVal)) minVal = 0;
+
+      ctx.strokeStyle = "rgba(106, 169, 191, 0.22)";
+      ctx.lineWidth = 1;
+      for (let i = 0; i <= 4; i++) {
+        const y = padT + (i / 4) * plotH;
+        ctx.beginPath();
+        ctx.moveTo(padL, y);
+        ctx.lineTo(w - padR, y);
+        ctx.stroke();
+      }
+
+      ctx.fillStyle = "rgba(167, 211, 226, 0.9)";
+      ctx.font = "10px Consolas, monospace";
+      ctx.fillText(formatMetricValue(maxVal, unit), 2, padT + 4);
+      ctx.fillText(formatMetricValue(maxVal * 0.5, unit), 2, padT + plotH * 0.5 + 3);
+      ctx.fillText(`0${unit}`, 2, padT + plotH + 2);
+      ctx.fillText("old", padL, h - 2);
+      ctx.fillText("new", w - 22, h - 2);
+
+      if (values.length >= 2) {
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 1.8;
+        ctx.beginPath();
+        for (let i = 0; i < values.length; i++) {
+          const x = padL + (i / (state.chartMaxPoints - 1)) * plotW;
+          const y = padT + plotH - (Math.max(0, values[i]) / maxVal) * plotH;
+          if (i === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+
+        const last = values[values.length - 1];
+        const lx = padL + ((values.length - 1) / (state.chartMaxPoints - 1)) * plotW;
+        const ly = padT + plotH - (Math.max(0, last) / maxVal) * plotH;
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.arc(lx, ly, 2.8, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      return {
+        current: values.length ? values[values.length - 1] : 0,
+        min: minVal,
+        max: maxVal,
+      };
+    }
+
+    function updateChartMeta(target, stats, unit = "") {
+      if (!target) return;
+      target.textContent = `cur ${formatMetricValue(stats.current, unit)} | min ${formatMetricValue(stats.min, unit)} | max ${formatMetricValue(stats.max, unit)}`;
+    }
+
+    function drawCharts() {
+      updateChartMeta(ui.metaFps, drawMetricChart(ui.chartFps, state.history.fps, "#64f0ff", 12, "fps"), "fps");
+      updateChartMeta(ui.metaRiskScore, drawMetricChart(ui.chartRiskScore, state.history.riskScore, "#ff5f73", 20, "", true), "");
+    }
+
+    function drawGuideArrow(ctx, x1, y1, x2, y2, color) {
+      const angle = Math.atan2(y2 - y1, x2 - x1);
+      const headLen = 10;
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(x1, y1);
+      ctx.lineTo(x2, y2);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(x2, y2);
+      ctx.lineTo(x2 - headLen * Math.cos(angle - Math.PI / 6), y2 - headLen * Math.sin(angle - Math.PI / 6));
+      ctx.lineTo(x2 - headLen * Math.cos(angle + Math.PI / 6), y2 - headLen * Math.sin(angle + Math.PI / 6));
+      ctx.closePath();
+      ctx.fillStyle = color;
+      ctx.fill();
+    }
+
+    function drawCalibrationGuides(ctx, w, h) {
+      const cal = state.calibrationStatus || {};
+      const mode = String(cal.mode || "IDLE").toUpperCase();
+      if (mode !== "RUNNING") return;
+
+      const stage = String(cal.stageCode || "idle").toLowerCase();
+      const stageLabel = String(cal.stageLabel || stage.replaceAll("_", " "));
+      const pulse = 0.45 + 0.55 * Math.sin(performance.now() * 0.0065);
+      const cx = w * 0.5;
+      const cy = h * 0.46;
+
+      ctx.save();
+      ctx.font = '600 14px "Segoe UI", sans-serif';
+      ctx.textAlign = "center";
+      ctx.fillStyle = "rgba(214, 246, 255, 0.95)";
+      ctx.fillText(stageLabel, cx, 28);
+
+      const accent = stage === "hand_face" ? "rgba(255, 198, 114, 0.9)" : "rgba(96, 230, 255, 0.9)";
+      ctx.strokeStyle = accent;
+      ctx.fillStyle = accent;
+      ctx.lineWidth = 2;
+      ctx.setLineDash([]);
+
+      if (stage === "neutral") {
+        const r = 26 + pulse * 7;
+        ctx.beginPath();
+        ctx.arc(cx, cy, r, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(cx - 34, cy);
+        ctx.lineTo(cx + 34, cy);
+        ctx.moveTo(cx, cy - 34);
+        ctx.lineTo(cx, cy + 34);
+        ctx.stroke();
+      } else if (stage === "gaze_center") {
+        const r = 16 + pulse * 4;
+        ctx.beginPath();
+        ctx.arc(cx, cy, r, 0, Math.PI * 2);
+        ctx.stroke();
+      } else if (stage === "gaze_left") {
+        const leftX = w * 0.24;
+        const r = 15 + pulse * 4;
+        ctx.beginPath();
+        ctx.arc(leftX, cy, r, 0, Math.PI * 2);
+        ctx.stroke();
+        drawGuideArrow(ctx, cx - 24, cy, leftX + 20, cy, accent);
+      } else if (stage === "gaze_right") {
+        const rightX = w * 0.76;
+        const r = 15 + pulse * 4;
+        ctx.beginPath();
+        ctx.arc(rightX, cy, r, 0, Math.PI * 2);
+        ctx.stroke();
+        drawGuideArrow(ctx, cx + 24, cy, rightX - 20, cy, accent);
+      } else if (stage === "gaze_top") {
+        const topY = h * 0.20;
+        const r = 15 + pulse * 4;
+        ctx.beginPath();
+        ctx.arc(cx, topY, r, 0, Math.PI * 2);
+        ctx.stroke();
+        drawGuideArrow(ctx, cx, cy - 18, cx, topY + 18, accent);
+      } else if (stage === "gaze_bottom") {
+        const bottomY = h * 0.72;
+        const r = 15 + pulse * 4;
+        ctx.beginPath();
+        ctx.arc(cx, bottomY, r, 0, Math.PI * 2);
+        ctx.stroke();
+        drawGuideArrow(ctx, cx, cy + 18, cx, bottomY - 18, accent);
+      } else if (stage === "head_vertical") {
+        const topY = h * 0.22;
+        const bottomY = h * 0.7;
+        const r = 16 + pulse * 4;
+        ctx.beginPath();
+        ctx.arc(cx, topY, r, 0, Math.PI * 2);
+        ctx.arc(cx, bottomY, r, 0, Math.PI * 2);
+        ctx.stroke();
+        drawGuideArrow(ctx, cx, cy - 22, cx, topY + 20, accent);
+        drawGuideArrow(ctx, cx, cy + 22, cx, bottomY - 20, accent);
+      } else if (stage === "hand_face") {
+        const boxW = w * 0.28;
+        const boxH = h * 0.36;
+        const boxX = cx - boxW / 2;
+        const boxY = cy - boxH / 2;
+        ctx.strokeRect(boxX, boxY, boxW, boxH);
+        ctx.globalAlpha = 0.15 + pulse * 0.2;
+        ctx.fillRect(boxX, boxY, boxW, boxH);
+        ctx.globalAlpha = 1;
+        const leftHand = { x: cx - boxW * 0.62, y: cy + boxH * 0.05 };
+        const rightHand = { x: cx + boxW * 0.62, y: cy + boxH * 0.05 };
+        ctx.beginPath();
+        ctx.arc(leftHand.x, leftHand.y, 12, 0, Math.PI * 2);
+        ctx.arc(rightHand.x, rightHand.y, 12, 0, Math.PI * 2);
+        ctx.stroke();
+        drawGuideArrow(ctx, leftHand.x + 16, leftHand.y, boxX + 8, cy, accent);
+        drawGuideArrow(ctx, rightHand.x - 16, rightHand.y, boxX + boxW - 8, cy, accent);
+      }
+
+      ctx.restore();
+    }
+    function drawOverlay() {
+      const ctx = ui.overlay.getContext("2d");
+      const w = ui.overlay.width;
+      const h = ui.overlay.height;
+      ctx.clearRect(0, 0, w, h);
+
+      const t = performance.now() * 0.001;
+      const sweepY = (t * 120) % h;
+      ctx.fillStyle = "rgba(82, 227, 255, 0.05)";
+      ctx.fillRect(0, sweepY, w, 3);
+
+      ctx.strokeStyle = "rgba(73, 167, 196, 0.18)";
+      ctx.lineWidth = 1;
+      for (let x = 0; x < w; x += 40) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, h);
+        ctx.stroke();
+      }
+      for (let y = 0; y < h; y += 40) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(w, y);
+        ctx.stroke();
+      }
+      drawCalibrationGuides(ctx, w, h);
+
+      const data = state.response;
+      if (!data) return;
+      const persons = data.trackedPersons || [];
+      const faces = data.trackedFaces || [];
+      const objects = data.objects || [];
+      const sx = w / Math.max(1, state.processWidth);
+      const sy = h / Math.max(1, state.processHeight);
+
+      for (const person of persons) {
+        const b = person.bbox;
+        if (!b) continue;
+        const x = b.x * sx;
+        const y = b.y * sy;
+        const bw = b.w * sx;
+        const bh = b.h * sy;
+        const stale = Number(person.disappeared || 0) > 0;
+
+        ctx.strokeStyle = stale ? "rgba(255, 208, 125, 0.5)" : "rgba(255, 208, 125, 0.9)";
+        ctx.lineWidth = 2;
+        ctx.setLineDash([10, 6]);
+        ctx.strokeRect(x, y, bw, bh);
+        ctx.setLineDash([]);
+        ctx.fillStyle = "rgba(28, 18, 5, 0.72)";
+        ctx.fillRect(x, Math.max(0, y - 20), Math.max(120, bw * 0.5), 18);
+        ctx.fillStyle = "#ffe1a8";
+        ctx.font = "12px Consolas, monospace";
+        ctx.fillText(
+          `P:${person.id} conf:${Number(person.confidence || 0).toFixed(2)}`,
+          x + 4,
+          Math.max(12, y - 7)
+        );
+      }
+
+      for (const face of faces) {
+        const b = face.bbox;
+        if (!b) continue;
+        const x = b.x * sx;
+        const y = b.y * sy;
+        const bw = b.w * sx;
+        const bh = b.h * sy;
+        const color = riskColor(data.riskLevel);
+
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 2;
+        ctx.setLineDash([]);
+        ctx.strokeRect(x, y, bw, bh);
+
+        const cx = x + bw / 2;
+        const cy = y + bh / 2;
+        const yaw = Number(face.headPose?.yaw || 0);
+        const pitch = Number(face.headPose?.pitch || 0);
+        const dx = Math.max(-35, Math.min(35, yaw * 0.9));
+        const dy = Math.max(-35, Math.min(35, pitch * 0.9));
+
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.lineTo(cx + dx, cy + dy);
+        ctx.stroke();
+
+        ctx.fillStyle = "rgba(2, 12, 18, 0.7)";
+        ctx.fillRect(x, y - 20, Math.max(120, bw), 18);
+        ctx.fillStyle = "#dff9ff";
+        ctx.font = "12px Consolas, monospace";
+        const handTag = face.handOnFace ? " hand:ON" : "";
+        ctx.fillText(
+          `ID:${face.id} ${face.gaze}${handTag} mv:${Number(face.movement || 0).toFixed(3)}`,
+          x + 4,
+          y - 7
+        );
+      }
+
+      for (const obj of objects) {
+        if (obj.label === "person" && persons.length > 0) {
+          continue;
+        }
+        const b = obj.bbox;
+        if (!b) continue;
+        const x = b.x * sx;
+        const y = b.y * sy;
+        const bw = b.w * sx;
+        const bh = b.h * sy;
+
+        ctx.strokeStyle = obj.label === "phone" ? "#ff5f73" : (obj.label === "audio_device" ? "#ffb02e" : "#31d9ff");
+        ctx.lineWidth = 2;
+        ctx.setLineDash([6, 4]);
+        ctx.strokeRect(x, y, bw, bh);
+        ctx.setLineDash([]);
+        ctx.fillStyle = "rgba(6, 15, 22, 0.7)";
+        ctx.fillRect(x, y + bh + 2, 120, 18);
+        ctx.fillStyle = "#f4feff";
+        ctx.fillText(`${obj.label} ${Number(obj.confidence || 0).toFixed(2)}`, x + 4, y + bh + 15);
+      }
+    }
+
+    async function refreshCameraList() {
+      if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+        return;
+      }
+
+      const devices = await navigator.mediaDevices.enumerateDevices();
+      const cameras = devices.filter(device => device.kind === "videoinput");
+      state.cameraDevices = cameras;
+
+      if (!ui.cameraSelect) return;
+
+      const currentDevice = state.selectedCameraId || currentStreamDeviceId();
+      ui.cameraSelect.innerHTML = "";
+
+      if (cameras.length === 0) {
+        const option = document.createElement("option");
+        option.value = "";
+        option.textContent = "No camera found";
+        ui.cameraSelect.appendChild(option);
+        ui.cameraSelect.value = "";
+        state.selectedCameraId = "";
+        return;
+      }
+
+      cameras.forEach((camera, idx) => {
+        const option = document.createElement("option");
+        option.value = camera.deviceId;
+        const label = camera.label && camera.label.trim().length > 0
+          ? camera.label.trim()
+          : `Camera ${idx + 1}`;
+        option.textContent = label;
+        ui.cameraSelect.appendChild(option);
+      });
+
+      const fallback = cameras[0].deviceId;
+      const preferred = cameras.some(cam => cam.deviceId === currentDevice) ? currentDevice : fallback;
+      state.selectedCameraId = preferred;
+      ui.cameraSelect.value = preferred;
+    }
+
+    function currentStreamDeviceId() {
+      if (!state.stream) return "";
+      const track = state.stream.getVideoTracks()[0];
+      if (!track || !track.getSettings) return "";
+      const trackSettings = track.getSettings() || {};
+      return String(trackSettings.deviceId || "");
+    }
+
+    function stopCameraStream() {
+      if (state.stream) {
+        for (const track of state.stream.getTracks()) {
+          try {
+            track.stop();
+          } catch (_) {
+            // ignore track stop errors
+          }
+        }
+      }
+      state.stream = null;
+      ui.video.srcObject = null;
+      setCameraStatus("IDLE", false);
+    }
+
+    async function setupCamera(forceRestart = false) {
+      if (state.stream && !forceRestart) return;
+      if (forceRestart) {
+        stopCameraStream();
+      }
+
+      const videoConstraints = {
+        width: { ideal: 1280 },
+        height: { ideal: 720 },
+      };
+      if (state.selectedCameraId) {
+        videoConstraints.deviceId = { exact: state.selectedCameraId };
+      } else {
+        videoConstraints.facingMode = "user";
+      }
+
+      state.stream = await navigator.mediaDevices.getUserMedia({
+        video: videoConstraints,
+        audio: false,
+      });
+      ui.video.srcObject = state.stream;
+      await ui.video.play();
+
+      const activeDeviceId = currentStreamDeviceId();
+      if (activeDeviceId) {
+        state.selectedCameraId = activeDeviceId;
+      }
+
+      setCameraStatus("ACTIVE", true);
+      resizeOverlay();
+      if (!state.resizeHandlerBound) {
+        window.addEventListener("resize", resizeOverlay);
+        state.resizeHandlerBound = true;
+      }
+      await refreshCameraList();
+      log(`Camera initialized (${ui.cameraSelect?.selectedOptions?.[0]?.textContent || "active"}).`);
+    }
+
+    async function switchCamera() {
+      if (!ui.cameraSelect) return;
+      const targetId = String(ui.cameraSelect.value || "");
+      if (!targetId) {
+        await refreshCameraList();
+        return;
+      }
+
+      if (targetId === state.selectedCameraId && state.stream) {
+        return;
+      }
+
+      state.selectedCameraId = targetId;
+      if (!state.stream) {
+        log(`Camera preference set to ${ui.cameraSelect.selectedOptions?.[0]?.textContent || "selected device"}.`);
+        return;
+      }
+
+      try {
+        await setupCamera(true);
+        log(`Switched camera to ${ui.cameraSelect.selectedOptions?.[0]?.textContent || "selected device"}.`);
+      } catch (err) {
+        log(`Camera switch failed: ${err}`, "error");
+      }
+    }
+    function connectWs() {
+      if (state.ws && state.ws.readyState === WebSocket.OPEN) return;
+      const proto = location.protocol === "https:" ? "wss" : "ws";
+      const wsUrl = `${proto}://${location.host}/ws`;
+      state.ws = new WebSocket(wsUrl);
+
+      state.ws.onopen = () => {
+        setConnectionStatus("CONNECTED", true);
+        log(`WebSocket connected: ${wsUrl}`);
+        state.ws.send(JSON.stringify({ command: "calibration_status" }));
+      };
+      state.ws.onclose = () => {
+        setConnectionStatus("DISCONNECTED", false);
+        if (state.running) {
+          stopMonitoring();
+          return;
+        }
+        log("WebSocket disconnected.", "warn");
+      };
+      state.ws.onerror = () => {
+        log("WebSocket error.", "error");
+      };
+      state.ws.onmessage = (event) => {
+        state.inFlight = false;
+        try {
+          const data = JSON.parse(event.data);
+          if (data.type === "ack") {
+            log(`Server ACK: ${data.command}`);
+            if (data.calibration) {
+              state.calibrationStatus = data.calibration;
+              updateCalibrationPanel(data.calibration);
+            }
+            return;
+          }
+
+          if (data.type === "calibration_status") {
+            state.calibrationStatus = data.calibration || null;
+            updateCalibrationPanel(state.calibrationStatus);
+            return;
+          }
+
+          if (data.riskSnapshotsInfo) {
+            const maxSnapshots = Number(data.riskSnapshotsInfo.max ?? state.snapshotLimit ?? 0);
+            state.snapshotLimit = Math.max(0, maxSnapshots);
+            renderRiskSnapshots();
+          }
+
+          if (data.newRiskSnapshot) {
+            upsertRiskSnapshot(data.newRiskSnapshot);
+            log(`Risk snapshot captured (#${data.newRiskSnapshot.id})`, "warn");
+          }
+
+          state.response = data;
+          updateMetricHistory(data);
+          updateWarnings(data.warnings || []);
+          state.calibrationStatus = data.calibration || state.calibrationStatus;
+          updateCalibrationPanel(state.calibrationStatus);
+          const backendBreakdown = data.riskBreakdown && Array.isArray(data.riskBreakdown.ruleStates)
+            ? data.riskBreakdown
+            : null;
+          const effectiveBreakdown = backendBreakdown || inferRiskBreakdown(data);
+          updateRiskBreakdown(effectiveBreakdown, backendBreakdown ? "backend" : "inferred");
+          drawOverlay();
+          const now = performance.now();
+          if (now - state.lastChartRenderAt >= state.chartUpdateIntervalMs) {
+            drawCharts();
+            state.lastChartRenderAt = now;
+          }
+          logFrameSummary(data);
+
+          if (now - state.lastStatsRenderAt >= state.statsUpdateIntervalMs) {
+            updateStats(data);
+            state.lastStatsRenderAt = now;
+          }
+
+          if (data.monitoringControl && data.monitoringControl.shouldStop) {
+            handleMonitoringControl(data.monitoringControl);
+          }
+        } catch (err) {
+          log(`Bad JSON response: ${err}`, "error");
+        }
+      };
+    }
+
+    function prepareCaptureSize() {
+      const vw = ui.video.videoWidth || 640;
+      const vh = ui.video.videoHeight || 360;
+      if (vw > 640) {
+        const ratio = 640 / vw;
+        state.processWidth = 640;
+        state.processHeight = Math.max(1, Math.round(vh * ratio));
+      } else {
+        state.processWidth = vw;
+        state.processHeight = vh;
+      }
+      captureCanvas.width = state.processWidth;
+      captureCanvas.height = state.processHeight;
+    }
+
+    function buildClientContext() {
+      const dpr = Number(window.devicePixelRatio || 1) || 1;
+      const screenW = Number(window.screen?.width || 0) || Number(window.innerWidth || 0) || Number(state.processWidth || 0);
+      const screenH = Number(window.screen?.height || 0) || Number(window.innerHeight || 0) || Number(state.processHeight || 0);
+      return {
+        viewportWidth: Number(window.innerWidth || 0),
+        viewportHeight: Number(window.innerHeight || 0),
+        screenWidth: screenW,
+        screenHeight: screenH,
+        devicePixelRatio: dpr,
+        captureWidth: Number(state.processWidth || 0),
+        captureHeight: Number(state.processHeight || 0),
+        videoWidth: Number(ui.video.videoWidth || 0),
+        videoHeight: Number(ui.video.videoHeight || 0),
+      };
+    }
+
+    function sendLoop() {
+      if (!state.running) return;
+      if (!state.ws || state.ws.readyState !== WebSocket.OPEN) {
+        setTimeout(sendLoop, state.frameIntervalMs);
+        return;
+      }
+      if (!state.inFlight) {
+        prepareCaptureSize();
+        captureCtx.drawImage(ui.video, 0, 0, captureCanvas.width, captureCanvas.height);
+        const b64 = captureCanvas.toDataURL("image/jpeg", 0.72).split(",")[1];
+        state.ws.send(JSON.stringify({ frame: b64, client: buildClientContext() }));
+        state.inFlight = true;
+        state.seq += 1;
+      }
+      setTimeout(sendLoop, state.frameIntervalMs);
+    }
+
+    async function startMonitoring() {
+      if (state.running) return;
+      state.riskSnapshots = [];
+      renderRiskSnapshots();
+      closeSnapshotModal();
+      try {
+        await setupCamera();
+      } catch (err) {
+        log(`Camera error: ${err}`, "error");
+        setCameraStatus("ERROR", false);
+        return;
+      }
+      connectWs();
+      state.running = true;
+      log("Monitoring started.");
+      sendLoop();
+    }
+
+    function stopMonitoring() {
+      state.running = false;
+      state.inFlight = false;
+      if (state.ws) {
+        try {
+          state.ws.close();
+        } catch (_) {
+          // ignore close errors
+        }
+      }
+      state.ws = null;
+      stopCameraStream();
+      setConnectionStatus("DISCONNECTED", false);
+      state.calibrationStatus = null;
+      updateCalibrationPanel(null);
+      const ctx = ui.overlay.getContext("2d");
+      ctx.clearRect(0, 0, ui.overlay.width, ui.overlay.height);
+      closeSnapshotModal();
+      log("Monitoring stopped and camera released.", "warn");
+    }
+
+    function clearLogs() {
+      state.logs = [];
+      renderLogs();
+    }
+
+    ui.startBtn.addEventListener("click", startMonitoring);
+    ui.calibrateBtn.addEventListener("click", runCalibration);
+    ui.stopBtn.addEventListener("click", stopMonitoring);
+    ui.resetStatsBtn.addEventListener("click", () => resetDashboardStats(true));
+    ui.clearBtn.addEventListener("click", clearLogs);
+
+    if (ui.refreshCamBtn) {
+      ui.refreshCamBtn.addEventListener("click", async () => {
+        try {
+          await refreshCameraList();
+          log("Camera list refreshed.");
+        } catch (err) {
+          log(`Failed to refresh camera list: ${err}`, "error");
+        }
+      });
+    }
+
+    if (ui.switchCamBtn) {
+      ui.switchCamBtn.addEventListener("click", switchCamera);
+    }
+
+    if (ui.cameraSelect) {
+      ui.cameraSelect.addEventListener("change", () => {
+        state.selectedCameraId = String(ui.cameraSelect.value || "");
+      });
+    }
+
+    if (ui.pauseLogsBtn) {
+      ui.pauseLogsBtn.addEventListener("click", () => setLogsPaused(!state.logsPaused));
+    }
+
+    for (const btn of ui.logSpeedButtons) {
+      btn.addEventListener("click", () => setLogSpeed(String(btn.dataset.speed || "normal")));
+    }
+
+    if (ui.snapshotModalClose) {
+      ui.snapshotModalClose.addEventListener("click", closeSnapshotModal);
+    }
+    if (ui.snapshotModalBackdrop) {
+      ui.snapshotModalBackdrop.addEventListener("click", closeSnapshotModal);
+    }
+    window.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeSnapshotModal();
+      }
+    });
+
+    setInterval(renderLogs, 2000);
+
+    setLogSpeed("normal", false);
+    setLogsPaused(false, false);
+    resetDashboardStats(false);
+    setConnectionStatus("DISCONNECTED", false);
+    setCameraStatus("IDLE", false);
+    updateWarnings([]);
+    renderRiskSnapshots();
+    refreshCameraList().catch(() => {
+      // Camera labels may require user permission; list can be refreshed after Start Monitoring.
+    });
+
+    log("Ready. Click 'Start Monitoring'.");
+  </script>
+</body>
+</html>
+
+

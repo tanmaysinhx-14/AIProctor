@@ -1,0 +1,333 @@
+{
+  "schemaVersion": "1.0",
+  "session": {
+    "id": "6820c86b-3339-433a-9f01-71148513a3d6",
+    "startedAt": "2026-03-22T16:56:22.280600+00:00",
+    "endedAt": "2026-03-22T17:01:12.320049+00:00",
+    "durationSec": 290.047,
+    "samples": 1
+  },
+  "device": {
+    "deviceTag": "LENOVO-LOQ",
+    "hostName": "LENOVO-LOQ",
+    "os": "Windows",
+    "osVersion": "10.0.26200",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "machine": "AMD64",
+    "pythonVersion": "3.11.9",
+    "pythonExecutable": "C:\\Users\\tanma\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+    "torchVersion": "2.5.1+cu121",
+    "cudaVersion": "12.1",
+    "cpuModel": "AMD64 Family 25 Model 68 Stepping 1, AuthenticAMD",
+    "cpuPhysicalCores": 4,
+    "cpuLogicalCores": 8,
+    "memoryTotalGb": 23.692,
+    "gpuAvailable": true,
+    "gpuCount": 1,
+    "gpuDevices": [
+      {
+        "index": 0,
+        "name": "NVIDIA GeForce RTX 3050 6GB Laptop GPU",
+        "memoryTotalGb": 6.0,
+        "multiProcessorCount": 20
+      }
+    ],
+    "deviceFingerprint": "6690d6e9ebd71dde"
+  },
+  "comparisonVector": {
+    "fpsAvg": 0.0,
+    "fpsP95": 0.0,
+    "frameTimeAvgMs": 769.66,
+    "frameTimeP95Ms": 769.66,
+    "cpuProcessAvgPercent": 107.6,
+    "cpuProcessPeakPercent": 107.6,
+    "memorySystemPeakPercent": 46.2,
+    "processRssPeakMb": 1482.3,
+    "gpuUtilAvgPercent": 29.0,
+    "gpuTempPeakC": 42.0,
+    "gpuMemoryUtilPeakPercent": 7.0,
+    "fpsPerCpuProcessAvg": 0.0
+  },
+  "summary": {
+    "throughput": {
+      "fps": {
+        "count": 1.0,
+        "avg": 0.0,
+        "min": 0.0,
+        "p50": 0.0,
+        "p95": 0.0,
+        "max": 0.0,
+        "first": 0.0,
+        "last": 0.0,
+        "delta": 0.0,
+        "deltaPercent": 0.0
+      },
+      "frameTimeMs": {
+        "count": 1.0,
+        "avg": 769.66,
+        "min": 769.66,
+        "p50": 769.66,
+        "p95": 769.66,
+        "max": 769.66,
+        "first": 769.66,
+        "last": 769.66,
+        "delta": 0.0,
+        "deltaPercent": 0.0
+      },
+      "droppedFrames": {
+        "count": 1.0,
+        "avg": 0.0,
+        "min": 0.0,
+        "p50": 0.0,
+        "p95": 0.0,
+        "max": 0.0,
+        "first": 0.0,
+        "last": 0.0,
+        "delta": 0.0,
+        "deltaPercent": 0.0
+      }
+    },
+    "cpu": {
+      "systemPercent": {
+        "count": 1.0,
+        "avg": 0.0,
+        "min": 0.0,
+        "p50": 0.0,
+        "p95": 0.0,
+        "max": 0.0,
+        "first": 0.0,
+        "last": 0.0,
+        "delta": 0.0,
+        "deltaPercent": 0.0
+      },
+      "processPercent": {
+        "count": 1.0,
+        "avg": 107.6,
+        "min": 107.6,
+        "p50": 107.6,
+        "p95": 107.6,
+        "max": 107.6,
+        "first": 107.6,
+        "last": 107.6,
+        "delta": 0.0,
+        "deltaPercent": 0.0
+      }
+    },
+    "memory": {
+      "systemPercent": {
+        "count": 1.0,
+        "avg": 46.2,
+        "min": 46.2,
+        "p50": 46.2,
+        "p95": 46.2,
+        "max": 46.2,
+        "first": 46.2,
+        "last": 46.2,
+        "delta": 0.0,
+        "deltaPercent": 0.0
+      },
+      "processRssMb": {
+        "count": 1.0,
+        "avg": 1482.3,
+        "min": 1482.3,
+        "p50": 1482.3,
+        "p95": 1482.3,
+        "max": 1482.3,
+        "first": 1482.3,
+        "last": 1482.3,
+        "delta": 0.0,
+        "deltaPercent": 0.0
+      }
+    },
+    "gpu": {
+      "utilPercent": {
+        "count": 1.0,
+        "avg": 29.0,
+        "min": 29.0,
+        "p50": 29.0,
+        "p95": 29.0,
+        "max": 29.0,
+        "first": 29.0,
+        "last": 29.0,
+        "delta": 0.0,
+        "deltaPercent": 0.0
+      },
+      "memoryUtilPercent": {
+        "count": 1.0,
+        "avg": 7.0,
+        "min": 7.0,
+        "p50": 7.0,
+        "p95": 7.0,
+        "max": 7.0,
+        "first": 7.0,
+        "last": 7.0,
+        "delta": 0.0,
+        "deltaPercent": 0.0
+      },
+      "temperatureC": {
+        "count": 1.0,
+        "avg": 42.0,
+        "min": 42.0,
+        "p50": 42.0,
+        "p95": 42.0,
+        "max": 42.0,
+        "first": 42.0,
+        "last": 42.0,
+        "delta": 0.0,
+        "deltaPercent": 0.0
+      },
+      "powerW": {
+        "count": 1.0,
+        "avg": 12.64,
+        "min": 12.64,
+        "p50": 12.64,
+        "p95": 12.64,
+        "max": 12.64,
+        "first": 12.64,
+        "last": 12.64,
+        "delta": 0.0,
+        "deltaPercent": 0.0
+      },
+      "memoryUsedMb": {
+        "count": 1.0,
+        "avg": 1183.5,
+        "min": 1183.5,
+        "p50": 1183.5,
+        "p95": 1183.5,
+        "max": 1183.5,
+        "first": 1183.5,
+        "last": 1183.5,
+        "delta": 0.0,
+        "deltaPercent": 0.0
+      }
+    },
+    "efficiency": {
+      "fpsPerCpuProcess": {
+        "count": 1.0,
+        "avg": 0.0,
+        "min": 0.0,
+        "p50": 0.0,
+        "p95": 0.0,
+        "max": 0.0,
+        "first": 0.0,
+        "last": 0.0,
+        "delta": 0.0,
+        "deltaPercent": 0.0
+      },
+      "fpsPerCpuSystem": null,
+      "frameMsPerCpuProcess": {
+        "count": 1.0,
+        "avg": 7.153,
+        "min": 7.153,
+        "p50": 7.153,
+        "p95": 7.153,
+        "max": 7.153,
+        "first": 7.153,
+        "last": 7.153,
+        "delta": 0.0,
+        "deltaPercent": 0.0
+      }
+    }
+  },
+  "observations": [
+    {
+      "severity": "HIGH",
+      "category": "throughput",
+      "title": "Low average FPS",
+      "details": "Average FPS is 0.00."
+    },
+    {
+      "severity": "HIGH",
+      "category": "latency",
+      "title": "High frame latency p95",
+      "details": "p95 frame time is 769.66 ms."
+    },
+    {
+      "severity": "HIGH",
+      "category": "cpu",
+      "title": "CPU saturation risk",
+      "details": "Process CPU peaked at 107.60%."
+    },
+    {
+      "severity": "LOW",
+      "category": "throughput",
+      "title": "Upper FPS envelope",
+      "details": "p95 FPS is 0.00."
+    }
+  ],
+  "eventLog": [
+    {
+      "tSec": 0.94,
+      "timestamp": "2026-03-22T16:56:23.218562+00:00",
+      "severity": "HIGH",
+      "category": "cpu",
+      "title": "Process CPU spike",
+      "details": "cpuProcessPercent >= 90.0",
+      "evidence": {
+        "cpuProcessPercent": 107.6,
+        "threshold": 90.0
+      }
+    },
+    {
+      "tSec": 0.94,
+      "timestamp": "2026-03-22T16:56:23.218562+00:00",
+      "severity": "HIGH",
+      "category": "throughput",
+      "title": "Low FPS",
+      "details": "fps <= 5.0",
+      "evidence": {
+        "fps": 0.0,
+        "threshold": 5.0
+      }
+    },
+    {
+      "tSec": 0.94,
+      "timestamp": "2026-03-22T16:56:23.218562+00:00",
+      "severity": "MEDIUM",
+      "category": "throughput",
+      "title": "Frame latency spike",
+      "details": "totalTimeMs >= 220.0",
+      "evidence": {
+        "totalTimeMs": 769.66,
+        "threshold": 220.0
+      }
+    }
+  ],
+  "timeline": [
+    {
+      "tSec": 0.94,
+      "fps": 0.0,
+      "frameMs": 769.66,
+      "cpuProcessPercent": 107.6,
+      "memorySystemPercent": 46.2,
+      "processRssMb": 1482.3,
+      "gpuUtilPercent": 29.0,
+      "gpuTempC": 42.0,
+      "droppedFrames": 0.0,
+      "fpsPerCpuProcess": 0.0
+    }
+  ],
+  "llmReady": {
+    "headline": [
+      "Session 6820c86b on LENOVO-LOQ",
+      "Duration 290.0s, samples 1."
+    ],
+    "keyMetrics": {
+      "fpsAvg": 0.0,
+      "fpsP95": 0.0,
+      "frameTimeAvgMs": 769.66,
+      "frameTimeP95Ms": 769.66,
+      "cpuProcessAvgPercent": 107.6,
+      "cpuProcessPeakPercent": 107.6,
+      "memorySystemPeakPercent": 46.2,
+      "processRssPeakMb": 1482.3,
+      "gpuUtilAvgPercent": 29.0,
+      "gpuTempPeakC": 42.0,
+      "gpuMemoryUtilPeakPercent": 7.0,
+      "fpsPerCpuProcessAvg": 0.0
+    },
+    "eventCount": 3,
+    "observationCount": 4,
+    "reportUseHint": "Use device + comparisonVector across laptops to compare throughput, CPU/GPU pressure, and memory behavior for the same model/scenario."
+  }
+}
