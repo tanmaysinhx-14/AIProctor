@@ -121,10 +121,6 @@ class ProctoringSession:
     risk_time_ms = 0.0
 
     tier_status: Dict[str, Any] = {}
-    if should_update_risk and not self.calibration.active:
-      tier_status = self.tier_engine.update(
-        risk_breakdown.get("ruleStates", []) if isinstance(risk_breakdown, dict) else []
-      )
 
     run_inference = self.scheduler.should_process_frame(frame_index)
     inference_skipped = not run_inference
@@ -324,6 +320,11 @@ class ProctoringSession:
     else:
       risk_score, risk_level, risk_breakdown = self.risk_engine.current()
     risk_time_ms = (perf_counter() - risk_start) * 1000.0
+
+    if should_update_risk and not self.calibration.active:
+      tier_status = self.tier_engine.update(
+        risk_breakdown.get("ruleStates", []) if isinstance(risk_breakdown, dict) else []
+      )
 
     if frame is not None and run_inference and not self.calibration.active:
       new_risk_snapshot, should_stop_monitoring = self._update_risk_snapshots(
