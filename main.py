@@ -832,6 +832,35 @@ class ProctoringSession:
     status["enabled"] = True
     return status
 
+  def set_runtime_thresholds(self, overrides: Dict[str, float]) -> Dict[str, Any]:
+    if not overrides:
+        return {"applied": 0, "keys": []}
+    valid: Dict[str, float] = {}
+    for key, value in overrides.items():
+        try:
+            valid[key] = float(value)
+        except (TypeError, ValueError):
+            continue
+    if valid:
+        self.risk_engine.set_adaptive_thresholds(valid)
+    eye_keys = {"eye_visibility_threshold","eye_horizontal_deadzone",
+                "eye_vertical_up_threshold","eye_vertical_down_threshold","eye_baseline_alpha"}
+    eye_ov = {k: v for k, v in valid.items() if k in eye_keys}
+    if eye_ov:
+        self.eye_tracker.set_overrides(eye_ov)
+    phone_keys = {"phone_min_confidence","phone_min_area_ratio","phone_confirm_frames"}
+    phone_ov = {k: v for k, v in valid.items() if k in phone_keys}
+    if phone_ov:
+        self.object_detector.set_phone_overrides(phone_ov)
+    return {"applied": len(valid), "keys": sorted(valid.keys())}
+
+  def get_current_thresholds(self) -> Dict[str, Any]:
+    return {
+        "adaptive": self.risk_engine.get_adaptive_thresholds(),
+        "phone": self.object_detector.current_phone_thresholds(),
+        "hasCalibration": bool(self.calibration.completed),
+    }
+
   @staticmethod
   def _decode_frame(frame_base64: str) -> Optional[np.ndarray]:
     try:
@@ -1030,10 +1059,20 @@ async def websocket_proctoring(websocket: WebSocket) -> None:
           continue
         if command == "performance_report_export":
           await websocket.send_json({"type": "performance_report_export", "export": session.export_performance_report()})
-          continue
+          continueS
         if command == "performance_report_reset":
           status = session.reset_performance_report()
           await websocket.send_json({"type": "ack", "command": "performance_report_reset", "reportStatus": status})
+          continue
+        if command == "set_thresholds":
+          threshold_data = raw_payload.get("thresholds", {}) if isinstance(raw_payload, dict) else {}
+          result = session.set_runtime_thresholds(threshold_data)
+          await websocket.send_json({"type": "ack", "command": "set_thresholds", "result": result})
+          continue
+
+        if command == "get_thresholds":
+          current = session.get_current_thresholds()
+          await websocket.send_json({"type": "thresholds_state", "thresholds": current})
           continue
         frame_base64 = ""
 

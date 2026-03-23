@@ -751,6 +751,162 @@
         grid-template-columns: 1fr;
       }
     }
+    
+    .tuner-toggle-btn {
+      background: rgba(28, 12, 42, 0.88);
+      border-color: rgba(168, 108, 255, 0.55);
+      color: #ddc8ff;
+    }
+    .tuner-toggle-btn:hover { border-color: rgba(200, 150, 255, 0.85); }
+    .tuner-toggle-btn.active {
+      background: rgba(55, 20, 80, 0.82);
+      border-color: rgba(192, 130, 255, 0.9);
+      color: #eedeff;
+    }
+
+    .threshold-panel {
+      max-width: 1400px;
+      margin: 12px auto 0;
+      display: none;
+    }
+    .threshold-panel.show { display: block; }
+
+    .threshold-panel-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 14px;
+      border-bottom: 1px solid rgba(168, 108, 255, 0.28);
+      color: #ddc8ff;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+    }
+
+    .threshold-panel-meta {
+      color: #a882d8;
+      font-size: 11px;
+      font-weight: 400;
+    }
+
+    .threshold-panel-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .tuner-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 12px;
+      padding: 12px;
+    }
+
+    .tuner-category {
+      border: 1px solid rgba(148, 88, 230, 0.28);
+      border-radius: 12px;
+      background: rgba(18, 8, 30, 0.72);
+      overflow: hidden;
+    }
+
+    .tuner-cat-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 11px;
+      background: rgba(55, 20, 80, 0.45);
+      border-bottom: 1px solid rgba(148, 88, 230, 0.22);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      color: #caaff8;
+    }
+
+    .tuner-reset-cat {
+      font-size: 10px;
+      padding: 3px 7px;
+      border-radius: 6px;
+      border: 1px solid rgba(168, 108, 255, 0.4);
+      background: transparent;
+      color: #b898e8;
+      cursor: pointer;
+    }
+    .tuner-reset-cat:hover { border-color: rgba(200, 150, 255, 0.8); color: #ddc8ff; transform: none; }
+
+    .tuner-items { padding: 8px 10px; display: grid; gap: 9px; }
+
+    .tuner-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 4px;
+      align-items: center;
+    }
+
+    .tuner-label {
+      font-size: 11px;
+      color: #b8a0d8;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .tuner-label.modified { color: #e0b8ff; font-weight: 600; }
+
+    .tuner-val {
+      font-size: 11px;
+      font-family: Consolas, "Courier New", monospace;
+      color: #d8c2ff;
+      text-align: right;
+      min-width: 46px;
+    }
+    .tuner-val.modified { color: #c97dff; font-weight: 700; }
+
+    .tuner-slider {
+      grid-column: 1 / -1;
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 5px;
+      border-radius: 3px;
+      background: rgba(100, 60, 160, 0.45);
+      outline: none;
+      cursor: pointer;
+      accent-color: #a855f7;
+    }
+    .tuner-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: #b97aff;
+      border: 2px solid rgba(220, 180, 255, 0.8);
+      cursor: pointer;
+      box-shadow: 0 0 6px rgba(168, 85, 247, 0.6);
+    }
+    .tuner-slider.modified::-webkit-slider-thumb { background: #d24dff; }
+    .tuner-slider::-moz-range-thumb {
+      width: 13px; height: 13px; border-radius: 50%;
+      background: #b97aff; border: 2px solid rgba(220, 180, 255, 0.8);
+      cursor: pointer;
+    }
+
+    .tuner-send-indicator {
+      font-size: 10px;
+      color: #9fffc8;
+      min-height: 14px;
+      padding: 0 12px 6px;
+      font-family: Consolas, monospace;
+      transition: opacity 0.4s;
+    }
+
+    @media (max-width: 1100px) {
+      .tuner-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 700px) {
+      .tuner-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -791,6 +947,7 @@
         <select id="cameraSelect" class="camera-picker" title="Choose input camera"></select>
         <button id="switchCamBtn">Switch Camera</button>
         <button id="refreshCamBtn">Refresh Cameras</button>
+        <button id="tunerToggleBtn" class="tuner-toggle-btn">⚙ Thresholds</button>
       </div>
 
       <div class="panel warning-panel">
@@ -963,6 +1120,18 @@
     <div id="snapshotGrid" class="snapshot-grid">
       <div class="snapshot-empty">No risk snapshots captured.</div>
     </div>
+  </section>
+
+  <section id="thresholdPanel" class="panel threshold-panel">
+    <div class="threshold-panel-head">
+      <span>⚙ Threshold Tuner</span>
+      <span id="tunerMeta" class="threshold-panel-meta">idle</span>
+      <div class="threshold-panel-actions">
+        <button class="tuner-reset-cat" id="tunerResetAllBtn">Reset All to Defaults</button>
+      </div>
+    </div>
+    <div id="tunerGrid" class="tuner-grid"><!-- populated by JS --></div>
+    <div id="tunerSendIndicator" class="tuner-send-indicator"></div>
   </section>
 
   <div id="snapshotModal" class="snapshot-modal" aria-hidden="true">
@@ -2271,6 +2440,7 @@
         setConnectionStatus("CONNECTED", true);
         log(`WebSocket connected: ${wsUrl}`);
         state.ws.send(JSON.stringify({ command: "calibration_status" }));
+        state.ws.send(JSON.stringify({ command: "get_thresholds" }));
       };
       state.ws.onclose = () => {
         setConnectionStatus("DISCONNECTED", false);
@@ -2302,6 +2472,15 @@
             return;
           }
 
+          if (data.type === "thresholds_state") {
+            applyTunerFromBackend(data.thresholds);
+            return;
+          }
+          if (data.type === "ack" && data.command === "set_thresholds") {
+            updateTunerMeta();
+            return;
+          }
+
           if (data.riskSnapshotsInfo) {
             const maxSnapshots = Number(data.riskSnapshotsInfo.max ?? state.snapshotLimit ?? 0);
             state.snapshotLimit = Math.max(0, maxSnapshots);
@@ -2318,6 +2497,11 @@
           updateWarnings(data.warnings || []);
           state.calibrationStatus = data.calibration || state.calibrationStatus;
           updateCalibrationPanel(state.calibrationStatus);
+
+          if (data.calibration?.completed && data.calibration?.profileThresholds) {
+            applyTunerFromBackend({ adaptive: data.calibration.profileThresholds });
+          }
+
           const backendBreakdown = data.riskBreakdown && Array.isArray(data.riskBreakdown.ruleStates)
             ? data.riskBreakdown
             : null;
@@ -2497,6 +2681,321 @@
     refreshCameraList().catch(() => {
       // Camera labels may require user permission; list can be refreshed after Start Monitoring.
     });
+
+    const THRESHOLD_CATEGORIES = [
+      {
+        id: "gaze",
+        label: "Gaze Detection",
+        items: [
+          { key: "gaze_extreme_horizontal_threshold", label: "Horizontal Gaze", min: 0.03, max: 0.25, step: 0.005, default: 0.078 },
+          { key: "gaze_extreme_vertical_threshold",   label: "Vertical Gaze",   min: 0.04, max: 0.28, step: 0.005, default: 0.090 },
+          { key: "gaze_extreme_activation_frames",    label: "Activation Frames", min: 1, max: 10, step: 1, default: 3 },
+          { key: "gaze_extreme_min_confidence",       label: "Min Confidence",  min: 0.00, max: 0.30, step: 0.01, default: 0.08 },
+          { key: "gaze_face_yaw_gate",                label: "Face Yaw Gate (°)", min: 5, max: 42, step: 1, default: 18 },
+          { key: "gaze_face_pitch_gate",              label: "Face Pitch Gate (°)", min: 5, max: 35, step: 1, default: 15 },
+        ],
+      },
+      {
+        id: "orientation",
+        label: "Face Orientation",
+        items: [
+          { key: "face_off_camera_yaw_gate",         label: "Yaw Off-Camera (°)",    min: 10, max: 55, step: 1,   default: 20 },
+          { key: "face_off_camera_pitch_gate",       label: "Pitch Off-Camera (°)",  min: 8,  max: 45, step: 1,   default: 16 },
+          { key: "face_off_camera_yaw_exit_gate",    label: "Yaw Exit Gate (°)",     min: 6,  max: 40, step: 1,   default: 13 },
+          { key: "face_off_camera_pitch_exit_gate",  label: "Pitch Exit Gate (°)",   min: 5,  max: 35, step: 1,   default: 11 },
+          { key: "face_off_camera_activation_frames",label: "Activation Frames",     min: 2,  max: 20, step: 1,   default: 10 },
+          { key: "face_off_camera_baseline_movement_gate", label: "Baseline Mvmt Gate", min: 0.005, max: 0.08, step: 0.005, default: 0.014 },
+        ],
+      },
+      {
+        id: "vertical",
+        label: "Vertical Head Motion",
+        items: [
+          { key: "vertical_pitch_ratio_up_threshold",   label: "Pitch Ratio Up",     min: 0.25, max: 0.52, step: 0.01, default: 0.48 },
+          { key: "vertical_pitch_ratio_down_threshold", label: "Pitch Ratio Down",   min: 0.52, max: 0.85, step: 0.01, default: 0.62 },
+          { key: "vertical_head_pitch_enter_threshold", label: "Pitch Enter (°)",    min: 5,    max: 40,   step: 0.5,  default: 17 },
+          { key: "vertical_head_pitch_exit_threshold",  label: "Pitch Exit (°)",     min: 4,    max: 30,   step: 0.5,  default: 10 },
+          { key: "vertical_head_activation_frames",     label: "Activation Frames",  min: 2,    max: 15,   step: 1,    default: 5 },
+          { key: "vertical_head_pitch_velocity_gate",   label: "Velocity Gate",      min: 0.2,  max: 5,    step: 0.1,  default: 0.9 },
+        ],
+      },
+      {
+        id: "horizontal",
+        label: "Horizontal Head Motion",
+        items: [
+          { key: "horizontal_head_yaw_gate",            label: "Yaw Gate (°)",         min: 5,   max: 50,  step: 1,   default: 8 },
+          { key: "horizontal_head_yaw_span_gate",       label: "Yaw Span Gate (°)",    min: 2,   max: 25,  step: 0.5, default: 5.8 },
+          { key: "horizontal_head_yaw_velocity_gate",   label: "Yaw Velocity Gate",    min: 0.3, max: 6,   step: 0.1, default: 1.1 },
+          { key: "horizontal_head_activation_frames",   label: "Activation Frames",    min: 2,   max: 12,  step: 1,   default: 4 },
+          { key: "horizontal_head_exit_velocity_gate",  label: "Exit Velocity Gate",   min: 0.2, max: 4,   step: 0.1, default: 0.55 },
+          { key: "horizontal_head_x_span_gate",         label: "X Span Gate",          min: 0.02,max: 0.30,step: 0.01,default: 0.095 },
+        ],
+      },
+      {
+        id: "movement",
+        label: "Movement",
+        items: [
+          { key: "high_movement_threshold",               label: "High Movement",          min: 0.01, max: 0.15, step: 0.005, default: 0.045 },
+          { key: "vertical_head_activation_movement_threshold", label: "Vertical Activation Mvmt", min: 0.005, max: 0.06, step: 0.005, default: 0.016 },
+          { key: "vertical_head_large_movement_gate",     label: "Vertical Large Mvmt",    min: 0.005, max: 0.08, step: 0.005, default: 0.018 },
+          { key: "horizontal_head_large_movement_gate",   label: "Horizontal Large Mvmt",  min: 0.005, max: 0.08, step: 0.005, default: 0.018 },
+        ],
+      },
+      {
+        id: "eye",
+        label: "Eye Tracker",
+        items: [
+          { key: "eye_horizontal_deadzone",     label: "Horizontal Deadzone",    min: 0.02, max: 0.18, step: 0.005, default: 0.085 },
+          { key: "eye_vertical_up_threshold",   label: "Vertical Up Threshold",  min: 0.03, max: 0.25, step: 0.005, default: 0.105 },
+          { key: "eye_vertical_down_threshold", label: "Vertical Down Threshold",min: 0.03, max: 0.25, step: 0.005, default: 0.105 },
+          { key: "eye_visibility_threshold",    label: "Eye Visibility Cutoff",  min: 0.02, max: 0.20, step: 0.005, default: 0.075 },
+          { key: "eye_baseline_alpha",          label: "Baseline Alpha",         min: 0.03, max: 0.22, step: 0.01,  default: 0.08 },
+        ],
+      },
+      {
+        id: "phone",
+        label: "Phone Detection",
+        items: [
+          { key: "phone_min_confidence",  label: "Min Confidence",  min: 0.15, max: 0.70, step: 0.01,   default: 0.38 },
+          { key: "phone_min_area_ratio",  label: "Min Area Ratio",  min: 0.0004, max: 0.01, step: 0.0002, default: 0.002 },
+          { key: "phone_confirm_frames",  label: "Confirm Frames",  min: 1,    max: 4,    step: 1,      default: 1 },
+        ],
+      },
+    ];
+
+    // Current live values keyed by threshold key
+    const tunerState = {};
+    // Pending changes waiting to be debounce-sent
+    const tunerPending = {};
+    let tunerDebounceTimer = null;
+    let tunerPanelOpen = false;
+
+    function tunerValueDisplay(val, step) {
+      if (step >= 1) return String(Math.round(val));
+      const decimals = String(step).includes(".") ? String(step).split(".")[1].length : 2;
+      return Number(val).toFixed(decimals);
+    }
+
+    function tunerIsModified(key, val) {
+      const cat = THRESHOLD_CATEGORIES.find(c => c.items.some(i => i.key === key));
+      if (!cat) return false;
+      const def = cat.items.find(i => i.key === key);
+      if (!def) return false;
+      return Math.abs(Number(val) - Number(def.default)) > Number(def.step) * 0.45;
+    }
+
+    function buildTunerUI() {
+      const grid = document.getElementById("tunerGrid");
+      if (!grid) return;
+      grid.innerHTML = "";
+
+      for (const cat of THRESHOLD_CATEGORIES) {
+        const card = document.createElement("div");
+        card.className = "tuner-category";
+        card.dataset.catId = cat.id;
+
+        const head = document.createElement("div");
+        head.className = "tuner-cat-head";
+        head.innerHTML = `<span>${cat.label}</span><button class="tuner-reset-cat" data-cat="${cat.id}">Reset</button>`;
+        card.appendChild(head);
+
+        const items = document.createElement("div");
+        items.className = "tuner-items";
+
+        for (const def of cat.items) {
+          const current = tunerState[def.key] ?? def.default;
+          const modified = tunerIsModified(def.key, current);
+
+          const row = document.createElement("div");
+          row.className = "tuner-row";
+
+          row.innerHTML = `
+            <span class="tuner-label${modified ? " modified" : ""}" title="${def.key}">${def.label}</span>
+            <span class="tuner-val${modified ? " modified" : ""}" id="tunerVal_${def.key}">${tunerValueDisplay(current, def.step)}</span>
+            <input
+              type="range"
+              class="tuner-slider${modified ? " modified" : ""}"
+              id="tunerSlider_${def.key}"
+              data-key="${def.key}"
+              data-step="${def.step}"
+              min="${def.min}" max="${def.max}" step="${def.step}"
+              value="${current}"
+            />
+          `;
+          items.appendChild(row);
+        }
+
+        card.appendChild(items);
+        grid.appendChild(card);
+      }
+
+      // Bind slider events
+      grid.querySelectorAll(".tuner-slider").forEach(slider => {
+        slider.addEventListener("input", onTunerSliderInput);
+      });
+
+      // Bind category reset buttons
+      grid.querySelectorAll(".tuner-reset-cat[data-cat]").forEach(btn => {
+        btn.addEventListener("click", () => resetTunerCategory(btn.dataset.cat));
+      });
+    }
+
+    function onTunerSliderInput(event) {
+      const slider = event.target;
+      const key = slider.dataset.key;
+      const val = parseFloat(slider.value);
+      tunerState[key] = val;
+      tunerPending[key] = val;
+
+      // Update value label + styling immediately
+      const valEl = document.getElementById(`tunerVal_${key}`);
+      if (valEl) {
+        valEl.textContent = tunerValueDisplay(val, parseFloat(slider.dataset.step));
+        const mod = tunerIsModified(key, val);
+        valEl.classList.toggle("modified", mod);
+        slider.classList.toggle("modified", mod);
+        const labelEl = slider.closest(".tuner-row")?.querySelector(".tuner-label");
+        if (labelEl) labelEl.classList.toggle("modified", mod);
+      }
+
+      // Debounce WS send
+      clearTimeout(tunerDebounceTimer);
+      tunerDebounceTimer = setTimeout(flushTunerPending, 280);
+      showTunerIndicator("pending...", "#ffd07a");
+    }
+
+    function flushTunerPending() {
+      if (!state.ws || state.ws.readyState !== WebSocket.OPEN) {
+        showTunerIndicator("WS not connected — changes queued", "#ff9aaa");
+        return;
+      }
+      if (Object.keys(tunerPending).length === 0) return;
+
+      const payload = { command: "set_thresholds", thresholds: { ...tunerPending } };
+      Object.keys(tunerPending).forEach(k => delete tunerPending[k]);
+      state.ws.send(JSON.stringify(payload));
+      updateTunerMeta();
+      showTunerIndicator("✓ sent", "#9fffb2");
+    }
+
+    function showTunerIndicator(msg, color) {
+      const el = document.getElementById("tunerSendIndicator");
+      if (!el) return;
+      el.textContent = msg;
+      el.style.color = color || "#9fffb2";
+      clearTimeout(el._hide);
+      el._hide = setTimeout(() => { el.textContent = ""; }, 2800);
+    }
+
+    function resetTunerCategory(catId) {
+      const cat = THRESHOLD_CATEGORIES.find(c => c.id === catId);
+      if (!cat) return;
+      const overrides = {};
+      for (const def of cat.items) {
+        tunerState[def.key] = def.default;
+        tunerPending[def.key] = def.default;
+        const slider = document.getElementById(`tunerSlider_${def.key}`);
+        if (slider) slider.value = def.default;
+        const valEl = document.getElementById(`tunerVal_${def.key}`);
+        if (valEl) {
+          valEl.textContent = tunerValueDisplay(def.default, def.step);
+          valEl.classList.remove("modified");
+        }
+        if (slider) slider.classList.remove("modified");
+        const labelEl = slider?.closest(".tuner-row")?.querySelector(".tuner-label");
+        if (labelEl) labelEl.classList.remove("modified");
+        overrides[def.key] = def.default;
+      }
+      clearTimeout(tunerDebounceTimer);
+      tunerDebounceTimer = setTimeout(flushTunerPending, 80);
+    }
+
+    function resetAllTuner() {
+      for (const cat of THRESHOLD_CATEGORIES) {
+        resetTunerCategory(cat.id);
+      }
+    }
+
+    function updateTunerMeta() {
+      const el = document.getElementById("tunerMeta");
+      if (!el) return;
+      const modCount = THRESHOLD_CATEGORIES.flatMap(c => c.items).filter(
+        def => tunerIsModified(def.key, tunerState[def.key] ?? def.default)
+      ).length;
+      el.textContent = modCount > 0
+        ? `${modCount} threshold${modCount !== 1 ? "s" : ""} modified`
+        : "all at defaults";
+    }
+
+    function applyTunerFromBackend(thresholds) {
+      if (!thresholds) return;
+      // Merge adaptive overrides
+      const adaptive = thresholds.adaptive || {};
+      for (const [key, val] of Object.entries(adaptive)) {
+        tunerState[key] = Number(val);
+        const slider = document.getElementById(`tunerSlider_${key}`);
+        if (slider) {
+          slider.value = val;
+          slider.classList.toggle("modified", tunerIsModified(key, val));
+        }
+        const valEl = document.getElementById(`tunerVal_${key}`);
+        const stepAttr = document.getElementById(`tunerSlider_${key}`)?.dataset?.step ?? "0.01";
+        if (valEl) {
+          valEl.textContent = tunerValueDisplay(val, parseFloat(stepAttr));
+          valEl.classList.toggle("modified", tunerIsModified(key, val));
+        }
+        const labelEl = document.getElementById(`tunerSlider_${key}`)?.closest(".tuner-row")?.querySelector(".tuner-label");
+        if (labelEl) labelEl.classList.toggle("modified", tunerIsModified(key, val));
+      }
+      // Merge phone overrides
+      const phone = thresholds.phone || {};
+      for (const [key, val] of Object.entries(phone)) {
+        tunerState[key] = Number(val);
+        const slider = document.getElementById(`tunerSlider_${key}`);
+        if (slider) slider.value = val;
+      }
+      updateTunerMeta();
+    }
+
+    function toggleTunerPanel() {
+      tunerPanelOpen = !tunerPanelOpen;
+      const panel = document.getElementById("thresholdPanel");
+      const btn = document.getElementById("tunerToggleBtn");
+      if (panel) panel.classList.toggle("show", tunerPanelOpen);
+      if (btn) btn.classList.toggle("active", tunerPanelOpen);
+      if (tunerPanelOpen && !document.querySelector(".tuner-slider")) {
+        buildTunerUI();
+      }
+    }
+
+    // Wire button
+    document.getElementById("tunerToggleBtn")?.addEventListener("click", toggleTunerPanel);
+    document.getElementById("tunerResetAllBtn")?.addEventListener("click", resetAllTuner);
+
+    // Handle thresholds_state response from backend
+    // Add this inside the existing state.ws.onmessage handler,
+    // right after the "calibration_status" type check:
+    //
+    //   if (data.type === "thresholds_state") {
+    //     applyTunerFromBackend(data.thresholds);
+    //     return;
+    //   }
+    //
+    // Also handle it in the ack block for "set_thresholds":
+    //
+    //   if (data.type === "ack" && data.command === "set_thresholds") {
+    //     updateTunerMeta();
+    //     return;
+    //   }
+    //
+    // And seed slider values when calibration completes (add to the
+    // section that already calls updateCalibrationPanel):
+    //
+    //   if (data.calibration?.completed && data.calibration?.profileThresholds) {
+    //     applyTunerFromBackend({ adaptive: data.calibration.profileThresholds });
+    //   }
+    // ── End Threshold Tuner ──────────────────────────────────────
+
 
     log("Ready. Click 'Start Monitoring'.");
   </script>
