@@ -32,6 +32,7 @@ from vision.object_detector import DetectedObject, YoloObjectDetector
 from vision.person_filter import PersonValidator
 from vision.risk_engine import RiskEngine
 from vision.scene_analyzer import SceneMotionAnalyzer
+from vision.tier_engine import TierEngine
 
 app = FastAPI(title="Advanced AI Proctoring Backend")
 _frontend_path = Path(__file__).resolve().parent / "frontend" / "index.html"
@@ -77,6 +78,7 @@ class ProctoringSession:
     self.scene_analyzer = SceneMotionAnalyzer()
     self.movement_analyzer = MovementAnalyzer()
     self.risk_engine = RiskEngine()
+    self.tier_engine = TierEngine()
     self.calibration = CalibrationManager()
 
     self._process_lock = asyncio.Lock()
@@ -117,6 +119,12 @@ class ProctoringSession:
     yolo_time_ms = 0.0
     quality_time_ms = 0.0
     risk_time_ms = 0.0
+
+    tier_status: Dict[str, Any] = {}
+    if should_update_risk and not self.calibration.active:
+      tier_status = self.tier_engine.update(
+        risk_breakdown.get("ruleStates", []) if isinstance(risk_breakdown, dict) else []
+      )
 
     run_inference = self.scheduler.should_process_frame(frame_index)
     inference_skipped = not run_inference
@@ -422,6 +430,7 @@ class ProctoringSession:
         "max": 0 if not settings.risk_capture_enabled else settings.risk_capture_max_images,
       },
       "riskSnapshots": self._risk_snapshot_summaries(),
+      "tierStatus": tier_status,
     }
 
     if new_risk_snapshot is not None:
@@ -727,9 +736,11 @@ class ProctoringSession:
         "mode": "DISABLED",
         "instruction": "Calibration is disabled in settings.",
       }
+      
 
     self.calibration.start()
     self.risk_engine.reset()
+    self.tier_engine.reset()
     self.object_detector.reset_phone_state()
     self.person_tracker.reset()
     self.person_filter.reset()
@@ -803,6 +814,7 @@ class ProctoringSession:
       self._dropped_frames = 0
       self._processed_frames = 0
     self._fps.reset()
+    self.tier_engine.reset()
 
   def performance_report_status(self) -> Dict[str, Any]:
     if self.session_report is None:

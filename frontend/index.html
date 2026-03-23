@@ -939,6 +939,105 @@
       display: none;
     }
     .tuner-backdrop.show { display: block; }
+
+    .tier-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      border-radius: 999px;
+      padding: 5px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+    .tier-badge.tier-0 {
+      border-color: rgba(99, 168, 191, 0.35);
+      background: rgba(7, 30, 42, 0.55);
+      color: #9fcfdf;
+    }
+    .tier-badge.tier-1 {
+      border-color: rgba(255, 207, 74, 0.55);
+      background: rgba(50, 36, 4, 0.65);
+      color: #ffd97a;
+    }
+    .tier-badge.tier-2 {
+      border-color: rgba(255, 143, 74, 0.72);
+      background: rgba(60, 28, 4, 0.70);
+      color: #ffb07a;
+    }
+    .tier-badge.tier-3 {
+      border-color: rgba(255, 70, 90, 0.85);
+      background: rgba(72, 10, 18, 0.78);
+      color: #ff8a96;
+      animation: tier3-pulse 1.4s ease-in-out infinite;
+    }
+    @keyframes tier3-pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(255, 70, 90, 0); }
+      50%       { box-shadow: 0 0 0 5px rgba(255, 70, 90, 0.28); }
+    }
+
+    .tier-log {
+      padding: 10px 12px;
+      border: 1px solid rgba(98, 170, 194, 0.28);
+      background: rgba(8, 28, 40, 0.54);
+    }
+    .tier-log-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #b8def0;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 8px;
+    }
+    .tier-log-list {
+      display: grid;
+      gap: 5px;
+      max-height: 220px;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(100, 160, 190, 0.4) transparent;
+    }
+    .tier-event {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 7px;
+      border-radius: 8px;
+      padding: 6px 8px;
+      background: rgba(5, 20, 32, 0.65);
+      border: 1px solid transparent;
+      font-size: 11px;
+    }
+    .tier-event.t1 { border-color: rgba(255, 207, 74, 0.28); }
+    .tier-event.t2 { border-color: rgba(255, 143, 74, 0.42); }
+    .tier-event.t3 { border-color: rgba(255, 70, 90, 0.55);
+                     background: rgba(55, 8, 14, 0.60); }
+
+    .tier-event-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .t1 .tier-event-dot { background: #ffd97a; }
+    .t2 .tier-event-dot { background: #ffb07a; }
+    .t3 .tier-event-dot { background: #ff5f73; }
+
+    .tier-event-label { color: #d4eef8; }
+    .tier-event-label .tier-event-sub {
+      color: #88bcd0;
+      font-size: 10px;
+      margin-top: 1px;
+    }
+    .tier-event-time {
+      color: #7fb2c7;
+      font-family: Consolas, monospace;
+      font-size: 10px;
+      white-space: nowrap;
+    }
+    .tier-empty { color: #6ba8bf; font-size: 12px; }
   </style>
 </head>
 <body>
@@ -947,6 +1046,7 @@
       <div class="video-head">
         <div class="title">Live Proctoring Console</div>
         <div class="status-row">
+          <div id="tierBadge" class="status-pill tier-badge tier-0">● TIER 0</div>
           <div class="status-pill" id="connStatus">WS: DISCONNECTED</div>
           <div class="status-pill" id="camStatus">CAM: IDLE</div>
           <div class="status-pill" id="gpuStatus">YOLO: --</div>
@@ -1078,6 +1178,16 @@
           <div class="risk-driver none">No active risk rule</div>
         </div>
         <div id="riskMath" class="risk-math">raw 0.00 | ema 0.00 | smooth 0.00</div>
+      </div>
+
+      <div class="panel tier-log">
+        <div class="tier-log-head">
+          <strong>Violation Timeline</strong>
+          <span id="tierEventCount">0 events</span>
+        </div>
+        <div id="tierLogList" class="tier-log-list">
+          <div class="tier-empty">No violations recorded.</div>
+        </div>
       </div>
 
       <div class="panel resources-panel">
@@ -1972,6 +2082,11 @@
       if (sendServerReset && state.ws && state.ws.readyState === WebSocket.OPEN) {
         state.ws.send(JSON.stringify({ command: "reset_stats" }));
       }
+
+      tierEventCache = [];
+      renderTierLog();
+      updateTierBadge(0);
+
       log("Metrics reset.");
     }
 
@@ -2494,19 +2609,16 @@
           const data = JSON.parse(event.data);
           if (data.type === "ack") {
             log(`Server ACK: ${data.command}`);
-            if (data.type === "ack") {
-              log(`Server ACK: ${data.command}`);
-              if (data.command === "set_thresholds") {
-                updateTunerMeta();
-              }
-              if (data.calibration) {
-                state.calibrationStatus = data.calibration;
-                updateCalibrationPanel(data.calibration);
-              }
-              return;
+            if (data.command === "set_thresholds") {
+              updateTunerMeta();
             }
+            if (data.calibration) {
+              state.calibrationStatus = data.calibration;
+              updateCalibrationPanel(data.calibration);
+            }
+            return;
           }
-
+          
           if (data.type === "calibration_status") {
             state.calibrationStatus = data.calibration || null;
             updateCalibrationPanel(state.calibrationStatus);
@@ -2535,6 +2647,7 @@
           state.calibrationStatus = data.calibration || state.calibrationStatus;
           updateCalibrationPanel(state.calibrationStatus);
 
+          handleTierStatus(data.tierStatus);
           if (data.calibration?.completed && data.calibration?.profileThresholds) {
             applyTunerFromBackend({ adaptive: data.calibration.profileThresholds });
           }
@@ -2707,16 +2820,6 @@
 
     setInterval(renderLogs, 2000);
 
-    setLogSpeed("normal", false);
-    setLogsPaused(false, false);
-    resetDashboardStats(false);
-    setConnectionStatus("DISCONNECTED", false);
-    setCameraStatus("IDLE", false);
-    updateWarnings([]);
-    renderRiskSnapshots();
-    refreshCameraList().catch(() => {
-    });
-
     const THRESHOLD_CATEGORIES = [
       {
         id: "gaze",
@@ -2802,6 +2905,19 @@
     const tunerPending = {};
     let tunerDebounceTimer = null;
     let tunerPanelOpen = false;
+    const TIER_LABELS = ["CLEAN", "WATCH", "REVIEW", "ALERT"];
+    const TIER_DOTS   = ["●", "◆", "▲", "⬟"];
+    let tierEventCache = [];
+
+    setLogSpeed("normal", false);
+    setLogsPaused(false, false);
+    resetDashboardStats(false);
+    setConnectionStatus("DISCONNECTED", false);
+    setCameraStatus("IDLE", false);
+    updateWarnings([]);
+    renderRiskSnapshots();
+    refreshCameraList().catch(() => {
+    });
 
     function tunerValueDisplay(val, step) {
       if (step >= 1) return String(Math.round(val));
@@ -3001,6 +3117,85 @@
     document.getElementById("tunerCloseBtn")?.addEventListener("click", toggleTunerPanel);
     document.getElementById("tunerBackdrop")?.addEventListener("click", toggleTunerPanel);
     document.getElementById("tunerResetAllBtn")?.addEventListener("click", resetAllTuner);
+
+    function updateTierBadge(activeTier) {
+      const badge = document.getElementById("tierBadge");
+      if (!badge) return;
+      badge.className = `status-pill tier-badge tier-${activeTier}`;
+      badge.textContent = `${TIER_DOTS[activeTier] ?? "●"} TIER ${activeTier} — ${TIER_LABELS[activeTier] ?? ""}`;
+    }
+
+    function formatTierEvidence(ev) {
+      const e = ev.evidence || {};
+      if (e.type === "combination") {
+        return `Combo: ${(e.rules || []).join(" + ")}`;
+      }
+      if (e.type === "sustained") {
+        return `Sustained ${e.sustainedSec}s (limit ${e.requiredSec}s)`;
+      }
+      return `${e.triggersInWindow ?? 1}× in ${e.windowSec ?? 120}s window`;
+    }
+
+    function formatElapsed(sec) {
+      const m = Math.floor(sec / 60);
+      const s = Math.floor(sec % 60);
+      return `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+    }
+
+    function renderTierLog() {
+      const list = document.getElementById("tierLogList");
+      const countEl = document.getElementById("tierEventCount");
+      if (!list) return;
+      if (countEl) countEl.textContent = `${tierEventCache.length} event${tierEventCache.length !== 1 ? "s" : ""}`;
+
+      if (tierEventCache.length === 0) {
+        list.innerHTML = `<div class="tier-empty">No violations recorded.</div>`;
+        return;
+      }
+
+      // Render newest first
+      const reversed = [...tierEventCache].reverse().slice(0, 80);
+      list.innerHTML = reversed.map(ev => {
+        const sub = formatTierEvidence(ev);
+        const time = formatElapsed(ev.sessionElapsedSec ?? 0);
+        const escalation = ev.escalatedFrom
+          ? ` <span style="opacity:0.65">↑T${ev.escalatedFrom}</span>` : "";
+        return `
+          <div class="tier-event t${ev.tier}">
+            <span class="tier-event-dot"></span>
+            <span class="tier-event-label">
+              <span>T${ev.tier} — ${escapeHtml(ev.label)}${escalation}</span>
+              <div class="tier-event-sub">${escapeHtml(sub)}</div>
+            </span>
+            <span class="tier-event-time">${time}</span>
+          </div>`;
+      }).join("");
+    }
+
+    function handleTierStatus(tierStatus) {
+      if (!tierStatus || typeof tierStatus !== "object") return;
+
+      updateTierBadge(Number(tierStatus.activeTier ?? 0));
+
+      // Merge new events into local cache
+      const newEvs = Array.isArray(tierStatus.newEvents) ? tierStatus.newEvents : [];
+      if (newEvs.length > 0) {
+        tierEventCache.push(...newEvs);
+        if (tierEventCache.length > 300) {
+          tierEventCache = tierEventCache.slice(-300);
+        }
+        renderTierLog();
+
+        // Announce Tier 3 in stream log
+        for (const ev of newEvs) {
+          if (ev.tier === 3) {
+            log(`🔴 TIER 3: ${ev.label} — ${formatTierEvidence(ev)}`, "error");
+          } else if (ev.tier === 2) {
+            log(`🟠 TIER 2: ${ev.label} — ${formatTierEvidence(ev)}`, "warn");
+          }
+        }
+      }
+    }
 
     log("Ready. Click 'Start Monitoring'.");
   </script>
