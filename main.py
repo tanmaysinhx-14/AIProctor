@@ -1059,7 +1059,7 @@ async def websocket_proctoring(websocket: WebSocket) -> None:
           continue
         if command == "performance_report_export":
           await websocket.send_json({"type": "performance_report_export", "export": session.export_performance_report()})
-          continueS
+          continue
         if command == "performance_report_reset":
           status = session.reset_performance_report()
           await websocket.send_json({"type": "ack", "command": "performance_report_reset", "reportStatus": status})

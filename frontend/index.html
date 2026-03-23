@@ -765,41 +765,78 @@
     }
 
     .threshold-panel {
-      max-width: 1400px;
-      margin: 12px auto 0;
-      display: none;
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 480px;
+      max-width: 96vw;
+      height: 100vh;
+      z-index: 50;
+      display: flex;
+      flex-direction: column;
+      background: rgba(10, 6, 20, 0.97);
+      border-left: 1px solid rgba(148, 88, 230, 0.45);
+      box-shadow: -12px 0 40px rgba(0, 0, 0, 0.6);
+      transform: translateX(100%);
+      transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(6px);
     }
-    .threshold-panel.show { display: block; }
+    .threshold-panel.show {
+      transform: translateX(0);
+    }
 
     .threshold-panel-head {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 14px;
+      padding: 12px 14px;
       border-bottom: 1px solid rgba(168, 108, 255, 0.28);
       color: #ddc8ff;
       font-size: 13px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.7px;
+      flex-shrink: 0;
     }
-
     .threshold-panel-meta {
       color: #a882d8;
       font-size: 11px;
       font-weight: 400;
     }
-
     .threshold-panel-actions {
       display: flex;
       gap: 8px;
       align-items: center;
     }
 
+    .tuner-close-btn {
+      font-size: 16px;
+      padding: 2px 8px;
+      border-radius: 6px;
+      border: 1px solid rgba(168, 108, 255, 0.4);
+      background: transparent;
+      color: #b898e8;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .tuner-close-btn:hover { border-color: rgba(200, 150, 255, 0.8); color: #ddc8ff; transform: none; }
+
+    .tuner-scroll {
+      flex: 1;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(148, 88, 230, 0.5) transparent;
+    }
+    .tuner-scroll::-webkit-scrollbar { width: 5px; }
+    .tuner-scroll::-webkit-scrollbar-thumb {
+      background: rgba(148, 88, 230, 0.45);
+      border-radius: 3px;
+    }
+
     .tuner-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-      gap: 12px;
+      grid-template-columns: 1fr;
+      gap: 10px;
       padding: 12px;
     }
 
@@ -809,7 +846,6 @@
       background: rgba(18, 8, 30, 0.72);
       overflow: hidden;
     }
-
     .tuner-cat-head {
       display: flex;
       justify-content: space-between;
@@ -823,7 +859,6 @@
       letter-spacing: 0.7px;
       color: #caaff8;
     }
-
     .tuner-reset-cat {
       font-size: 10px;
       padding: 3px 7px;
@@ -836,14 +871,12 @@
     .tuner-reset-cat:hover { border-color: rgba(200, 150, 255, 0.8); color: #ddc8ff; transform: none; }
 
     .tuner-items { padding: 8px 10px; display: grid; gap: 9px; }
-
     .tuner-row {
       display: grid;
       grid-template-columns: 1fr auto;
       gap: 4px;
       align-items: center;
     }
-
     .tuner-label {
       font-size: 11px;
       color: #b8a0d8;
@@ -851,9 +884,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
-
     .tuner-label.modified { color: #e0b8ff; font-weight: 600; }
-
     .tuner-val {
       font-size: 11px;
       font-family: Consolas, "Courier New", monospace;
@@ -862,7 +893,6 @@
       min-width: 46px;
     }
     .tuner-val.modified { color: #c97dff; font-weight: 700; }
-
     .tuner-slider {
       grid-column: 1 / -1;
       -webkit-appearance: none;
@@ -877,8 +907,7 @@
     }
     .tuner-slider::-webkit-slider-thumb {
       -webkit-appearance: none;
-      width: 13px;
-      height: 13px;
+      width: 13px; height: 13px;
       border-radius: 50%;
       background: #b97aff;
       border: 2px solid rgba(220, 180, 255, 0.8);
@@ -896,17 +925,20 @@
       font-size: 10px;
       color: #9fffc8;
       min-height: 14px;
-      padding: 0 12px 6px;
+      padding: 6px 12px;
       font-family: Consolas, monospace;
-      transition: opacity 0.4s;
+      flex-shrink: 0;
+      border-top: 1px solid rgba(148, 88, 230, 0.18);
     }
 
-    @media (max-width: 1100px) {
-      .tuner-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .tuner-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 49;
+      background: rgba(0, 0, 0, 0.35);
+      display: none;
     }
-    @media (max-width: 700px) {
-      .tuner-grid { grid-template-columns: 1fr; }
-    }
+    .tuner-backdrop.show { display: block; }
   </style>
 </head>
 <body>
@@ -1122,15 +1154,19 @@
     </div>
   </section>
 
+  <div id="tunerBackdrop" class="tuner-backdrop"></div>
   <section id="thresholdPanel" class="panel threshold-panel">
     <div class="threshold-panel-head">
       <span>⚙ Threshold Tuner</span>
       <span id="tunerMeta" class="threshold-panel-meta">idle</span>
       <div class="threshold-panel-actions">
-        <button class="tuner-reset-cat" id="tunerResetAllBtn">Reset All to Defaults</button>
+        <button class="tuner-reset-cat" id="tunerResetAllBtn">Reset All</button>
+        <button class="tuner-close-btn" id="tunerCloseBtn">✕</button>
       </div>
     </div>
-    <div id="tunerGrid" class="tuner-grid"><!-- populated by JS --></div>
+    <div class="tuner-scroll">
+      <div id="tunerGrid" class="tuner-grid"></div>
+    </div>
     <div id="tunerSendIndicator" class="tuner-send-indicator"></div>
   </section>
 
@@ -2358,7 +2394,6 @@
           try {
             track.stop();
           } catch (_) {
-            // ignore track stop errors
           }
         }
       }
@@ -2459,11 +2494,17 @@
           const data = JSON.parse(event.data);
           if (data.type === "ack") {
             log(`Server ACK: ${data.command}`);
-            if (data.calibration) {
-              state.calibrationStatus = data.calibration;
-              updateCalibrationPanel(data.calibration);
+            if (data.type === "ack") {
+              log(`Server ACK: ${data.command}`);
+              if (data.command === "set_thresholds") {
+                updateTunerMeta();
+              }
+              if (data.calibration) {
+                state.calibrationStatus = data.calibration;
+                updateCalibrationPanel(data.calibration);
+              }
+              return;
             }
-            return;
           }
 
           if (data.type === "calibration_status") {
@@ -2474,10 +2515,6 @@
 
           if (data.type === "thresholds_state") {
             applyTunerFromBackend(data.thresholds);
-            return;
-          }
-          if (data.type === "ack" && data.command === "set_thresholds") {
-            updateTunerMeta();
             return;
           }
 
@@ -2603,7 +2640,6 @@
         try {
           state.ws.close();
         } catch (_) {
-          // ignore close errors
         }
       }
       state.ws = null;
@@ -2679,7 +2715,6 @@
     updateWarnings([]);
     renderRiskSnapshots();
     refreshCameraList().catch(() => {
-      // Camera labels may require user permission; list can be refreshed after Start Monitoring.
     });
 
     const THRESHOLD_CATEGORIES = [
@@ -2763,9 +2798,7 @@
       },
     ];
 
-    // Current live values keyed by threshold key
     const tunerState = {};
-    // Pending changes waiting to be debounce-sent
     const tunerPending = {};
     let tunerDebounceTimer = null;
     let tunerPanelOpen = false;
@@ -2829,12 +2862,10 @@
         grid.appendChild(card);
       }
 
-      // Bind slider events
       grid.querySelectorAll(".tuner-slider").forEach(slider => {
         slider.addEventListener("input", onTunerSliderInput);
       });
 
-      // Bind category reset buttons
       grid.querySelectorAll(".tuner-reset-cat[data-cat]").forEach(btn => {
         btn.addEventListener("click", () => resetTunerCategory(btn.dataset.cat));
       });
@@ -2847,7 +2878,6 @@
       tunerState[key] = val;
       tunerPending[key] = val;
 
-      // Update value label + styling immediately
       const valEl = document.getElementById(`tunerVal_${key}`);
       if (valEl) {
         valEl.textContent = tunerValueDisplay(val, parseFloat(slider.dataset.step));
@@ -2858,7 +2888,6 @@
         if (labelEl) labelEl.classList.toggle("modified", mod);
       }
 
-      // Debounce WS send
       clearTimeout(tunerDebounceTimer);
       tunerDebounceTimer = setTimeout(flushTunerPending, 280);
       showTunerIndicator("pending...", "#ffd07a");
@@ -2929,7 +2958,6 @@
 
     function applyTunerFromBackend(thresholds) {
       if (!thresholds) return;
-      // Merge adaptive overrides
       const adaptive = thresholds.adaptive || {};
       for (const [key, val] of Object.entries(adaptive)) {
         tunerState[key] = Number(val);
@@ -2947,7 +2975,6 @@
         const labelEl = document.getElementById(`tunerSlider_${key}`)?.closest(".tuner-row")?.querySelector(".tuner-label");
         if (labelEl) labelEl.classList.toggle("modified", tunerIsModified(key, val));
       }
-      // Merge phone overrides
       const phone = thresholds.phone || {};
       for (const [key, val] of Object.entries(phone)) {
         tunerState[key] = Number(val);
@@ -2961,41 +2988,19 @@
       tunerPanelOpen = !tunerPanelOpen;
       const panel = document.getElementById("thresholdPanel");
       const btn = document.getElementById("tunerToggleBtn");
+      const backdrop = document.getElementById("tunerBackdrop");
       if (panel) panel.classList.toggle("show", tunerPanelOpen);
       if (btn) btn.classList.toggle("active", tunerPanelOpen);
+      if (backdrop) backdrop.classList.toggle("show", tunerPanelOpen);
       if (tunerPanelOpen && !document.querySelector(".tuner-slider")) {
         buildTunerUI();
       }
     }
 
-    // Wire button
     document.getElementById("tunerToggleBtn")?.addEventListener("click", toggleTunerPanel);
+    document.getElementById("tunerCloseBtn")?.addEventListener("click", toggleTunerPanel);
+    document.getElementById("tunerBackdrop")?.addEventListener("click", toggleTunerPanel);
     document.getElementById("tunerResetAllBtn")?.addEventListener("click", resetAllTuner);
-
-    // Handle thresholds_state response from backend
-    // Add this inside the existing state.ws.onmessage handler,
-    // right after the "calibration_status" type check:
-    //
-    //   if (data.type === "thresholds_state") {
-    //     applyTunerFromBackend(data.thresholds);
-    //     return;
-    //   }
-    //
-    // Also handle it in the ack block for "set_thresholds":
-    //
-    //   if (data.type === "ack" && data.command === "set_thresholds") {
-    //     updateTunerMeta();
-    //     return;
-    //   }
-    //
-    // And seed slider values when calibration completes (add to the
-    // section that already calls updateCalibrationPanel):
-    //
-    //   if (data.calibration?.completed && data.calibration?.profileThresholds) {
-    //     applyTunerFromBackend({ adaptive: data.calibration.profileThresholds });
-    //   }
-    // ── End Threshold Tuner ──────────────────────────────────────
-
 
     log("Ready. Click 'Start Monitoring'.");
   </script>
