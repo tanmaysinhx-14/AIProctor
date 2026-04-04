@@ -1,3 +1,4 @@
+@ -1,297 +1,292 @@
 from collections import defaultdict, deque
 from dataclasses import dataclass
 from datetime import datetime, timezone
@@ -45,9 +46,11 @@ class TierEngine:
             for too long.  Immediate alert.
   """
 
+  # ── Tier 2 ─────────────────────────────────────────────────
   TIER2_WINDOW_SEC: float = 120.0
   TIER2_MIN_TRIGGERS: int = 3
 
+  # ── Tier 3 combinations ────────────────────────────────────
   TIER3_COMBOS: List[Dict[str, Any]] = [
     {
       "id": "phone_gaze",
@@ -87,6 +90,8 @@ class TierEngine:
     },
   ]
 
+  # ── Tier 3 sustained rules ─────────────────────────────────
+  # Rule must be continuously active for at least this many seconds.
   TIER3_SUSTAINED_SEC: Dict[str, float] = {
     "face_missing":           10.0,
     "face_not_facing_camera": 12.0,
@@ -109,6 +114,7 @@ class TierEngine:
     self._activation_counts: Dict[str, int] = defaultdict(int)
     self._prev_active: Set[str] = set()
 
+  # ── Public ─────────────────────────────────────────────────
 
   def update(self, rule_states: List[Dict[str, Any]]) -> Dict[str, Any]:
     """
